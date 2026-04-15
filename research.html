@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Anova Research — Metodologia Preditiva</title>
+<meta name="description" content="A origem da Anova. Onde descritivo virou preditivo. Metodologia proprietária desenvolvida desde a primeira aparição no mercado.">
+<link rel="stylesheet" href="design-system/tokens.css">
+<link rel="stylesheet" href="design-system/components.css">
+<link rel="stylesheet" href="design-system/sections.css">
+<link rel="stylesheet" href="design-system/nav.css">
+<style>
+  /* ─── PAGE-SPECIFIC ─── */
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text-1);}
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;}
+  .container{max-width:1180px;margin:0 auto;padding:0 var(--s5);}
+  h1,h2,h3,h4{font-family:var(--font);font-weight:700;letter-spacing:-.025em;line-height:1.05;}
+  h1{font-size:clamp(40px,6.4vw,72px);letter-spacing:-.035em;line-height:1.02;}
+  h2{font-size:clamp(32px,4.6vw,52px);letter-spacing:-.025em;line-height:1.08;}
+  h3{font-size:22px;letter-spacing:-.015em;line-height:1.2;}
+  .lead{font-size:clamp(16px,1.4vw,19px);color:var(--text-2);line-height:1.55;max-width:60ch;}
+  .what-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--s8);align-items:center;margin-top:var(--s6);}
+  @media(max-width:880px){.what-grid{grid-template-columns:1fr;}}
+  .what-visual{border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;background:var(--bg-alt);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;padding:var(--s5);}
+  .what-visual img{max-width:80%;max-height:100%;object-fit:contain;}
+  .feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s3) var(--s6);margin-top:var(--s6);}
+  @media(max-width:680px){.feat-grid{grid-template-columns:1fr;}}
+  .prose{max-width:68ch;margin:var(--s7) 0;}
+  .prose p{font-size:17px;color:var(--text-2);line-height:1.7;margin-bottom:var(--s5);}
+  .prose p:first-of-type::first-letter{font-size:52px;font-weight:700;float:left;line-height:.9;padding:4px 12px 0 0;color:var(--text-1);}
+  .pillar-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s6);margin-top:var(--s7);}
+  @media(max-width:880px){.pillar-grid{grid-template-columns:1fr;}}
+  .pillar{border-left:2px solid var(--text-1);padding:var(--s3) 0 var(--s3) var(--s5);}
+  .pillar h3{margin-bottom:var(--s3);}
+  .pillar p{font-size:15px;color:var(--text-2);line-height:1.6;}
+</style>
+</head>
+<body data-page="research">
+
+<div id="anova-nav"></div>
+<noscript>
+  <nav style="padding:16px;background:#F8F8F8;border-bottom:1px solid #CCC;font-family:sans-serif;font-size:13px;">
+    <a href="index.html" style="margin-right:16px;">Anova OS</a>
+    <a href="wealth-management.html" style="margin-right:16px;">Gestão Patrimonial</a>
+    <a href="wealth-hubs.html" style="margin-right:16px;">Wealth Hubs</a>
+    <a href="life-invest.html" style="margin-right:16px;">Life Invest</a>
+    <a href="orquestrador.html" style="margin-right:16px;">Orquestrador</a>
+    <a href="credito.html" style="margin-right:16px;">Crédito</a>
+    <a href="research.html">Research</a>
+  </nav>
+</noscript>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero">
+  <div class="hero-bp"></div>
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">Metodologia · Desde o início</span>
+      <h1><strong>Descritivo</strong> é passado. Preditivo é decisão.</h1>
+      <p class="hero-sub">A Anova Research é a origem metodológica da empresa — o primeiro ponto onde construímos uma abordagem proprietária pra transformar análise descritiva em preditiva via software. Tudo que veio depois (Life Invest, Gestão Patrimonial, Wealth Hubs) é uma expressão dela.</p>
+      <div class="hero-cta">
+        <a href="#cta" class="btn btn-primary btn-lg">Falar com Research →</a>
+        <a href="#origem" class="btn btn-outline btn-lg">Ler a história</a>
+      </div>
+      <div class="hero-meta">
+        <span>Origem da Anova</span>
+        <span>Metodologia proprietária</span>
+        <span>Software preditivo</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="assets/img/product-research.png" alt="Anova Research">
+      <span class="hero-tag">Origem metodológica</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ ORIGEM ═══ -->
+<section id="origem" class="section section-alt">
+  <div class="container">
+    <span class="eyebrow">01 · Origem</span>
+    <h2 style="margin-top:var(--s4);max-width:24ch;"><strong>Onde</strong> a Anova começou.</h2>
+    <div class="prose">
+      <p>A Research foi a primeira aparição da Anova no mercado financeiro brasileiro. Antes de plataforma, antes de orquestrador, antes de multibanco — havia a pergunta: por que o mercado financeiro ainda opera em cima de análise descritiva, olhando o retrovisor, quando a tecnologia já permite observar o que está chegando?</p>
+      <p>A resposta veio como software. Desenvolvemos uma metodologia proprietária que cruza dados de ativos, volumes, correlações, eventos corporativos e sinais macro em um único modelo. O output não é um relatório trimestral — é um sinal acionável, com fundamento explícito, atualizado conforme o mercado se move. Descritivo vira preditivo quando você para de contar o que aconteceu e começa a explicar o que está se formando.</p>
+      <p>Essa metodologia é o que alimenta, hoje, todas as outras superfícies da Anova. Ela vive no Life Invest (como motor algorítmico contínuo), no Gestão Patrimonial (como fundamento das estratégias de carteira) e no Wealth Hubs (como capacidade embarcada na stack entregue aos escritórios parceiros). É o DNA — e é por isso que a Research merece um lugar próprio.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ METODOLOGIA ═══ -->
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">02 · Metodologia</span>
+    <h2 style="margin-top:var(--s4);max-width:24ch;"><strong>Quatro</strong> pilares. Um método.</h2>
+    <div class="pillar-grid">
+      <div class="pillar">
+        <h3>Dado histórico denso</h3>
+        <p>Séries temporais de ativos, volumes, cotações, eventos corporativos e indicadores macro em alta granularidade — a base sob tudo.</p>
+      </div>
+      <div class="pillar">
+        <h3>Modelagem multiativos</h3>
+        <p>Cruzamento de correlações, volume profile e fundamentos em um modelo proprietário que respeita a natureza não-estacionária do mercado.</p>
+      </div>
+      <div class="pillar">
+        <h3>Sinal preditivo explícito</h3>
+        <p>Cada sinal vem com fundamento — por que, em quê, com que confiança. Sem caixa-preta. Sem "o modelo disse".</p>
+      </div>
+      <div class="pillar">
+        <h3>Calibração contínua</h3>
+        <p>Os sinais são recalibrados conforme o mercado evolui. Backtesting é parte do ciclo, não um teste único de saída.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ONDE VIVE HOJE ═══ -->
+<section class="section section-alt">
+  <div class="container">
+    <span class="eyebrow">03 · Onde vive hoje</span>
+    <h2 style="margin-top:var(--s4);max-width:24ch;"><strong>Research</strong> alimenta tudo.</h2>
+    <div class="prose">
+      <p>A metodologia Research não é um produto separado esperando ser comprado — é a camada invisível que dá fundamento a todas as outras. No <a href="life-invest.html" style="border-bottom:1px solid var(--text-1);">Life Invest</a>, vira o motor algorítmico contínuo que observa o mercado. No <a href="wealth-management.html" style="border-bottom:1px solid var(--text-1);">Gestão Patrimonial</a>, vira o fundamento das estratégias de carteira. No <a href="wealth-hubs.html" style="border-bottom:1px solid var(--text-1);">Wealth Hubs</a>, vira uma capacidade embarcada na stack entregue aos parceiros. A Research fala por meio de cada produto.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA FINAL ═══ -->
+<section id="cta" class="section section-dark">
+  <div class="container">
+    <span class="eyebrow">04 · Próximo passo</span>
+    <h2 style="margin-top:var(--s4);max-width:22ch;color:var(--white);"><strong>Conversar</strong> com o time de Research.</h2>
+    <div style="margin-top:var(--s7);">
+      <a href="mailto:research@anova.com.br" class="btn btn-primary btn-lg">Falar com Research →</a>
+    </div>
+  </div>
+</section>
+
+<div id="anova-footer"></div>
+
+<script src="js/shell.js" defer></script>
+</body>
+</html>

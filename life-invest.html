@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Life Invest — Anova</title>
+<meta name="description" content="O algoritmo proprietário da Anova. Observa o mercado em tempo real, gera sinais e alimenta decisões de portfolio.">
+<link rel="stylesheet" href="design-system/tokens.css">
+<link rel="stylesheet" href="design-system/components.css">
+<link rel="stylesheet" href="design-system/sections.css">
+<link rel="stylesheet" href="design-system/nav.css">
+<style>
+  /* ─── PAGE-SPECIFIC ─── */
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text-1);}
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;}
+  .container{max-width:1180px;margin:0 auto;padding:0 var(--s5);}
+  h1,h2,h3,h4{font-family:var(--font);font-weight:700;letter-spacing:-.025em;line-height:1.05;}
+  h1{font-size:clamp(40px,6.4vw,72px);letter-spacing:-.035em;line-height:1.02;}
+  h2{font-size:clamp(32px,4.6vw,52px);letter-spacing:-.025em;line-height:1.08;}
+  h3{font-size:22px;letter-spacing:-.015em;line-height:1.2;}
+  .lead{font-size:clamp(16px,1.4vw,19px);color:var(--text-2);line-height:1.55;max-width:60ch;}
+  .what-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--s8);align-items:center;margin-top:var(--s6);}
+  @media(max-width:880px){.what-grid{grid-template-columns:1fr;}}
+  .what-visual{border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;background:var(--bg-alt);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;padding:var(--s5);}
+  .what-visual img{max-width:80%;max-height:100%;object-fit:contain;}
+  .feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s3) var(--s6);margin-top:var(--s6);}
+  @media(max-width:680px){.feat-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body data-page="life-invest">
+
+<div id="anova-nav"></div>
+<noscript>
+  <nav style="padding:16px;background:#F8F8F8;border-bottom:1px solid #CCC;font-family:sans-serif;font-size:13px;">
+    <a href="index.html" style="margin-right:16px;">Anova OS</a>
+    <a href="wealth-management.html" style="margin-right:16px;">Gestão Patrimonial</a>
+    <a href="wealth-hubs.html" style="margin-right:16px;">Wealth Hubs</a>
+    <a href="life-invest.html" style="margin-right:16px;">Life Invest</a>
+    <a href="orquestrador.html" style="margin-right:16px;">Orquestrador</a>
+    <a href="credito.html" style="margin-right:16px;">Crédito</a>
+    <a href="research.html">Research</a>
+  </nav>
+</noscript>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero">
+  <div class="hero-bp"></div>
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">Tecnologia · Motor de decisão</span>
+      <h1><strong>Mercados</strong> observados continuamente. Decisões com fundamento.</h1>
+      <p class="hero-sub">Life Invest é o algoritmo proprietário da Anova. Consulta o mercado em tempo real, constrói correlações entre ativos, gera sinais acionáveis e alimenta as carteiras geridas pela plataforma. Fundamento acima de intuição.</p>
+      <div class="hero-cta">
+        <a href="#cta" class="btn btn-primary btn-lg">Entender o algoritmo →</a>
+        <a href="#o-que-e" class="btn btn-outline btn-lg">Como funciona</a>
+      </div>
+      <div class="hero-meta">
+        <span>Dados em tempo real</span>
+        <span>Multiativos</span>
+        <span>Auditoria algorítmica</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="assets/img/product-life.png" alt="Life Invest — motor de decisão">
+      <span class="hero-tag">Motor proprietário</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ O QUE É ═══ -->
+<section id="o-que-e" class="section section-alt">
+  <div class="container">
+    <span class="eyebrow">01 · O que é</span>
+    <div class="what-grid">
+      <div>
+        <h2><strong>Um motor</strong> que observa o mercado por você.</h2>
+        <p class="lead">O Life Invest processa continuamente dados de ativos, volumes, correlações e eventos macro, transformando ruído em sinal acionável. Os sinais alimentam as carteiras administradas pela Anova (via Gestão Patrimonial) e ficam disponíveis dentro das ferramentas operadas pelos parceiros (via Wealth Hubs). Todo sinal passa por revisão humana antes de virar ordem — HITL desde o dia um.</p>
+      </div>
+      <div class="what-visual">
+        <img src="assets/img/product-research.png" alt="Visualização do algoritmo">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COMO FUNCIONA ═══ -->
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">02 · Como funciona</span>
+    <h2 style="margin-top:var(--s4);max-width:24ch;"><strong>Coleta.</strong> Analisa. Sinaliza. Decide (com humano).</h2>
+    <div class="how-grid">
+      <article class="how-step">
+        <div class="how-num">PASSO 01</div>
+        <h3>Coleta em tempo real</h3>
+        <p>Feed contínuo de cotações, volumes, indicadores macro e eventos corporativos de múltiplos ativos.</p>
+      </article>
+      <article class="how-step">
+        <div class="how-num">PASSO 02</div>
+        <h3>Análise multiativos</h3>
+        <p>Cruzamento de correlações, volume profile e sinais técnicos-fundamentais em um único modelo proprietário.</p>
+      </article>
+      <article class="how-step">
+        <div class="how-num">PASSO 03</div>
+        <h3>Sinal acionável</h3>
+        <p>O motor produz um sinal com fundamento explícito — por que, em quê, com qual confiança.</p>
+      </article>
+      <article class="how-step">
+        <div class="how-num">PASSO 04</div>
+        <h3>Decisão humana</h3>
+        <p>O sinal é revisado por um humano autorizado antes de virar ordem. Toda decisão fica na trilha de auditoria.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CAPACIDADES ═══ -->
+<section class="section section-alt">
+  <div class="container">
+    <span class="eyebrow">03 · Capacidades</span>
+    <h2 style="margin-top:var(--s4);max-width:24ch;"><strong>Observação</strong> contínua, decisão humana.</h2>
+    <ul class="gallery-feats feat-grid">
+      <li>Feed multiativos em tempo real</li>
+      <li>Correlações e volume profile</li>
+      <li>Sinais com explicação de fundamento</li>
+      <li>Integração nativa com carteiras</li>
+      <li>HITL obrigatório antes de ordem</li>
+      <li>Alertas acionáveis por operador</li>
+      <li>Trilha de auditoria algorítmica</li>
+      <li>Backtesting de sinais anteriores</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══ CTA FINAL ═══ -->
+<section id="cta" class="section section-dark">
+  <div class="container">
+    <span class="eyebrow">04 · Ver em ação</span>
+    <h2 style="margin-top:var(--s4);max-width:22ch;color:var(--white);"><strong>Quer</strong> ver o Life Invest funcionando com um caso real?</h2>
+    <div style="margin-top:var(--s7);">
+      <a href="mailto:institucional@anova.com.br" class="btn btn-primary btn-lg">Agendar demo →</a>
+    </div>
+  </div>
+</section>
+
+<div id="anova-footer"></div>
+
+<script src="js/shell.js" defer></script>
+</body>
+</html>

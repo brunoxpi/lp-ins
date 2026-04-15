@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Produtos de Crédito — Anova Multibanco</title>
+<meta name="description" content="Multibanco por rede de parceiros regulados. Ofereça a melhor taxa, parcela e CET ao seu cliente via Anova Orquestrador.">
+<link rel="stylesheet" href="design-system/tokens.css">
+<link rel="stylesheet" href="design-system/components.css">
+<link rel="stylesheet" href="design-system/sections.css">
+<link rel="stylesheet" href="design-system/nav.css">
+<style>
+  /* ─── PAGE-SPECIFIC ─── */
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text-1);}
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;}
+  .container{max-width:1180px;margin:0 auto;padding:0 var(--s5);}
+  h1,h2,h3,h4{font-family:var(--font);font-weight:700;letter-spacing:-.025em;line-height:1.05;}
+  h1{font-size:clamp(40px,6.4vw,72px);letter-spacing:-.035em;line-height:1.02;}
+  h2{font-size:clamp(32px,4.6vw,52px);letter-spacing:-.025em;line-height:1.08;}
+  h3{font-size:22px;letter-spacing:-.015em;line-height:1.2;}
+  .lead{font-size:clamp(16px,1.4vw,19px);color:var(--text-2);line-height:1.55;max-width:60ch;}
+  .what-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--s8);align-items:center;margin-top:var(--s6);}
+  @media(max-width:880px){.what-grid{grid-template-columns:1fr;}}
+  .what-visual{border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;background:var(--bg-alt);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;padding:var(--s5);}
+  .what-visual img{max-width:80%;max-height:100%;object-fit:contain;}
+  .feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s3) var(--s6);margin-top:var(--s6);}
+  @media(max-width:680px){.feat-grid{grid-template-columns:1fr;}}
+  .cat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s5);margin-top:var(--s7);}
+  @media(max-width:880px){.cat-grid{grid-template-columns:1fr;}}
+  .cat-card{border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s6);background:var(--white);transition:border-color .2s;}
+  .cat-card:hover{border-color:var(--text-1);}
+  .cat-card h3{margin-bottom:var(--s4);}
+  .cat-card ul{list-style:none;margin-top:var(--s4);}
+  .cat-card li{padding:var(--s3) 0;border-top:1px solid var(--border);font-size:14px;color:var(--text-2);}
+  .cat-card li:first-child{border-top:none;}
+  .cat-card .cat-num{font-family:var(--mono);font-size:10px;color:var(--text-3);letter-spacing:.1em;margin-bottom:var(--s3);}
+  .partner-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--s4);margin-top:var(--s6);}
+  @media(max-width:680px){.partner-grid{grid-template-columns:repeat(2,1fr);}}
+  .partner-card{border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s4);text-align:center;font-weight:700;font-size:13px;color:var(--text-2);background:var(--white);}
+</style>
+</head>
+<body data-page="credito">
+
+<div id="anova-nav"></div>
+<noscript>
+  <nav style="padding:16px;background:#F8F8F8;border-bottom:1px solid #CCC;font-family:sans-serif;font-size:13px;">
+    <a href="index.html" style="margin-right:16px;">Anova OS</a>
+    <a href="wealth-management.html" style="margin-right:16px;">Gestão Patrimonial</a>
+    <a href="wealth-hubs.html" style="margin-right:16px;">Wealth Hubs</a>
+    <a href="life-invest.html" style="margin-right:16px;">Life Invest</a>
+    <a href="orquestrador.html" style="margin-right:16px;">Orquestrador</a>
+    <a href="credito.html" style="margin-right:16px;">Crédito</a>
+    <a href="research.html">Research</a>
+  </nav>
+</noscript>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero">
+  <div class="hero-bp"></div>
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">Para consultores · Multibanco</span>
+      <h1><strong>Uma origem.</strong> Múltiplos bancos. Taxa que faz sentido.</h1>
+      <p class="hero-sub">Os Produtos de Crédito da Anova são um multibanco real: o consultor oferece ao cliente a melhor combinação de taxa, parcela e CET entre uma rede de parceiros regulados — tudo operado via Orquestrador, com trilha auditável e comissão rastreada por operação.</p>
+      <div class="hero-cta">
+        <a href="#cta" class="btn btn-primary btn-lg">Operar no multibanco →</a>
+        <a href="#categorias" class="btn btn-outline btn-lg">Ver produtos disponíveis</a>
+      </div>
+      <div class="hero-meta">
+        <span>Empréstimos · Financiamentos</span>
+        <span>Consórcio · Seguros</span>
+        <span>Parceiros regulados</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="assets/img/product-research.png" alt="Dashboard multibanco">
+      <span class="hero-tag">Dashboard multibanco</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ O QUE É ═══ -->
+<section id="o-que-e" class="section section-alt">
+  <div class="container">
+    <span class="eyebrow">01 · O que é</span>
+    <div class="what-grid">
+      <div>
+        <h2><strong>Multibanco</strong> na mesma origem.</h2>
+        <p class="lead">O consultor abre uma única origem na Anova e, a partir dela, oferece ao cliente a comparação real entre múltiplos parceiros regulados — Banrisul, CashMe, Bradesco, C6 Bank, Aminter, entre outros. Taxa, parcela e CET lado a lado. A escolha é do cliente. A operação é auditada. A comissão é rastreada. Tudo acontece dentro do Orquestrador, preservando governança e histórico por cliente.</p>
+      </div>
+      <div class="what-visual">
+        <img src="assets/img/product-orquestrador-2.png" alt="Comparação multibanco">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CATEGORIAS ═══ -->
+<section id="categorias" class="section">
+  <div class="container">
+    <span class="eyebrow">02 · Categorias</span>
+    <h2 style="margin-top:var(--s4);max-width:24ch;"><strong>Cinco</strong> linhas de produto. Uma única origem.</h2>
+    <div class="cat-grid">
+      <article class="cat-card">
+        <div class="cat-num">LINHA 01 · EMPRÉSTIMOS</div>
+        <h3>Crédito com garantia</h3>
+        <p>Use bens como garantia e alcance taxas significativamente menores que empréstimos pessoais ou cartão.</p>
+        <ul>
+          <li>Empréstimo com Garantia de Imóvel</li>
+          <li>Empréstimo com Garantia de Veículo</li>
+        </ul>
+      </article>
+      <article class="cat-card">
+        <div class="cat-num">LINHA 02 · FINANCIAMENTOS</div>
+        <h3>Bens de alto valor</h3>
+        <p>As melhores condições de financiamento imobiliário e veicular do mercado, via múltiplos bancos.</p>
+        <ul>
+          <li>Financiamento Imobiliário</li>
+          <li>Financiamento de Veículos</li>
+        </ul>
+      </article>
+      <article class="cat-card">
+        <div class="cat-num">LINHA 03 · CONSÓRCIO</div>
+        <h3>Planejado, sem juros</h3>
+        <p>Planeje a conquista de bens ou serviços de forma econômica, parcelada e sem juros, em grupos regulados.</p>
+        <ul>
+          <li>Consórcio de Imóveis</li>
+          <li>Consórcio de Veículos</li>
+          <li>Consórcio de Serviços</li>
+        </ul>
+      </article>
+      <article class="cat-card">
+        <div class="cat-num">LINHA 04 · SEGURO E PREVIDÊNCIA</div>
+        <h3>Proteger e planejar</h3>
+        <p>Proteja o que é seu e planeje o futuro com parceiros SUSEP-regulados integrados ao multibanco.</p>
+        <ul>
+          <li>Seguro de Vida Individual</li>
+          <li>Seguro Residencial</li>
+          <li>Previdência Privada</li>
+        </ul>
+      </article>
+      <article class="cat-card">
+        <div class="cat-num">LINHA 05 · PLANO DE SAÚDE</div>
+        <h3>Em breve</h3>
+        <p>Plano de saúde será a próxima linha integrada ao multibanco Anova. Fale com o time pra acompanhar o roadmap.</p>
+        <ul>
+          <li>Em roadmap</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COMO FUNCIONA ═══ -->
+<section class="section section-alt">
+  <div class="container">
+    <span class="eyebrow">03 · Como funciona</span>
+    <h2 style="margin-top:var(--s4);max-width:24ch;"><strong>Simula.</strong> Compara. Escolhe. Opera.</h2>
+    <div class="how-grid">
+      <article class="how-step">
+        <div class="how-num">PASSO 01</div>
+        <h3>Simulação</h3>
+        <p>O consultor informa valor, objetivo e dados relevantes do cliente. O sistema gera a simulação inicial.</p>
+      </article>
+      <article class="how-step">
+        <div class="how-num">PASSO 02</div>
+        <h3>Comparação multibanco</h3>
+        <p>Propostas de múltiplos parceiros regulados aparecem lado a lado — taxa, parcela, CET e prazo.</p>
+      </article>
+      <article class="how-step">
+        <div class="how-num">PASSO 03</div>
+        <h3>Escolha do cliente</h3>
+        <p>O cliente escolhe a proposta que faz sentido. O consultor conduz a decisão com transparência.</p>
+      </article>
+      <article class="how-step">
+        <div class="how-num">PASSO 04</div>
+        <h3>Operação auditada</h3>
+        <p>Documentação, acompanhamento e liberação do crédito — tudo com trilha auditável e comissão rastreada.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PARCEIROS ═══ -->
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">04 · Parceiros regulados</span>
+    <h2 style="margin-top:var(--s4);max-width:24ch;"><strong>Parceiros</strong> conectados ao multibanco.</h2>
+    <div class="partner-grid">
+      <div class="partner-card">Banrisul</div>
+      <div class="partner-card">CashMe</div>
+      <div class="partner-card">Bradesco</div>
+      <div class="partner-card">C6 Bank</div>
+      <div class="partner-card">Aminter</div>
+    </div>
+    <p style="margin-top:var(--s5);font-family:var(--mono);font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.08em;">Lista não exaustiva · Parceiros adicionais conectados caso a caso</p>
+  </div>
+</section>
+
+<!-- ═══ CAPACIDADES ═══ -->
+<section class="section section-alt">
+  <div class="container">
+    <span class="eyebrow">05 · Capacidades</span>
+    <h2 style="margin-top:var(--s4);max-width:24ch;"><strong>Operação</strong> real. Comissão rastreada.</h2>
+    <ul class="gallery-feats feat-grid">
+      <li>Comparação lado a lado (taxa, parcela, CET)</li>
+      <li>Documentação centralizada</li>
+      <li>Acompanhamento de status por operação</li>
+      <li>Comissão rastreada por originação</li>
+      <li>Trilha de auditoria fim a fim</li>
+      <li>Integração nativa com Orquestrador</li>
+      <li>Cross-sell com Life Invest e Gestão Patrimonial</li>
+      <li>Compliance embutido na esteira</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══ CTA FINAL ═══ -->
+<section id="cta" class="section section-dark">
+  <div class="container">
+    <span class="eyebrow">06 · Próximo passo</span>
+    <h2 style="margin-top:var(--s4);max-width:22ch;color:var(--white);"><strong>Começar</strong> a operar crédito pela Anova.</h2>
+    <div style="margin-top:var(--s7);">
+      <a href="mailto:credito@anova.com.br" class="btn btn-primary btn-lg">Falar com o time →</a>
+    </div>
+  </div>
+</section>
+
+<div id="anova-footer"></div>
+
+<script src="js/shell.js" defer></script>
+</body>
+</html>
