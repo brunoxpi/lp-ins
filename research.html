@@ -3,39 +3,90 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Anova Research — Metodologia Preditiva</title>
-<meta name="description" content="A origem da Anova. Onde descritivo virou preditivo. Metodologia proprietária desenvolvida desde a primeira aparição no mercado.">
+<title>Anova Research — Casa de análise preditiva</title>
+<meta name="description" content="A casa de análise nasceu em 2020 da inconformidade com a análise descritiva. Metodologia preditiva proprietária construída por Paulo Martins (ex-Traders Club, fundador) e Pedro Pivotto (ex-Banco do Brasil) — baseada em Wyckoff e em software que cruza parâmetros humanamente inviáveis.">
 <link rel="stylesheet" href="design-system/tokens.css">
 <link rel="stylesheet" href="design-system/components.css">
 <link rel="stylesheet" href="design-system/sections.css">
 <link rel="stylesheet" href="design-system/nav.css">
+<link rel="stylesheet" href="design-system/editorial.css">
 <style>
-  /* ─── PAGE-SPECIFIC ─── */
-  html{scroll-behavior:smooth;}
-  body{background:var(--bg);color:var(--text-1);}
-  img{max-width:100%;display:block;}
-  a{color:inherit;text-decoration:none;}
-  button{font-family:inherit;}
-  .container{max-width:1180px;margin:0 auto;padding:0 var(--s5);}
-  h1,h2,h3,h4{font-family:var(--font);font-weight:700;letter-spacing:-.025em;line-height:1.05;}
-  h1{font-size:clamp(40px,6.4vw,72px);letter-spacing:-.035em;line-height:1.02;}
-  h2{font-size:clamp(32px,4.6vw,52px);letter-spacing:-.025em;line-height:1.08;}
-  h3{font-size:22px;letter-spacing:-.015em;line-height:1.2;}
-  .lead{font-size:clamp(16px,1.4vw,19px);color:var(--text-2);line-height:1.55;max-width:60ch;}
-  .what-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--s8);align-items:center;margin-top:var(--s6);}
-  @media(max-width:880px){.what-grid{grid-template-columns:1fr;}}
-  .what-visual{border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;background:var(--bg-alt);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;padding:var(--s5);}
-  .what-visual img{max-width:80%;max-height:100%;object-fit:contain;}
-  .feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s3) var(--s6);margin-top:var(--s6);}
-  @media(max-width:680px){.feat-grid{grid-template-columns:1fr;}}
-  .prose{max-width:68ch;margin:var(--s7) 0;}
-  .prose p{font-size:17px;color:var(--text-2);line-height:1.7;margin-bottom:var(--s5);}
-  .prose p:first-of-type::first-letter{font-size:52px;font-weight:700;float:left;line-height:.9;padding:4px 12px 0 0;color:var(--text-1);}
+  /* ─── RESEARCH PAGE-SPECIFIC ─── */
+  .prose{max-width:70ch;margin:var(--s7) 0;}
+  .prose p{font-size:17px;color:var(--text-2);line-height:1.75;margin-bottom:var(--s5);}
+  .prose p:first-of-type::first-letter{font-size:64px;font-weight:800;float:left;line-height:.88;padding:6px 14px 0 0;color:var(--text-1);}
+  .prose strong{color:var(--text-1);font-weight:700;}
+
+  /* Timeline */
+  .tl{display:flex;flex-direction:column;margin-top:var(--s7);}
+  .tl-row{display:grid;grid-template-columns:120px 1fr;gap:var(--s5);}
+  @media(max-width:680px){.tl-row{grid-template-columns:80px 1fr;gap:var(--s4);}}
+  .tl-year{font-family:var(--font);font-weight:800;font-size:clamp(36px,5vw,56px);letter-spacing:-.04em;line-height:.9;color:var(--text-1);font-variant-numeric:tabular-nums;position:sticky;top:96px;align-self:start;padding-top:4px;}
+  .tl-item{border-top:1px solid var(--border);padding:var(--s5) 0 var(--s7);}
+  .tl-item + .tl-item{margin-top:0;}
+  .tl-label{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-3);margin-bottom:var(--s3);display:flex;align-items:center;gap:var(--s3);}
+  .tl-label::before{content:"";width:20px;height:1px;background:var(--text-1);}
+  .tl-item h3{font-size:24px;letter-spacing:-.02em;margin-bottom:var(--s3);}
+  .tl-item p{font-size:15px;color:var(--text-2);line-height:1.7;max-width:64ch;}
+  .tl-item p + p{margin-top:var(--s3);}
+
+  /* Thesis grid */
+  .thesis-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:var(--s7);border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;}
+  @media(max-width:780px){.thesis-grid{grid-template-columns:1fr;}}
+  .thesis{padding:var(--s6);border-right:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;}
+  .thesis:nth-child(2n){border-right:none;}
+  .thesis:nth-last-child(-n+2){border-bottom:none;}
+  @media(max-width:780px){.thesis{border-right:none;}.thesis:not(:last-child){border-bottom:1px solid var(--border);}}
+  .thesis-tag{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-3);margin-bottom:var(--s3);}
+  .thesis h4{font-size:18px;letter-spacing:-.01em;margin-bottom:var(--s3);font-weight:700;}
+  .thesis p{font-size:13px;color:var(--text-2);line-height:1.65;}
+  .thesis-tag .dir{padding:2px 8px;border-radius:99px;font-weight:700;margin-left:var(--s2);}
+  .thesis-tag .buy{background:var(--onyx);color:var(--white);}
+  .thesis-tag .sell{border:1px solid var(--text-1);color:var(--text-1);}
+
+  /* Pillar — overridden dark */
   .pillar-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s6);margin-top:var(--s7);}
   @media(max-width:880px){.pillar-grid{grid-template-columns:1fr;}}
-  .pillar{border-left:2px solid var(--text-1);padding:var(--s3) 0 var(--s3) var(--s5);}
-  .pillar h3{margin-bottom:var(--s3);}
-  .pillar p{font-size:15px;color:var(--text-2);line-height:1.6;}
+  .pillar{border-left:2px solid var(--silver);padding:var(--s3) 0 var(--s3) var(--s5);}
+  .section-dark .pillar{border-left-color:var(--white);}
+  .pillar h3{margin-bottom:var(--s3);font-size:18px;}
+  .section-dark .pillar h3{color:var(--white);}
+  .pillar p{font-size:14px;color:var(--text-2);line-height:1.65;}
+  .section-dark .pillar p{color:var(--silver);}
+
+  /* Client archetype tags */
+  .clients{display:flex;flex-wrap:wrap;gap:var(--s2);margin-top:var(--s5);}
+  .client-tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border:1px solid var(--border);border-radius:99px;color:var(--text-2);}
+
+  /* Media strip */
+  .media-strip-compact{display:flex;gap:var(--s6);align-items:center;flex-wrap:wrap;padding-top:var(--s6);border-top:1px solid var(--border);margin-top:var(--s7);}
+  .media-strip-compact .media-label{margin-bottom:0;}
+  .media-strip-compact img{height:28px;object-fit:contain;filter:grayscale(1) brightness(.4);opacity:.75;transition:opacity .2s;}
+  .media-strip-compact img:hover{opacity:1;}
+
+  /* Bridge callout to life-invest */
+  .bridge{border:1px solid var(--charcoal);border-radius:var(--r-xl);padding:var(--s7);background:var(--onyx);color:var(--white);margin-top:var(--s7);display:grid;grid-template-columns:1fr auto;gap:var(--s6);align-items:center;}
+  @media(max-width:680px){.bridge{grid-template-columns:1fr;gap:var(--s5);}}
+  .bridge h3{font-size:24px;letter-spacing:-.02em;color:var(--white);margin-bottom:var(--s3);}
+  .bridge p{font-size:14px;color:var(--silver);line-height:1.65;max-width:48ch;}
+  .bridge .btn{border-color:var(--white);color:var(--white);}
+  .bridge .btn:hover{background:var(--white);color:var(--onyx);}
+
+  /* Fundador duo */
+  .duo{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s5);margin-top:var(--s7);}
+  @media(max-width:680px){.duo{grid-template-columns:1fr;}}
+  .duo-card{border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s6);background:var(--white);transition:border-color .2s;}
+  .duo-card:hover{border-color:var(--text-1);}
+  .duo-name{font-size:20px;font-weight:700;letter-spacing:-.01em;margin-bottom:var(--s1);}
+  .duo-role{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);margin-bottom:var(--s4);}
+  .duo-bio{font-size:14px;color:var(--text-2);line-height:1.65;}
+
+  /* Container enhancements */
+  .what-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--s8);align-items:center;margin-top:var(--s6);}
+  @media(max-width:880px){.what-grid{grid-template-columns:1fr;}}
+  .what-visual{border-radius:var(--r-xl);overflow:hidden;background:var(--bg-alt);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;padding:var(--s5);position:relative;}
+  .what-visual img{max-width:80%;max-height:100%;object-fit:contain;}
+  .what-visual::before{content:attr(data-frame);position:absolute;top:var(--s3);left:var(--s4);font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--text-3);}
 </style>
 </head>
 <body data-page="research">
@@ -44,11 +95,6 @@
 <noscript>
   <nav style="padding:16px;background:#F8F8F8;border-bottom:1px solid #CCC;font-family:sans-serif;font-size:13px;">
     <a href="index.html" style="margin-right:16px;">Anova OS</a>
-    <a href="wealth-management.html" style="margin-right:16px;">Gestão Patrimonial</a>
-    <a href="wealth-hubs.html" style="margin-right:16px;">Wealth Hubs</a>
-    <a href="life-invest.html" style="margin-right:16px;">Life Invest</a>
-    <a href="orquestrador.html" style="margin-right:16px;">Orquestrador</a>
-    <a href="credito.html" style="margin-right:16px;">Crédito</a>
     <a href="research.html">Research</a>
   </nav>
 </noscript>
@@ -57,73 +103,209 @@
 <header class="hero">
   <div class="hero-bp"></div>
   <div class="container hero-grid">
-    <div>
-      <span class="eyebrow">Metodologia · Desde o início</span>
+    <div data-reveal="up">
+      <span class="eyebrow">00 · Casa de análise · desde 2020</span>
       <h1><strong>Descritivo</strong> é passado. Preditivo é decisão.</h1>
-      <p class="hero-sub">A Anova Research é a origem metodológica da empresa — o primeiro ponto onde construímos uma abordagem proprietária pra transformar análise descritiva em preditiva via software. Tudo que veio depois (Life Invest, Gestão Patrimonial, Wealth Hubs) é uma expressão dela.</p>
+      <p class="hero-sub">A Anova Research nasceu em 2020 da inconformidade com a análise atual do mercado financeiro — métodos arcaicos que só explicam o retrovisor. Construímos um software capaz de cruzar parâmetros humanamente inviáveis, ancorado em Wyckoff e reescrito para o mercado de hoje.</p>
       <div class="hero-cta">
-        <a href="#cta" class="btn btn-primary btn-lg">Falar com Research →</a>
+        <a href="#cta" class="btn btn-primary btn-lg">Falar com Research <span class="arr">→</span></a>
         <a href="#origem" class="btn btn-outline btn-lg">Ler a história</a>
       </div>
       <div class="hero-meta">
-        <span>Origem da Anova</span>
+        <span>Fundada em 2020</span>
         <span>Metodologia proprietária</span>
-        <span>Software preditivo</span>
+        <span>Coberta por Valor, Estadão</span>
       </div>
     </div>
-    <div class="hero-visual">
-      <img src="assets/img/product-research.png" alt="Anova Research">
-      <span class="hero-tag">Origem metodológica</span>
+    <div class="hero-visual" data-reveal="left" data-delay="2">
+      <div class="img-slot"></div>
+      <span class="hero-tag">Análise preditiva</span>
     </div>
   </div>
 </header>
 
-<!-- ═══ ORIGEM ═══ -->
-<section id="origem" class="section section-alt">
+<!-- ═══ ORIGEM — HISTORICO CRONOLOGICO ═══ -->
+<section id="origem" class="section section-alt" data-chapter="01 / 06">
   <div class="container">
-    <span class="eyebrow">01 · Origem</span>
-    <h2 style="margin-top:var(--s4);max-width:24ch;"><strong>Onde</strong> a Anova começou.</h2>
-    <div class="prose">
-      <p>A Research foi a primeira aparição da Anova no mercado financeiro brasileiro. Antes de plataforma, antes de orquestrador, antes de multibanco — havia a pergunta: por que o mercado financeiro ainda opera em cima de análise descritiva, olhando o retrovisor, quando a tecnologia já permite observar o que está chegando?</p>
-      <p>A resposta veio como software. Desenvolvemos uma metodologia proprietária que cruza dados de ativos, volumes, correlações, eventos corporativos e sinais macro em um único modelo. O output não é um relatório trimestral — é um sinal acionável, com fundamento explícito, atualizado conforme o mercado se move. Descritivo vira preditivo quando você para de contar o que aconteceu e começa a explicar o que está se formando.</p>
-      <p>Essa metodologia é o que alimenta, hoje, todas as outras superfícies da Anova. Ela vive no Life Invest (como motor algorítmico contínuo), no Gestão Patrimonial (como fundamento das estratégias de carteira) e no Wealth Hubs (como capacidade embarcada na stack entregue aos escritórios parceiros). É o DNA — e é por isso que a Research merece um lugar próprio.</p>
+    <span class="eyebrow" data-reveal>01 · Origem</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:28ch;"><strong>Uma</strong> inconformidade com o mercado. Um software como resposta.</h2>
+    <p class="lead" data-reveal="up" data-delay="1" style="margin-top:var(--s5);">A Research começou como obsessão por resultado e por método — antes de plataforma, antes de orquestrador, antes de multibanco. A pergunta: por que o mercado financeiro ainda opera em cima de análise descritiva, olhando o retrovisor, quando a tecnologia já permite observar o que está se formando?</p>
+
+    <div class="tl">
+      <div class="tl-row">
+      <div class="tl-year" data-reveal="up">2020</div>
+      <div>
+        <article class="tl-item" data-reveal="up">
+          <div class="tl-label">T · 01 · Gênese</div>
+          <h3>A obsessão por resultado vira inconformidade com o método.</h3>
+          <p>Dois arquitetos com origens diferentes partem da mesma inconformidade. <strong>Paulo Martins</strong> vinha do <em>Traders Club</em>, onde era contribuidor — até sair no episódio público do "café com verdades" e decidir fundar a casa. <strong>Pedro Pivotto</strong> chegou do <em>Banco do Brasil</em>, com o lado institucional e quantitativo do mercado. A leitura compartilhada: análise fundamentalista e análise descritiva não dão rumo ao que vai acontecer. Explicam o passado. Projetam possibilidades que não englobam os parâmetros necessários para compreender como o mercado realmente se posiciona.</p>
+          <p>A referência estrutural vem de <strong>Richard Wyckoff</strong> — uma das autoridades fundadoras do mercado. Sua tese de acumulação e distribuição, ainda que poderosa, já não era cabível na complexidade de instrumentos, volumes e correlações do mercado contemporâneo. A metodologia pedia uma extensão construída sobre software.</p>
+        </article>
+
+        <article class="tl-item" data-reveal="up">
+          <div class="tl-label">T · 02 · Software preditivo</div>
+          <h3>Parâmetros humanamente inviáveis — agora rastreáveis.</h3>
+          <p>Paulo e Pedro desenvolvem um software capaz de acompanhar o mercado em tempo real e cruzar parâmetros que, para um analista humano, seriam estruturalmente ineficientes ou impossíveis de processar. É aqui que descritivo começa a virar preditivo: o modelo engloba histórico, presente e cenários futuros em um único plano de análise.</p>
+          <p>Descritivo vira preditivo quando você para de contar o que aconteceu e começa a explicar <strong>o que está se formando</strong>. O analista se posiciona com mais autoridade — porque o fundamento é explícito, auditável e calibrado pelo próprio movimento do mercado.</p>
+        </article>
+      </div>
+      </div><!-- /tl-row 2020 -->
+
+      <div class="tl-row">
+      <div class="tl-year" data-reveal="up">2023</div>
+      <div>
+        <article class="tl-item" data-reveal="up">
+          <div class="tl-label">T · 03 · Teses que foram a contracorrente</div>
+          <h3>Casa aberta a mercado. Carteiras nacional, internacional, curto, médio e longo prazo.</h3>
+          <p>A Anova Research passa a operar publicamente com múltiplas carteiras. Diferente do consenso, o método preditivo permite posicionamentos antagônicos — e eles se confirmam: Argentina em 2023, Chile e Colômbia no final de 2025, vendidos em dólar, vendidos em relação ao crescimento da Selic. As notícias vieram depois. O modelo já estava posicionado.</p>
+        </article>
+
+        <article class="tl-item" data-reveal="up">
+          <div class="tl-label">T · 04 · Cobertura & clientes</div>
+          <h3>Valor Econômico. Valor Invest. Estadão.</h3>
+          <p>O crescimento trouxe cobertura editorial. A base começa a se formar por <strong>médicos, advogados, engenheiros</strong> — profissionais que já tinham passado por assessorias convencionais, abordagens empíricas e experiências que deixaram a sensação de que faltava método. A Anova Research atrai quem quer entender <em>como o mercado realmente funciona</em>, não quem busca receita pronta.</p>
+          <div class="clients">
+            <span class="client-tag">Médicos</span>
+            <span class="client-tag">Advogados</span>
+            <span class="client-tag">Engenheiros</span>
+            <span class="client-tag">Ex-assessoria</span>
+            <span class="client-tag">Empresários</span>
+          </div>
+        </article>
+      </div>
+      </div><!-- /tl-row 2023 -->
+
+      <div class="tl-row">
+      <div class="tl-year" data-reveal="up">2025</div>
+      <div>
+        <article class="tl-item" data-reveal="up">
+          <div class="tl-label">T · 05 · A dor que virou o próximo capítulo</div>
+          <h3>Um modelo preditivo pede execução preditiva.</h3>
+          <p>O sucesso das teses revelou uma dor nascida da própria solução: o cliente — médico, advogado, engenheiro — não conseguia <strong>executar ou acompanhar</strong> as ações no tempo certo. Tinha trabalho, tinha vida, tinha outra operação acontecendo.</p>
+          <p>E o método preditivo, por natureza, carrega movimentações antagônicas ao buy-and-hold: ajustes, rotações, posicionamentos contra-consenso. Sem execução rápida, a tese perde valor. A resposta foi construir o próximo estágio do ecossistema — <strong>carteiras automatizadas</strong> que seguem as teses da Research com disciplina operacional.</p>
+          <p><a href="life-invest.html" style="border-bottom:1px solid var(--text-1);">Life Invest</a> é a continuação direta desta história: a camada de execução preditiva, conectada à mesma metodologia.</p>
+        </article>
+      </div>
+      </div><!-- /tl-row 2025 -->
     </div>
   </div>
 </section>
 
-<!-- ═══ METODOLOGIA ═══ -->
-<section class="section">
+<!-- ═══ PORQUE NOTICIAS SAO O INIMIGO ═══ -->
+<section class="section" data-chapter="02 / 06">
   <div class="container">
-    <span class="eyebrow">02 · Metodologia</span>
-    <h2 style="margin-top:var(--s4);max-width:24ch;"><strong>Quatro</strong> pilares. Um método.</h2>
+    <span class="eyebrow" data-reveal>02 · Tese</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:24ch;"><strong>Notícia</strong> é inimiga do investidor. Método é o antídoto.</h2>
+    <div class="prose" data-reveal="up" data-delay="1">
+      <p>A leitura da Anova Research sobre o mercado atual é direta: a notícia é um dos maiores inimigos do investidor. Ela cria os ciclos conhecidos — pânico e euforia — descritos exaustivamente na literatura e vividos diariamente por quem opera sem método. Quem decide a partir da manchete, reage. Quem decide a partir do modelo, se posiciona.</p>
+      <p>A abordagem preditiva não tenta adivinhar o próximo headline. Ela calibra um modelo que observa o que está se formando abaixo da superfície — volumes, correlações, comportamentos institucionais, movimentos macro — e entrega ao analista um <strong>fundamento explícito</strong> para agir antes da notícia virar preço.</p>
+      <p>Por isso o perfil do cliente Anova Research costuma ser quem já sentiu na pele o custo de seguir o ciclo de manchetes — e procura outra coisa. Não uma dica, não uma tese isolada, não um guru. Um <strong>método</strong> que explique por que a casa está posicionada como está.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FUNDADORES ═══ -->
+<section class="section section-alt" data-chapter="03 / 06">
+  <div class="container">
+    <span class="eyebrow" data-reveal>03 · Arquitetos</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:26ch;"><strong>Duas</strong> origens. Uma inconformidade só.</h2>
+    <div class="duo">
+      <article class="duo-card" data-reveal="up">
+        <div class="duo-role">F · 01 · Fundador · Research</div>
+        <div class="duo-name">Paulo Martins</div>
+        <p class="duo-bio">Fundador da Anova. Vinha do <strong>Traders Club</strong>, onde era contribuidor até sair no episódio público do "café com verdades" — marco que selou a decisão de construir a casa. Encabeça a pergunta que fundou a Anova: <em>por que ainda operamos olhando pelo retrovisor?</em> Lidera a visão de transformar a análise preditiva em infraestrutura — da Research ao Life Invest, da Gestão Patrimonial aos Wealth Hubs.</p>
+      </article>
+      <article class="duo-card" data-reveal="up" data-delay="1">
+        <div class="duo-role">F · 02 · Co-fundador · Research</div>
+        <div class="duo-name">Pedro Pivotto</div>
+        <p class="duo-bio">Co-fundador e co-desenvolvedor do software que permitiu a análise preditiva a partir de parâmetros humanamente inviáveis. Ex-<strong>Banco do Brasil</strong>, carrega o lado institucional e quantitativo do modelo: cruzamento de histórico, presente e cenários futuros em um único plano, com fundamento auditável em cada sinal.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ METODOLOGIA — 4 PILARES ═══ -->
+<section class="section section-dark" data-chapter="04 / 06">
+  <div class="container">
+    <span class="eyebrow" data-reveal>04 · Metodologia</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:24ch;color:var(--white);"><strong>Quatro</strong> pilares. Um método. Um software.</h2>
+    <p class="lead" data-reveal="up" data-delay="1" style="margin-top:var(--s5);max-width:62ch;">A metodologia é proprietária, construída desde 2020 e recalibrada continuamente. Não é um indicador novo, nem um modelo fechado. É uma estrutura que combina histórico denso, modelagem multiativos, sinal explícito e calibração permanente.</p>
     <div class="pillar-grid">
-      <div class="pillar">
-        <h3>Dado histórico denso</h3>
-        <p>Séries temporais de ativos, volumes, cotações, eventos corporativos e indicadores macro em alta granularidade — a base sob tudo.</p>
+      <div class="pillar" data-reveal="up">
+        <h3>P · 01 · Dado histórico denso</h3>
+        <p>Séries temporais de ativos, volumes, cotações, eventos corporativos e indicadores macro em alta granularidade. A base sob tudo — precisão antes de predição.</p>
       </div>
-      <div class="pillar">
-        <h3>Modelagem multiativos</h3>
-        <p>Cruzamento de correlações, volume profile e fundamentos em um modelo proprietário que respeita a natureza não-estacionária do mercado.</p>
+      <div class="pillar" data-reveal="up" data-delay="1">
+        <h3>P · 02 · Modelagem multiativos</h3>
+        <p>Cruzamento de correlações, volume profile e fundamentos num modelo proprietário que respeita a natureza não-estacionária do mercado. Derivado de Wyckoff, reescrito para software.</p>
       </div>
-      <div class="pillar">
-        <h3>Sinal preditivo explícito</h3>
-        <p>Cada sinal vem com fundamento — por que, em quê, com que confiança. Sem caixa-preta. Sem "o modelo disse".</p>
+      <div class="pillar" data-reveal="up" data-delay="2">
+        <h3>P · 03 · Sinal preditivo explícito</h3>
+        <p>Cada sinal vem com fundamento — por quê, em quê, com qual confiança. Sem caixa-preta. Sem "o modelo disse". O analista consegue defender a posição.</p>
       </div>
-      <div class="pillar">
-        <h3>Calibração contínua</h3>
-        <p>Os sinais são recalibrados conforme o mercado evolui. Backtesting é parte do ciclo, não um teste único de saída.</p>
+      <div class="pillar" data-reveal="up" data-delay="3">
+        <h3>P · 04 · Calibração contínua</h3>
+        <p>Os sinais são recalibrados conforme o mercado evolui. Backtesting é parte do ciclo, não um teste único de saída. Mercado muda — o modelo acompanha.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ ONDE VIVE HOJE ═══ -->
-<section class="section section-alt">
+<!-- ═══ TESES COMPROVADAS ═══ -->
+<section class="section" data-chapter="05 / 06">
   <div class="container">
-    <span class="eyebrow">03 · Onde vive hoje</span>
-    <h2 style="margin-top:var(--s4);max-width:24ch;"><strong>Research</strong> alimenta tudo.</h2>
-    <div class="prose">
-      <p>A metodologia Research não é um produto separado esperando ser comprado — é a camada invisível que dá fundamento a todas as outras. No <a href="life-invest.html" style="border-bottom:1px solid var(--text-1);">Life Invest</a>, vira o motor algorítmico contínuo que observa o mercado. No <a href="wealth-management.html" style="border-bottom:1px solid var(--text-1);">Gestão Patrimonial</a>, vira o fundamento das estratégias de carteira. No <a href="wealth-hubs.html" style="border-bottom:1px solid var(--text-1);">Wealth Hubs</a>, vira uma capacidade embarcada na stack entregue aos parceiros. A Research fala por meio de cada produto.</p>
+    <span class="eyebrow" data-reveal>05 · Track record</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:28ch;"><strong>Teses</strong> que foram contra o mercado — e o mercado depois concordou.</h2>
+    <p class="lead" data-reveal="up" data-delay="1" style="margin-top:var(--s5);max-width:62ch;">A amostra abaixo é pública. São teses assumidas em carteira, muitas vezes contra o consenso, e reconfirmadas pelas notícias que chegaram depois.</p>
+
+    <div class="thesis-grid" data-reveal="up">
+      <article class="thesis">
+        <div class="thesis-tag">2023 · Internacional <span class="dir buy">BUY</span></div>
+        <h4>Argentina — reposicionamento estrutural</h4>
+        <p>Tese de entrada em ativos argentinos no início de 2023, quando o consenso ainda lia o país apenas pelo risco. A reprecificação subsequente confirmou a leitura do modelo.</p>
+      </article>
+      <article class="thesis">
+        <div class="thesis-tag">2025 · Internacional <span class="dir buy">BUY</span></div>
+        <h4>Chile & Colômbia — janelas abertas</h4>
+        <p>Posicionamento entre início e final de 2025 em Chile e Colômbia. O modelo identificou padrões de acumulação antes da virada de narrativa regional.</p>
+      </article>
+      <article class="thesis">
+        <div class="thesis-tag">2025 · Câmbio <span class="dir sell">SELL</span></div>
+        <h4>Dólar — vendido no pico</h4>
+        <p>Posicionamento vendido em dólar contra a corrente do medo, ancorado em leitura de exaustão e correlações macro.</p>
+      </article>
+      <article class="thesis">
+        <div class="thesis-tag">2025 · Juros <span class="dir sell">SELL</span></div>
+        <h4>Selic — vendido no ciclo de alta</h4>
+        <p>Vendido em instrumentos sensíveis ao ciclo de alta da Selic. O modelo antecipou a inflexão antes da narrativa de política monetária se ajustar.</p>
+      </article>
+    </div>
+
+    <div class="media-strip-compact" data-reveal>
+      <div class="media-label">M · Coberturas da Anova Research</div>
+      <div class="img-slot"></div>
+      <div class="img-slot"></div>
+      <div class="img-slot"></div>
+      <div class="img-slot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PONTE PARA LIFE INVEST ═══ -->
+<section class="section section-alt" data-chapter="06 / 06">
+  <div class="container">
+    <span class="eyebrow" data-reveal>06 · O próximo capítulo</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:26ch;"><strong>Preditivo</strong> sem execução é tese parada. A resposta virou Life Invest.</h2>
+    <div class="prose" data-reveal="up" data-delay="1">
+      <p>A própria maturação da Research criou a dor do próximo capítulo: clientes com a leitura certa, sem tempo para executar na velocidade que o método pede. Um modelo que opera com movimentações antagônicas ao buy-and-hold precisa de uma camada de execução disciplinada. Por isso construímos as <strong>carteiras automatizadas</strong> dentro do ecossistema — a camada Life Invest.</p>
+    </div>
+
+    <div class="bridge" data-reveal="up">
+      <div>
+        <h3>Research pensa. Life Invest executa.</h3>
+        <p>A metodologia preditiva vira motor algorítmico com HITL. Cada sinal da Research pode virar ordem dentro da carteira, com revisão humana e trilha auditável.</p>
+      </div>
+      <a href="life-invest.html" class="btn btn-outline btn-lg">Conhecer Life Invest <span class="arr">→</span></a>
     </div>
   </div>
 </section>
@@ -131,10 +313,11 @@
 <!-- ═══ CTA FINAL ═══ -->
 <section id="cta" class="section section-dark">
   <div class="container">
-    <span class="eyebrow">04 · Próximo passo</span>
-    <h2 style="margin-top:var(--s4);max-width:22ch;color:var(--white);"><strong>Conversar</strong> com o time de Research.</h2>
-    <div style="margin-top:var(--s7);">
-      <a href="mailto:research@anova.com.br" class="btn btn-primary btn-lg">Falar com Research →</a>
+    <span class="eyebrow" data-reveal>Próximo passo</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:22ch;color:var(--white);"><strong>Conversar</strong> com o time de Research.</h2>
+    <p class="lead" data-reveal="up" data-delay="1" style="margin-top:var(--s5);max-width:58ch;">Se a pergunta "por que o método tradicional já não funciona?" for familiar — vale começar por uma conversa. Sem pitch. Direto ao que a casa observa hoje.</p>
+    <div style="margin-top:var(--s7);" data-reveal="up" data-delay="2">
+      <a href="mailto:research@anova.com.br" class="btn btn-primary btn-lg">Falar com Research <span class="arr">→</span></a>
     </div>
   </div>
 </section>
@@ -142,5 +325,6 @@
 <div id="anova-footer"></div>
 
 <script src="js/shell.js" defer></script>
+<script src="js/motion.js" defer></script>
 </body>
 </html>

@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Produtos de Crédito — Anova Multibanco</title>
-<meta name="description" content="Multibanco por rede de parceiros regulados. Ofereça a melhor taxa, parcela e CET ao seu cliente via Anova Orquestrador.">
+<title>Crédito Multibanco — Intenção do cliente roteada por ecossistema regulado</title>
+<meta name="description" content="A Anova captura a intenção do cliente dentro do WhatsApp, o Orquestrador conecta essa intenção a um ecossistema de 80+ bancos e parceiros regulados, e devolve o melhor fluxo — taxa, parcela, CET, prazo, liberação. Financiamento, consórcio, home equity, crédito PJ, seguro e previdência num canal só, com trilha auditável.">
 <link rel="stylesheet" href="design-system/tokens.css">
 <link rel="stylesheet" href="design-system/components.css">
 <link rel="stylesheet" href="design-system/sections.css">
 <link rel="stylesheet" href="design-system/nav.css">
+<link rel="stylesheet" href="design-system/editorial.css">
 <style>
   /* ─── PAGE-SPECIFIC ─── */
   html{scroll-behavior:smooth;}
@@ -24,22 +25,32 @@
   .lead{font-size:clamp(16px,1.4vw,19px);color:var(--text-2);line-height:1.55;max-width:60ch;}
   .what-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--s8);align-items:center;margin-top:var(--s6);}
   @media(max-width:880px){.what-grid{grid-template-columns:1fr;}}
-  .what-visual{border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;background:var(--bg-alt);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;padding:var(--s5);}
+  .what-visual{border-radius:var(--r-xl);overflow:hidden;background:var(--bg-alt);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;padding:var(--s5);}
   .what-visual img{max-width:80%;max-height:100%;object-fit:contain;}
   .feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s3) var(--s6);margin-top:var(--s6);}
   @media(max-width:680px){.feat-grid{grid-template-columns:1fr;}}
-  .cat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s5);margin-top:var(--s7);}
+  .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4);margin-top:var(--s7);}
   @media(max-width:880px){.cat-grid{grid-template-columns:1fr;}}
   .cat-card{border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s6);background:var(--white);transition:border-color .2s;}
   .cat-card:hover{border-color:var(--text-1);}
-  .cat-card h3{margin-bottom:var(--s4);}
+  .cat-card h3{margin-bottom:var(--s3);}
   .cat-card ul{list-style:none;margin-top:var(--s4);}
-  .cat-card li{padding:var(--s3) 0;border-top:1px solid var(--border);font-size:14px;color:var(--text-2);}
-  .cat-card li:first-child{border-top:none;}
+  .cat-card li{padding:var(--s3) 0;border-top:1px solid var(--border);font-size:13px;color:var(--text-2);}
+  .cat-card li:first-child{border-top:none;padding-top:var(--s3);}
   .cat-card .cat-num{font-family:var(--mono);font-size:10px;color:var(--text-3);letter-spacing:.1em;margin-bottom:var(--s3);}
   .partner-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--s4);margin-top:var(--s6);}
   @media(max-width:680px){.partner-grid{grid-template-columns:repeat(2,1fr);}}
   .partner-card{border:1px solid var(--border);border-radius:var(--r-md);padding:var(--s4);text-align:center;font-weight:700;font-size:13px;color:var(--text-2);background:var(--white);}
+  /* compare-light — variante da .compare para fundo claro (section-alt) */
+  .compare.compare-light{border:1px solid var(--border);background:var(--white);}
+  .compare.compare-light th,.compare.compare-light td{border-bottom:1px solid var(--border);}
+  .compare.compare-light th{background:var(--onyx);color:var(--white);}
+  .compare.compare-light td{color:var(--text-2);background:var(--white);}
+  .compare.compare-light td:first-child{color:var(--text-1);font-weight:600;}
+  .compare.compare-light th.anova{background:var(--text-1);color:var(--white);}
+  .compare.compare-light td.anova{background:var(--onyx);color:var(--white);font-weight:600;}
+  .compare.compare-light td.anova a{color:var(--white) !important;}
+  .compare.compare-light tbody tr:hover td:not(.anova){background:var(--bg-alt);}
 </style>
 </head>
 <body data-page="credito">
@@ -57,174 +68,300 @@
   </nav>
 </noscript>
 
-<!-- ═══ HERO ═══ -->
-<header class="hero">
+<!-- ═══ § 00 HERO · WHY ═══ -->
+<header class="hero" data-era="golden-why">
   <div class="hero-bp"></div>
   <div class="container hero-grid">
-    <div>
-      <span class="eyebrow">Para consultores · Multibanco</span>
-      <h1><strong>Uma origem.</strong> Múltiplos bancos. Taxa que faz sentido.</h1>
-      <p class="hero-sub">Os Produtos de Crédito da Anova são um multibanco real: o consultor oferece ao cliente a melhor combinação de taxa, parcela e CET entre uma rede de parceiros regulados — tudo operado via Orquestrador, com trilha auditável e comissão rastreada por operação.</p>
+    <div data-reveal="up">
+      <span class="eyebrow">00 · Crédito Multibanco · Intenção → Ecossistema → Melhor fluxo</span>
+      <h1><strong>Acreditamos</strong> que crédito começa na intenção do cliente — não na prateleira do banco.</h1>
+      <p class="hero-sub">A Anova <strong>captura a intenção</strong> onde ela nasce: na conversa do cliente com o originador, dentro do WhatsApp. O <a href="orquestrador.html">Orquestrador</a> traduz essa intenção em critério, <strong>conecta a um ecossistema</strong> de mais de 80 bancos e parceiros regulados — BACEN, SUSEP, ANS — e devolve <strong>o melhor fluxo</strong>: taxa, parcela, CET, prazo, liberação. Em grupo com originador, cliente e especialista. Com trilha auditável e comissão rastreada por operação.</p>
       <div class="hero-cta">
-        <a href="#cta" class="btn btn-primary btn-lg">Operar no multibanco →</a>
-        <a href="#categorias" class="btn btn-outline btn-lg">Ver produtos disponíveis</a>
+        <a href="#cta" class="btn btn-primary btn-lg">Rodar a intenção no ecossistema <span class="arr">→</span></a>
+        <a href="#verticais" class="btn btn-outline btn-lg">Ver os 6 produtos</a>
       </div>
       <div class="hero-meta">
-        <span>Empréstimos · Financiamentos</span>
-        <span>Consórcio · Seguros</span>
-        <span>Parceiros regulados</span>
+        <span>Captura · Intenção no WhatsApp, no canal onde o cliente já está</span>
+        <span>Conexão · Orquestrador roteia a 80+ parceiros regulados</span>
+        <span>Entrega · Melhor fluxo por objetivo — não por prateleira</span>
       </div>
     </div>
-    <div class="hero-visual">
-      <img src="assets/img/product-research.png" alt="Dashboard multibanco">
-      <span class="hero-tag">Dashboard multibanco</span>
+    <div class="hero-visual" data-reveal="left" data-delay="2">
+      <div class="img-slot"></div>
+      <span class="hero-tag">Intenção → Orquestrador → Ecossistema</span>
     </div>
   </div>
 </header>
 
-<!-- ═══ O QUE É ═══ -->
-<section id="o-que-e" class="section section-alt">
+<!-- ═══ § 01 PROBLEMA ═══ -->
+<section id="problema" class="section" data-chapter="01 / 08" data-chapter-num="01">
   <div class="container">
-    <span class="eyebrow">01 · O que é</span>
-    <div class="what-grid">
-      <div>
-        <h2><strong>Multibanco</strong> na mesma origem.</h2>
-        <p class="lead">O consultor abre uma única origem na Anova e, a partir dela, oferece ao cliente a comparação real entre múltiplos parceiros regulados — Banrisul, CashMe, Bradesco, C6 Bank, Aminter, entre outros. Taxa, parcela e CET lado a lado. A escolha é do cliente. A operação é auditada. A comissão é rastreada. Tudo acontece dentro do Orquestrador, preservando governança e histórico por cliente.</p>
+    <span class="eyebrow" data-reveal>01 · Problema estrutural</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:24ch;"><strong>A cotação</strong> de crédito no Brasil é viciada pelo lado errado da mesa.</h2>
+    <p class="lead" data-reveal="up" data-delay="1" style="margin-top:var(--s5);">Na maior parte do mercado, quem cota crédito é quem quer vender crédito. O banker do banco oferece a prateleira do banco. O corretor de consórcio oferece o consórcio dele. O originador monoproduto perde a conversa adjacente — e o cliente perde margem, prazo e paciência.</p>
+
+    <div class="problem-cards">
+      <article class="problem-card" data-reveal="up">
+        <div class="problem-num">P · 01 · BANKER DO BANCO</div>
+        <h3>Quem vende o produto não cota pelo cliente.</h3>
+        <p>O gerente do banco só compara o que mora dentro do próprio CNPJ. Fora disso, é "não temos". O cliente sai com a taxa que sobrou — não com a taxa que caberia no objetivo dele.</p>
+      </article>
+      <article class="problem-card" data-reveal="up" data-delay="1">
+        <div class="problem-num">P · 02 · COTAÇÃO PULVERIZADA</div>
+        <h3>Três janelas, três propostas, nenhuma comparação real.</h3>
+        <p>Cliente com pressa manda mensagem em três bancos, recebe três respostas avulsas — sem CET comparável, sem prazo equivalente, sem critério. Escolhe pela que respondeu primeiro, não pela que fazia mais sentido.</p>
+      </article>
+      <article class="problem-card" data-reveal="up" data-delay="2">
+        <div class="problem-num">P · 03 · ORIGINADOR MONOPRODUTO</div>
+        <h3>Quem já tem o relacionamento, só sabe vender uma coisa.</h3>
+        <p>Corretor fecha a casa, mas perde o financiamento. Consultor trata investimento, mas perde o consórcio. Escritório cuida do contrato, mas perde o seguro. A relação existia. A receita ficou na mesa.</p>
+      </article>
+    </div>
+
+    <p class="problem-quote" data-reveal>Quem cota pelo banco, vende do banco. Quem cota pelo <strong>cliente</strong>, muda de mesa.</p>
+  </div>
+</section>
+
+<!-- ═══ § 02 A VIRADA — HOW ═══ -->
+<section class="section section-dark" data-chapter="02 / 08" data-chapter-num="02">
+  <div class="container">
+    <span class="eyebrow" data-reveal>02 · A virada — intenção → orquestrador → ecossistema</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:24ch;color:var(--white);"><strong>Capturamos</strong> a intenção. Roteamos pelo ecossistema. Devolvemos o melhor fluxo.</h2>
+    <div class="pivot-grid">
+      <div data-reveal="right">
+        <p class="lead">A tese herdada da <a href="wealth-management.html" style="color:var(--white);text-decoration:underline;">Gestão Patrimonial</a> é absoluta: <strong style="color:var(--white);">a Anova está sempre do lado do detentor do capital</strong>. Em crédito, isso virou uma arquitetura de três movimentos. <strong style="color:var(--white);">Um</strong> — a intenção do cliente nasce na conversa e é capturada dentro do WhatsApp, no canal onde ela já acontece. <strong style="color:var(--white);">Dois</strong> — o <a href="orquestrador.html" style="color:var(--white);text-decoration:underline;">Orquestrador</a> traduz essa intenção em critério (taxa, parcela, CET, prazo ou liberação) e conecta a um ecossistema regulado de mais de 80 bancos e parceiros. <strong style="color:var(--white);">Três</strong> — o especialista Anova devolve o melhor fluxo no mesmo grupo, com trilha auditável. Não é marketplace. Não é busca por preço. É consultiva multibanco conduzida por gente que conhece o produto — com o capital do cliente no centro da mesa.</p>
+        <ul class="pivot-list">
+          <li><b>Captura da intenção no canal do cliente</b><span>Originador abre o pedido na conversa real onde o relacionamento vive. O Orquestrador estrutura o que é intenção em operação — sem formulário web, sem app novo, sem fricção de canal.</span></li>
+          <li><b>Roteamento pelo ecossistema regulado</b><span>BACEN, SUSEP e ANS do outro lado. Bancos, financeiras, administradoras de consórcio e seguradoras conectados à mesma camada — competindo pela operação do cliente, não pela atenção dele.</span></li>
+          <li><b>Priorização pelo objetivo real</b><span>Melhor taxa, parcela menor, menor CET, prazo mais longo ou liberação rápida — o algoritmo prioriza pelo que o cliente precisa. Não pelo que o banco quer empurrar.</span></li>
+          <li><b>Devolução no melhor fluxo · trilha auditável</b><span>Grupo WhatsApp com originador, cliente e especialista. Cotação multibanco pronta. Comissão rastreada por operação. Regulação embarcada na camada — não anexada depois.</span></li>
+        </ul>
       </div>
-      <div class="what-visual">
-        <img src="assets/img/product-orquestrador-2.png" alt="Comparação multibanco">
+      <div class="pivot-diagram" data-reveal="left" data-delay="1">
+        <svg viewBox="0 0 400 360" fill="none" stroke="#FFFFFF" stroke-width="1.2" xmlns="http://www.w3.org/2000/svg">
+          <rect x="40" y="24" width="320" height="312" rx="24" stroke="#FFFFFF" stroke-dasharray="4 4"/>
+          <text x="200" y="14" text-anchor="middle" fill="#888888" font-family="monospace" font-size="9" letter-spacing="2" stroke="none">GRUPO WHATSAPP · COTAÇÃO MULTIBANCO</text>
+          <circle cx="200" cy="180" r="54" stroke="#FFFFFF"/>
+          <text x="200" y="174" text-anchor="middle" fill="#FFFFFF" font-family="SF Pro Display" font-size="13" font-weight="700" stroke="none">CLIENTE</text>
+          <text x="200" y="190" text-anchor="middle" fill="#CCCCCC" font-family="SF Pro Display" font-size="9" stroke="none">objetivo · valor</text>
+          <text x="200" y="202" text-anchor="middle" fill="#CCCCCC" font-family="SF Pro Display" font-size="9" stroke="none">prazo</text>
+          <g stroke="#888888" stroke-dasharray="2 4">
+            <line x1="200" y1="126" x2="200" y2="78"/>
+            <line x1="254" y1="180" x2="310" y2="180"/>
+            <line x1="200" y1="234" x2="200" y2="282"/>
+            <line x1="146" y1="180" x2="90" y2="180"/>
+          </g>
+          <g fill="#000000" stroke="#FFFFFF">
+            <circle cx="200" cy="78" r="24"/>
+            <text x="200" y="76" text-anchor="middle" fill="#FFFFFF" font-family="SF Pro Display" font-size="9" stroke="none">Originador</text>
+            <text x="200" y="88" text-anchor="middle" fill="#CCCCCC" font-family="SF Pro Display" font-size="7" stroke="none">relacionamento</text>
+            <circle cx="310" cy="180" r="24"/>
+            <text x="310" y="178" text-anchor="middle" fill="#FFFFFF" font-family="SF Pro Display" font-size="9" stroke="none">Especialista</text>
+            <text x="310" y="190" text-anchor="middle" fill="#CCCCCC" font-family="SF Pro Display" font-size="7" stroke="none">Anova</text>
+            <circle cx="200" cy="282" r="24"/>
+            <text x="200" y="280" text-anchor="middle" fill="#FFFFFF" font-family="SF Pro Display" font-size="9" stroke="none">80+ Instit.</text>
+            <text x="200" y="292" text-anchor="middle" fill="#CCCCCC" font-family="SF Pro Display" font-size="7" stroke="none">reguladas</text>
+            <circle cx="90" cy="180" r="24"/>
+            <text x="90" y="178" text-anchor="middle" fill="#FFFFFF" font-family="SF Pro Display" font-size="9" stroke="none">Orquestrador</text>
+            <text x="90" y="190" text-anchor="middle" fill="#CCCCCC" font-family="SF Pro Display" font-size="7" stroke="none">trilha · HITL</text>
+          </g>
+          <text x="200" y="354" text-anchor="middle" fill="#888888" font-family="monospace" font-size="8" letter-spacing="2" stroke="none">BACEN · SUSEP · ANS · AUDITÁVEL</text>
+        </svg>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ CATEGORIAS ═══ -->
-<section id="categorias" class="section">
+<!-- ═══ § 03 O QUE É — WHAT · VERTICAIS ═══ -->
+<section id="verticais" class="section section-alt" data-chapter="03 / 08" data-chapter-num="03">
   <div class="container">
-    <span class="eyebrow">02 · Categorias</span>
-    <h2 style="margin-top:var(--s4);max-width:24ch;"><strong>Cinco</strong> linhas de produto. Uma única origem.</h2>
+    <span class="eyebrow" data-reveal>03 · O que é — seis verticais reguladas</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:24ch;"><strong>Seis</strong> intenções possíveis. Um ecossistema. O mesmo fluxo.</h2>
+    <p class="lead" data-reveal="up" data-delay="1" style="margin-top:var(--s5);">O mesmo cliente que aloca patrimônio pela <a href="life-invest.html">Life Invest</a> pergunta sobre financiamento, home equity, consórcio, seguro de vida, crédito PJ e plano de saúde na mesma conversa — e cada pergunta dessas é uma <strong>intenção</strong>. As seis verticais rodam na mesma camada: Orquestrador captura, ecossistema regulado responde, especialista conduz. Trilha auditável, regulação embarcada e comissão rastreada por operação — independentemente de qual intenção o cliente trouxer.</p>
+
     <div class="cat-grid">
-      <article class="cat-card">
-        <div class="cat-num">LINHA 01 · EMPRÉSTIMOS</div>
-        <h3>Crédito com garantia</h3>
-        <p>Use bens como garantia e alcance taxas significativamente menores que empréstimos pessoais ou cartão.</p>
+      <article class="cat-card" data-reveal="up">
+        <div class="cat-num">V · 01 · Financiamento</div>
+        <h3>Imóvel e veículo.</h3>
+        <p>Financiamento imobiliário e veicular com propostas múltiplas — taxa, parcela, CET e prazo lado a lado. O cliente compara antes de assinar. O especialista conduz a decisão.</p>
         <ul>
-          <li>Empréstimo com Garantia de Imóvel</li>
-          <li>Empréstimo com Garantia de Veículo</li>
+          <li>Financiamento imobiliário</li>
+          <li>Financiamento de veículos</li>
         </ul>
       </article>
-      <article class="cat-card">
-        <div class="cat-num">LINHA 02 · FINANCIAMENTOS</div>
-        <h3>Bens de alto valor</h3>
-        <p>As melhores condições de financiamento imobiliário e veicular do mercado, via múltiplos bancos.</p>
+      <article class="cat-card" data-reveal="up" data-delay="1">
+        <div class="cat-num">V · 02 · Consórcio</div>
+        <h3>Planejado, sem juros.</h3>
+        <p>Consórcios regulados pelo BACEN para quem quer conquistar sem pagar juros — imóvel, veículo ou serviço. Comparação entre administradoras sérias, em grupos ativos.</p>
         <ul>
-          <li>Financiamento Imobiliário</li>
-          <li>Financiamento de Veículos</li>
+          <li>Consórcio de imóveis</li>
+          <li>Consórcio de veículos</li>
+          <li>Consórcio de serviços</li>
         </ul>
       </article>
-      <article class="cat-card">
-        <div class="cat-num">LINHA 03 · CONSÓRCIO</div>
-        <h3>Planejado, sem juros</h3>
-        <p>Planeje a conquista de bens ou serviços de forma econômica, parcelada e sem juros, em grupos regulados.</p>
+      <article class="cat-card" data-reveal="up" data-delay="2">
+        <div class="cat-num">V · 03 · Home Equity</div>
+        <h3>Garantia do imóvel, taxa de prateleira alta.</h3>
+        <p>Empréstimo com garantia de imóvel e de veículo — taxas substancialmente menores que crédito pessoal ou cartão. O bem fica do cliente. O capital circula.</p>
         <ul>
-          <li>Consórcio de Imóveis</li>
-          <li>Consórcio de Veículos</li>
-          <li>Consórcio de Serviços</li>
+          <li>Garantia de imóvel</li>
+          <li>Garantia de veículo</li>
         </ul>
       </article>
-      <article class="cat-card">
-        <div class="cat-num">LINHA 04 · SEGURO E PREVIDÊNCIA</div>
-        <h3>Proteger e planejar</h3>
-        <p>Proteja o que é seu e planeje o futuro com parceiros SUSEP-regulados integrados ao multibanco.</p>
+      <article class="cat-card" data-reveal="up" data-delay="3">
+        <div class="cat-num">V · 04 · Crédito PJ</div>
+        <h3>Capital de giro e expansão.</h3>
+        <p>Para empresas que querem crédito orientado ao objetivo — capital de giro, antecipação, expansão ou aquisição. Múltiplos bancos cotando contra a operação, não contra o cliente.</p>
         <ul>
-          <li>Seguro de Vida Individual</li>
-          <li>Seguro Residencial</li>
-          <li>Previdência Privada</li>
+          <li>Capital de giro</li>
+          <li>Antecipação de recebíveis</li>
+          <li>Crédito para expansão</li>
         </ul>
       </article>
-      <article class="cat-card">
-        <div class="cat-num">LINHA 05 · PLANO DE SAÚDE</div>
-        <h3>Em breve</h3>
-        <p>Plano de saúde será a próxima linha integrada ao multibanco Anova. Fale com o time pra acompanhar o roadmap.</p>
+      <article class="cat-card" data-reveal="up" data-delay="4">
+        <div class="cat-num">V · 05 · Seguro · Previdência</div>
+        <h3>Proteção e planejamento longo.</h3>
+        <p>Seguro de vida, residencial e previdência privada com parceiros regulados pela SUSEP integrados ao multibanco. Consultiva de proteção junto ao planejamento de patrimônio.</p>
         <ul>
-          <li>Em roadmap</li>
+          <li>Seguro de vida</li>
+          <li>Seguro residencial</li>
+          <li>Previdência privada</li>
+        </ul>
+      </article>
+      <article class="cat-card" data-reveal="up" data-delay="5">
+        <div class="cat-num">V · 06 · Plano de Saúde</div>
+        <h3>Em roadmap · regulação ANS.</h3>
+        <p>Próxima vertical integrada ao multibanco Anova — operadoras reguladas pela ANS, cotação comparativa pelo perfil da família ou da empresa. Acompanhe o rollout com o time.</p>
+        <ul>
+          <li>PF familiar</li>
+          <li>PJ empresarial</li>
         </ul>
       </article>
     </div>
   </div>
 </section>
 
-<!-- ═══ COMO FUNCIONA ═══ -->
-<section class="section section-alt">
+<!-- ═══ § 04 COMO FUNCIONA ═══ -->
+<section class="section" data-chapter="04 / 08" data-chapter-num="04">
   <div class="container">
-    <span class="eyebrow">03 · Como funciona</span>
-    <h2 style="margin-top:var(--s4);max-width:24ch;"><strong>Simula.</strong> Compara. Escolhe. Opera.</h2>
+    <span class="eyebrow" data-reveal>04 · Como funciona — da intenção ao melhor fluxo</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:26ch;"><strong>Captura</strong> → Roteamento → Ecossistema → Devolução.</h2>
+    <p class="lead" data-reveal="up" data-delay="1" style="margin-top:var(--s5);max-width:62ch;">Cada operação percorre os mesmos quatro movimentos, independentemente da vertical. O que muda é a vertical e os parceiros ativados — a arquitetura do fluxo é a mesma.</p>
     <div class="how-grid">
-      <article class="how-step">
-        <div class="how-num">PASSO 01</div>
-        <h3>Simulação</h3>
-        <p>O consultor informa valor, objetivo e dados relevantes do cliente. O sistema gera a simulação inicial.</p>
+      <article class="how-step" data-reveal="up">
+        <div class="how-num">STEP · 01 · CAPTURA</div>
+        <h3>Intenção entra onde ela nasce</h3>
+        <p>O originador (consultor Anova, representante ou parceiro externo) abre o pedido dentro da conversa no WhatsApp — já com cliente identificado e vertical escolhida (financiamento, consórcio, home equity, crédito PJ, seguro, saúde). A intenção entra como dado estruturado, não como recado solto.</p>
       </article>
-      <article class="how-step">
-        <div class="how-num">PASSO 02</div>
-        <h3>Comparação multibanco</h3>
-        <p>Propostas de múltiplos parceiros regulados aparecem lado a lado — taxa, parcela, CET e prazo.</p>
+      <article class="how-step" data-reveal="up" data-delay="1">
+        <div class="how-num">STEP · 02 · ROTEAMENTO</div>
+        <h3>Orquestrador traduz intenção em critério</h3>
+        <p>Mensagem automatizada coleta o que falta — valor, prazo, garantias, objetivo real. O <a href="orquestrador.html">Orquestrador</a> converte a intenção em critério de priorização (melhor taxa, parcela menor, menor CET, prazo mais longo ou liberação rápida) e prepara o roteamento pelo ecossistema.</p>
       </article>
-      <article class="how-step">
-        <div class="how-num">PASSO 03</div>
-        <h3>Escolha do cliente</h3>
-        <p>O cliente escolhe a proposta que faz sentido. O consultor conduz a decisão com transparência.</p>
+      <article class="how-step" data-reveal="up" data-delay="2">
+        <div class="how-num">STEP · 03 · ECOSSISTEMA</div>
+        <h3>80+ parceiros regulados respondem</h3>
+        <p>Bancos, financeiras, administradoras e seguradoras conectados à camada cotam pela mesma operação — BACEN, SUSEP e ANS embarcados. O Orquestrador monta o grupo no WhatsApp com três nós: originador, cliente e especialista Anova. Cotação multibanco já chega pronta.</p>
       </article>
-      <article class="how-step">
-        <div class="how-num">PASSO 04</div>
-        <h3>Operação auditada</h3>
-        <p>Documentação, acompanhamento e liberação do crédito — tudo com trilha auditável e comissão rastreada.</p>
+      <article class="how-step" data-reveal="up" data-delay="3">
+        <div class="how-num">STEP · 04 · DEVOLUÇÃO</div>
+        <h3>Especialista entrega o melhor fluxo</h3>
+        <p>Comparação lado a lado, recomendação orientada ao objetivo, documentação centralizada e liberação acompanhada. Cliente escolhe. Especialista conduz. Tudo fica no histórico imutável — com comissão rastreada por originação e trilha de auditoria fim a fim.</p>
       </article>
     </div>
   </div>
 </section>
 
-<!-- ═══ PARCEIROS ═══ -->
-<section class="section">
+<!-- ═══ § 05 CRITÉRIOS DE PRIORIZAÇÃO ═══ -->
+<section class="section section-dark" data-chapter="05 / 08" data-chapter-num="05">
   <div class="container">
-    <span class="eyebrow">04 · Parceiros regulados</span>
-    <h2 style="margin-top:var(--s4);max-width:24ch;"><strong>Parceiros</strong> conectados ao multibanco.</h2>
-    <div class="partner-grid">
-      <div class="partner-card">Banrisul</div>
-      <div class="partner-card">CashMe</div>
-      <div class="partner-card">Bradesco</div>
-      <div class="partner-card">C6 Bank</div>
-      <div class="partner-card">Aminter</div>
+    <span class="eyebrow" data-reveal>05 · Critério · o que orienta a cotação</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:26ch;color:var(--white);"><strong>O algoritmo</strong> cota pelo objetivo real — não pela prateleira.</h2>
+    <p class="lead" data-reveal="up" data-delay="1" style="margin-top:var(--s5);max-width:60ch;">A pergunta não é "qual banco tem?". É "o que o cliente precisa?". O Orquestrador traduz o objetivo em critério, e o critério em priorização entre as 80+ instituições conectadas.</p>
+
+    <div class="compare">
+      <table>
+        <thead>
+          <tr><th>Critério</th><th>Quando o algoritmo prioriza</th><th class="anova">O que o cliente recebe</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Melhor taxa</td><td>Cliente quer o menor custo de juros no total</td><td class="anova">Ranking por taxa nominal, com CET ao lado</td></tr>
+          <tr><td>Parcela menor</td><td>Cliente tem restrição de fluxo mensal</td><td class="anova">Ranking por parcela, alongando prazo se fizer sentido</td></tr>
+          <tr><td>Menor CET</td><td>Cliente quer a operação mais barata no custo efetivo</td><td class="anova">Ranking por CET, incluindo tarifas e seguros embutidos</td></tr>
+          <tr><td>Prazo mais longo</td><td>Cliente precisa alongar o passivo</td><td class="anova">Ranking por horizonte máximo de liquidação</td></tr>
+          <tr><td>Liberação rápida</td><td>Cliente precisa executar com urgência</td><td class="anova">Ranking por tempo até liberação do recurso</td></tr>
+        </tbody>
+      </table>
     </div>
-    <p style="margin-top:var(--s5);font-family:var(--mono);font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.08em;">Lista não exaustiva · Parceiros adicionais conectados caso a caso</p>
+
+    <p style="margin-top:var(--s7);font-family:var(--mono);font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.12em;" data-reveal>O cliente escolhe. A Anova conduz. O banco compete.</p>
   </div>
 </section>
 
-<!-- ═══ CAPACIDADES ═══ -->
-<section class="section section-alt">
+<!-- ═══ § 06 MONOPRODUTO VIRA MULTINEGÓCIOS ═══ -->
+<section class="section section-alt" data-chapter="06 / 08" data-chapter-num="06">
   <div class="container">
-    <span class="eyebrow">05 · Capacidades</span>
-    <h2 style="margin-top:var(--s4);max-width:24ch;"><strong>Operação</strong> real. Comissão rastreada.</h2>
-    <ul class="gallery-feats feat-grid">
-      <li>Comparação lado a lado (taxa, parcela, CET)</li>
-      <li>Documentação centralizada</li>
-      <li>Acompanhamento de status por operação</li>
-      <li>Comissão rastreada por originação</li>
-      <li>Trilha de auditoria fim a fim</li>
-      <li>Integração nativa com Orquestrador</li>
-      <li>Cross-sell com Life Invest e Gestão Patrimonial</li>
-      <li>Compliance embutido na esteira</li>
-    </ul>
+    <span class="eyebrow" data-reveal>06 · Rede de originadores</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:26ch;"><strong>Monoproduto</strong> vira multinegócios. Capilaridade já existia — a gente plugou.</h2>
+    <p class="lead" data-reveal="up" data-delay="1" style="margin-top:var(--s5);">Corretor de imóvel ganhava só na venda da casa. Vendedor de consórcio ganhava só no consórcio. Consultor de investimento perdia a conversa de crédito. A rede Anova reaproveita essa capilaridade que o mercado desperdiçava — o especialista da casa cuida da cotação, o originador mantém o relacionamento, e a receita adjacente deixa de evaporar.</p>
+
+    <div class="compare compare-light" data-reveal="up" data-delay="2">
+      <table>
+        <thead>
+          <tr><th>Atuação</th><th>Modelo antigo</th><th class="anova">Modelo Anova</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Corretor de imóvel</td><td>Ganha só na venda da casa</td><td class="anova">Casa + financiamento + home equity + seguro residencial</td></tr>
+          <tr><td>Vendedor de consórcio</td><td>Ganha só no consórcio</td><td class="anova">Consórcio + cross-sell multibanco da rede</td></tr>
+          <tr><td>Consultor de investimento</td><td>Ganha só na alocação</td><td class="anova">Alocação + <a href="credito.html" style="color:inherit;text-decoration:underline;">crédito</a> + proteção + PJ</td></tr>
+          <tr><td>Advocacia · contabilidade</td><td>Perde a conversa adjacente</td><td class="anova">Novo braço operacional sem construir estrutura</td></tr>
+          <tr><td>Cliente</td><td>Cotava um banco de cada vez</td><td class="anova">Cotação de 80+ instituições num grupo único</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="problem-quote" data-reveal style="margin-top:var(--s8);">Capilaridade não precisava ser contratada. Precisava ser <strong>orquestrada</strong>.</p>
   </div>
 </section>
 
-<!-- ═══ CTA FINAL ═══ -->
-<section id="cta" class="section section-dark">
+<!-- ═══ § 07 PARCEIROS · REGULAÇÃO ═══ -->
+<section class="section" data-chapter="07 / 08" data-chapter-num="07">
   <div class="container">
-    <span class="eyebrow">06 · Próximo passo</span>
-    <h2 style="margin-top:var(--s4);max-width:22ch;color:var(--white);"><strong>Começar</strong> a operar crédito pela Anova.</h2>
-    <div style="margin-top:var(--s7);">
-      <a href="mailto:credito@anova.com.br" class="btn btn-primary btn-lg">Falar com o time →</a>
+    <span class="eyebrow" data-reveal>07 · Ecossistema · parceiros regulados</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:24ch;"><strong>O ecossistema</strong> que responde toda intenção.</h2>
+    <p class="lead" data-reveal="up" data-delay="1" style="margin-top:var(--s5);">Mais de 80 bancos, financeiras, administradoras de consórcio e seguradoras conectados ao <a href="orquestrador.html">Orquestrador</a> — BACEN, SUSEP e ANS embarcados na camada, não anexados por fora. O ecossistema cresce por operação: cada parceiro que entra amplia o espaço de resposta para o próximo pedido. Lista ilustrativa abaixo. Integrações adicionais caso a caso.</p>
+
+    <div class="partners-ticker" data-reveal aria-label="Parceiros de crédito conectados">
+      <div class="partners-track">
+        <span class="tick">Banrisul</span>
+        <span class="tick">CashMe</span>
+        <span class="tick">Bradesco</span>
+        <span class="tick">C6 Bank</span>
+        <span class="tick">Aminter</span>
+        <span class="tick">Itaú</span>
+        <span class="tick">Santander</span>
+        <span class="tick">Banco do Brasil</span>
+        <span class="tick">Caixa</span>
+        <span class="tick">Inter</span>
+        <span class="tick">+ 70 parceiros</span>
+        <span class="tick">BACEN · Bancário</span>
+        <span class="tick">SUSEP · Seguros</span>
+        <span class="tick">ANS · Saúde</span>
+      </div>
+    </div>
+    <p style="margin-top:var(--s5);font-family:var(--mono);font-size:11px;color:var(--text-3);text-transform:uppercase;letter-spacing:.12em;" data-reveal>Mais de 80 instituições reguladas · lista ilustrativa · parceiros adicionais caso a caso</p>
+  </div>
+</section>
+
+<!-- ═══ § 08 CTA FINAL ═══ -->
+<section id="cta" class="section section-dark" data-chapter="08 / 08" data-chapter-num="08">
+  <div class="container">
+    <span class="eyebrow" data-reveal>08 · Próximo passo</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:26ch;color:var(--white);"><strong>Traga</strong> a intenção. A gente devolve o melhor fluxo.</h2>
+    <p class="lead" data-reveal="up" data-delay="1" style="margin-top:var(--s5);color:var(--text-3);max-width:62ch;">Entre como originador, como parceiro monoproduto ou como cliente. Em minutos, o <a href="orquestrador.html" style="color:var(--white);text-decoration:underline;">Orquestrador</a> captura a intenção, conecta ao ecossistema de 80+ parceiros regulados e o especialista conduz até a execução no mesmo grupo. Cross-sell natural com a <a href="life-invest.html" style="color:var(--white);text-decoration:underline;">Life Invest</a> e a <a href="research.html" style="color:var(--white);text-decoration:underline;">Research</a> — a mesma camada que já operou mais de R$ 2Bi.</p>
+    <div style="margin-top:var(--s7);display:flex;gap:var(--s3);flex-wrap:wrap;" data-reveal="up" data-delay="2">
+      <a href="mailto:credito@anovaresearch.com.br" class="btn btn-primary btn-lg">Rodar a intenção no ecossistema <span class="arr">→</span></a>
+      <a href="index.html#contato" class="btn btn-outline btn-lg" style="border-color:var(--white);color:var(--white);">Entrar como originador</a>
     </div>
   </div>
 </section>
@@ -232,5 +369,6 @@
 <div id="anova-footer"></div>
 
 <script src="js/shell.js" defer></script>
+<script src="js/motion.js" defer></script>
 </body>
 </html>

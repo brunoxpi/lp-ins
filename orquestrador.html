@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Orquestrador — Anova</title>
-<meta name="description" content="Camada conversacional governada. Integre seu produto à rede de execução Anova e chegue ao cliente via WhatsApp com trilha auditável.">
+<title>Orquestrador — Sistema Operacional Conversacional dentro do WhatsApp</title>
+<meta name="description" content="Governança não é departamento — é arquitetura. O Orquestrador Anova vive dentro da API oficial do WhatsApp Business: login regulado, HITL nativo, trilha imutável. Seis verticais reguladas num canal só. Não é chatbot. É o sistema operacional da conexão de negócios.">
 <link rel="stylesheet" href="design-system/tokens.css">
 <link rel="stylesheet" href="design-system/components.css">
 <link rel="stylesheet" href="design-system/sections.css">
 <link rel="stylesheet" href="design-system/nav.css">
+<link rel="stylesheet" href="design-system/editorial.css">
 <style>
   /* ─── PAGE-SPECIFIC ─── */
   html{scroll-behavior:smooth;}
@@ -24,7 +25,7 @@
   .lead{font-size:clamp(16px,1.4vw,19px);color:var(--text-2);line-height:1.55;max-width:60ch;}
   .what-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--s8);align-items:center;margin-top:var(--s6);}
   @media(max-width:880px){.what-grid{grid-template-columns:1fr;}}
-  .what-visual{border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;background:var(--bg-alt);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;padding:var(--s5);}
+  .what-visual{border-radius:var(--r-xl);overflow:hidden;background:var(--bg-alt);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;padding:var(--s5);}
   .what-visual img{max-width:80%;max-height:100%;object-fit:contain;}
   .feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s3) var(--s6);margin-top:var(--s6);}
   @media(max-width:680px){.feat-grid{grid-template-columns:1fr;}}
@@ -45,102 +46,252 @@
   </nav>
 </noscript>
 
-<!-- ═══ HERO ═══ -->
-<header class="hero">
+<!-- ═══ HERO · WHY ═══ -->
+<header class="hero" data-era="golden-why">
   <div class="hero-bp"></div>
   <div class="container hero-grid">
-    <div>
-      <span class="eyebrow">Para parceiros · Integração</span>
-      <h1><strong>Conversa</strong> vira execução. Execução vira trilha.</h1>
-      <p class="hero-sub">O Orquestrador é a camada conversacional da Anova. Integre seu produto — crédito, seguro, saúde, consórcio, previdência ou investimento — a uma rede já orquestrada, e chegue ao cliente final via WhatsApp com roteamento, HITL e auditoria embutidas.</p>
+    <div data-reveal="up">
+      <span class="eyebrow">00 · Orquestrador · Sistema Operacional Conversacional</span>
+      <h1><strong>Acreditamos</strong> que governança não é departamento — é arquitetura.</h1>
+      <p class="hero-sub">Por isso o Orquestrador vive <strong>dentro</strong> da API oficial do WhatsApp Business — não em cima. Cada mensagem tem identidade. Cada decisão tem timestamp. Cada execução deixa trilha imutável. HITL em ações sensíveis. Seis verticais reguladas no canal onde o cliente já está. Não é chatbot. É a camada onde a intenção do cliente vira execução auditada.</p>
       <div class="hero-cta">
-        <a href="#cta" class="btn btn-primary btn-lg">Conversar sobre integração →</a>
-        <a href="#o-que-e" class="btn btn-outline btn-lg">Ver como funciona</a>
+        <a href="#cta" class="btn btn-primary btn-lg">Ver o Orquestrador em ação <span class="arr">→</span></a>
+        <a href="#problema" class="btn btn-outline btn-lg">Ler o manifesto operacional</a>
       </div>
       <div class="hero-meta">
-        <span>WhatsApp-first</span>
-        <span>HITL nativo</span>
-        <span>Audit-by-design</span>
+        <span>Porque · Governança é arquitetura, não layer</span>
+        <span>Como · Dentro da API oficial Meta · HITL nativo · trilha imutável</span>
+        <span>O que · 6 verticais reguladas, 1 canal só</span>
       </div>
     </div>
-    <div class="hero-visual">
-      <img src="assets/img/product-orquestrador-2.png" alt="Orquestrador — atendimento conversacional">
-      <span class="hero-tag">Camada conversacional</span>
+    <div class="hero-visual" data-reveal="left" data-delay="2">
+      <div class="img-slot"></div>
+      <span class="hero-tag">Dentro da Meta · Não sobre</span>
     </div>
   </div>
 </header>
 
-<!-- ═══ O QUE É ═══ -->
-<section id="o-que-e" class="section section-alt">
+<!-- ═══ § 01 PROBLEMA ═══ -->
+<section id="problema" class="section" data-chapter="01 / 08" data-chapter-num="01">
   <div class="container">
-    <span class="eyebrow">01 · O que é</span>
+    <span class="eyebrow" data-reveal>01 · Problema estrutural</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:24ch;"><strong>Volume</strong> pulverizado no WhatsApp quebra qualquer operação.</h2>
+    <p class="lead" data-reveal="up" data-delay="1" style="margin-top:var(--s5);">Quando a rede cresce, a conversa acontece em 20 números, 50 grupos, 300 janelas. Compliance pede histórico. Cliente pede resposta. Mesa pede visão. Nenhum CRM enxerga onde a decisão de fato acontece — porque a decisão acontece no canal onde o cliente já está. E chatbot não governa: responde FAQ e morre na primeira intenção real.</p>
+
+    <div class="problem-cards">
+      <article class="problem-card" data-reveal="up">
+        <div class="problem-num">P · 01 · PULVERIZAÇÃO</div>
+        <h3>Conversa fora do sistema é conversa perdida.</h3>
+        <p>Cada consultor com número pessoal. Cada cliente em N janelas. A relação existe — mas fora de qualquer registro. Compliance não audita o que não está indexado. Mesa não vê o que não foi roteado.</p>
+      </article>
+      <article class="problem-card" data-reveal="up" data-delay="1">
+        <div class="problem-num">P · 02 · SEM TRILHA</div>
+        <h3>Mensagem é efêmera. Aprovação é verbal. Histórico é memória.</h3>
+        <p>Confirmação por áudio, decisão por print, aprovação em grupo que sai do ar. Não há rastreabilidade, não há reversibilidade — e quando o regulador pergunta, a resposta vira exercício de boa-fé.</p>
+      </article>
+      <article class="problem-card" data-reveal="up" data-delay="2">
+        <div class="problem-num">P · 03 · BOT NÃO GOVERNA</div>
+        <h3>Chatbot responde pergunta. Não executa decisão.</h3>
+        <p>FAQ é o teto. Sem identidade, sem HITL, sem audit-by-design, sem produto regulado do outro lado. Morre na primeira intenção real do cliente — e empurra o operador de volta pra tela de sempre.</p>
+      </article>
+    </div>
+
+    <p class="problem-quote" data-reveal>Enquanto a decisão mora em janela solta, <strong>governança</strong> é promessa. Não é arquitetura.</p>
+  </div>
+</section>
+
+<!-- ═══ § 02 A VIRADA — HOW ═══ -->
+<section class="section section-dark" data-chapter="02 / 08" data-chapter-num="02">
+  <div class="container">
+    <span class="eyebrow" data-reveal>02 · A virada — dentro, não sobre</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:22ch;color:var(--white);"><strong>Dentro</strong> do WhatsApp. Não sobre.</h2>
+    <div class="pivot-grid">
+      <div data-reveal="right">
+        <p class="lead">Mais de <strong style="color:var(--white);">90% dos brasileiros</strong> têm WhatsApp instalado. A Meta investe bilhões na API oficial do WhatsApp Business — com criptografia, escalabilidade e governança embutidas na infraestrutura dela mesma. Em vez de pedir pro cliente migrar pra um app novo, arquitetamos o Orquestrador <strong style="color:var(--white);">dentro</strong> dessa infraestrutura. Não "sobre". Não "colado". Dentro. O que a Meta mantém viva pra exatamente este caso de uso, usamos como base. O que a regulação exige da Anova, embarcamos na camada — não num departamento anexo.</p>
+        <ul class="pivot-list">
+          <li><b>API oficial WhatsApp Business</b><span>Sem integração não-oficial, sem scraping. Criptografia, escalabilidade e confiabilidade em nível global — sem precisarmos reconstruir.</span></li>
+          <li><b>Login regulado</b><span>Cada ação tem identidade, timestamp e responsável rastreável. Governança nativa da arquitetura — não layer adicional.</span></li>
+          <li><b>HITL em ações sensíveis</b><span>Resgates, mudanças de perfil, operações cross-border e gatilhos definidos por compliance exigem aprovação humana obrigatória antes de executar.</span></li>
+          <li><b>Trilha imutável</b><span>Cada mensagem, decisão e execução registrada no histórico do cliente — recuperável, compartilhável com compliance, auditável fim a fim.</span></li>
+        </ul>
+      </div>
+      <div class="pivot-diagram" data-reveal="left" data-delay="1">
+        <svg viewBox="0 0 400 360" fill="none" stroke="#FFFFFF" stroke-width="1.2" xmlns="http://www.w3.org/2000/svg">
+          <rect x="40" y="24" width="320" height="312" rx="24" stroke="#FFFFFF" stroke-dasharray="4 4"/>
+          <text x="200" y="14" text-anchor="middle" fill="#888888" font-family="monospace" font-size="9" letter-spacing="2" stroke="none">WHATSAPP · API OFICIAL META</text>
+          <circle cx="200" cy="180" r="48" stroke="#FFFFFF"/>
+          <text x="200" y="176" text-anchor="middle" fill="#FFFFFF" font-family="SF Pro Display" font-size="13" font-weight="700" stroke="none">ORQUESTRADOR</text>
+          <text x="200" y="192" text-anchor="middle" fill="#CCCCCC" font-family="SF Pro Display" font-size="9" stroke="none">Anova OS</text>
+          <g stroke="#888888" stroke-dasharray="2 4">
+            <line x1="200" y1="132" x2="200" y2="78"/>
+            <line x1="248" y1="180" x2="310" y2="180"/>
+            <line x1="200" y1="228" x2="200" y2="282"/>
+            <line x1="152" y1="180" x2="90" y2="180"/>
+          </g>
+          <g fill="#000000" stroke="#FFFFFF">
+            <circle cx="200" cy="78" r="22"/>
+            <text x="200" y="82" text-anchor="middle" fill="#FFFFFF" font-family="SF Pro Display" font-size="9" stroke="none">Research</text>
+            <circle cx="310" cy="180" r="22"/>
+            <text x="310" y="184" text-anchor="middle" fill="#FFFFFF" font-family="SF Pro Display" font-size="8" stroke="none">Life Invest</text>
+            <circle cx="200" cy="282" r="22"/>
+            <text x="200" y="286" text-anchor="middle" fill="#FFFFFF" font-family="SF Pro Display" font-size="9" stroke="none">Crédito</text>
+            <circle cx="90" cy="180" r="22"/>
+            <text x="90" y="184" text-anchor="middle" fill="#FFFFFF" font-family="SF Pro Display" font-size="8" stroke="none">Backoffice</text>
+          </g>
+          <text x="200" y="354" text-anchor="middle" fill="#888888" font-family="monospace" font-size="8" letter-spacing="2" stroke="none">CLIENTE · CONSULTOR · ESPECIALISTA</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ § 03 O QUE É — WHAT ═══ -->
+<section id="o-que-e" class="section section-alt" data-chapter="03 / 08" data-chapter-num="03">
+  <div class="container">
+    <span class="eyebrow" data-reveal>03 · O que é — definição</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:24ch;"><strong>Não</strong> é chatbot. É o sistema operacional conversacional da conexão de negócios.</h2>
+    <p class="lead" data-reveal="up" data-delay="1" style="margin-top:var(--s5);">A camada que recebe a intenção do cliente pelo WhatsApp, roteia pelo produto correto, aciona a engrenagem Anova — <a href="research.html">Research</a> + <a href="life-invest.html">Life Invest</a> + rede de consultores + backoffice — e devolve a resposta. Tudo com HITL em ações sensíveis e trilha auditável fim a fim. Seu produto entra como um nó desta rede — sem sair da regulação, sem recriar contexto, sem pedir canal novo.</p>
+
     <div class="what-grid">
-      <div>
-        <h2><strong>Uma camada</strong> entre o canal do cliente e o produto do parceiro.</h2>
-        <p class="lead">O Orquestrador recebe a intenção do cliente pelo WhatsApp, roteia para o produto correto, aciona o parceiro regulado e devolve a resposta — tudo dentro de uma trilha auditável. O humano aprova o que precisa de aprovação (HITL) e o sistema executa o que pode ser executado. Seu produto entra como um nó dessa rede — sem sair da regulação, sem rodar contexto.</p>
+      <div data-reveal="right">
+        <h3 style="margin-bottom:var(--s4);">Tudo o que o profissional Anova faz no Orquestrador:</h3>
+        <ul class="gallery-feats feat-grid">
+          <li>Alocar carteira via <a href="life-invest.html">Life Invest</a></li>
+          <li>Cadastrar novo cliente</li>
+          <li>Agendar reunião</li>
+          <li>Consultar carteiras ativas</li>
+          <li>Cotar <a href="credito.html">crédito, consórcio, seguro</a></li>
+          <li>Aprovar operações sensíveis (HITL)</li>
+          <li>Acompanhar pós-venda</li>
+          <li>Escalonar caso para especialista</li>
+        </ul>
       </div>
-      <div class="what-visual">
-        <img src="assets/img/product-orquestrador-2.png" alt="Fluxo Orquestrador">
+      <div class="what-visual" data-reveal="left" data-delay="1">
+        <div class="img-slot"></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ COMO FUNCIONA ═══ -->
-<section class="section">
+<!-- ═══ § 04 COMO FUNCIONA ═══ -->
+<section class="section" data-chapter="04 / 08" data-chapter-num="04">
   <div class="container">
-    <span class="eyebrow">02 · Como funciona</span>
-    <h2 style="margin-top:var(--s4);max-width:24ch;"><strong>Integra</strong>. Calibra. Aprova. Executa.</h2>
+    <span class="eyebrow" data-reveal>04 · Como funciona — fluxo</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:26ch;"><strong>Intenção</strong> → Roteamento → Aprovação → Execução → Trilha.</h2>
     <div class="how-grid">
-      <article class="how-step">
-        <div class="how-num">PASSO 01</div>
+      <article class="how-step" data-reveal="up">
+        <div class="how-num">STEP · 01</div>
         <h3>Integração técnica</h3>
-        <p>Seu produto conecta à Anova via API ou contrato definido com o time de integrações. Sem reescrever sua stack.</p>
+        <p>Seu produto conecta via API ou contrato com o time de integrações Anova. Sem reescrever stack. Sem criar canal novo. A rede já está orquestrada — você entra como nó.</p>
       </article>
-      <article class="how-step">
-        <div class="how-num">PASSO 02</div>
+      <article class="how-step" data-reveal="up" data-delay="1">
+        <div class="how-num">STEP · 02</div>
         <h3>Calibração de fluxo</h3>
-        <p>Definimos juntos o roteamento, os pontos de HITL e os gatilhos de aprovação. Cada fluxo é auditável.</p>
+        <p>Juntos definimos roteamento, pontos de HITL e gatilhos de aprovação — por compliance, por regulação, por política interna. Cada fluxo fica auditável por construção, não por auditoria adicional.</p>
       </article>
-      <article class="how-step">
-        <div class="how-num">PASSO 03</div>
+      <article class="how-step" data-reveal="up" data-delay="2">
+        <div class="how-num">STEP · 03</div>
         <h3>Aprovação humana</h3>
-        <p>Ações sensíveis passam por um humano autorizado antes de executar. A trilha é preservada no histórico do cliente.</p>
+        <p>Ações sensíveis passam por humano autorizado antes de executar. Resgate, cross-border, mudança de perfil — HITL embarcado na camada, não adicionado depois.</p>
       </article>
-      <article class="how-step">
-        <div class="how-num">PASSO 04</div>
+      <article class="how-step" data-reveal="up" data-delay="3">
+        <div class="how-num">STEP · 04</div>
         <h3>Execução auditada</h3>
-        <p>A resposta volta ao cliente pelo WhatsApp. Tudo fica registrado — mensagem, decisão, carimbo temporal, responsável.</p>
+        <p>A resposta volta pelo WhatsApp onde o cliente já está. Mensagem, decisão, carimbo temporal e responsável — tudo registrado no histórico imutável do cliente.</p>
       </article>
     </div>
   </div>
 </section>
 
-<!-- ═══ CAPACIDADES ═══ -->
-<section class="section section-alt">
+<!-- ═══ § 05 CHATBOT vs ORQUESTRADOR ═══ -->
+<section class="section section-dark" data-chapter="05 / 08" data-chapter-num="05">
   <div class="container">
-    <span class="eyebrow">03 · Capacidades</span>
-    <h2 style="margin-top:var(--s4);max-width:24ch;"><strong>Rede</strong> viva, governança nativa.</h2>
-    <ul class="gallery-feats feat-grid">
-      <li>Roteamento por contexto e intenção</li>
-      <li>HITL em ações sensíveis (cada ação definida)</li>
-      <li>Histórico completo por cliente (multi-produto)</li>
-      <li>Multi-parceiro com isolamento regulatório</li>
-      <li>Compliance embutido na camada de execução</li>
-      <li>APIs de integração documentadas</li>
-      <li>SLA e observabilidade por fluxo</li>
-      <li>Auditoria imutável por operação</li>
-    </ul>
+    <span class="eyebrow" data-reveal>05 · Diferencial estrutural</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:24ch;color:var(--white);"><strong>Chatbot</strong> morre na intenção. O Orquestrador executa a decisão.</h2>
+    <p class="lead" data-reveal="up" data-delay="1" style="margin-top:var(--s5);max-width:60ch;">A palavra "chatbot" carrega uma arquitetura: mensagem solta, sem identidade, sem trilha, sem regulação. O Orquestrador não é uma versão melhor dessa arquitetura. É outra categoria inteira.</p>
+
+    <div class="compare">
+      <table>
+        <thead>
+          <tr><th>Critério</th><th>Chatbot comum</th><th>Bot WhatsApp regulado</th><th class="anova">Orquestrador Anova</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Camada</td><td>Mensagem</td><td>Mensagem + FAQ</td><td class="anova">Operação inteira</td></tr>
+          <tr><td>Identidade por ação</td><td>Anônima</td><td>Sessão</td><td class="anova">Login regulado</td></tr>
+          <tr><td>HITL em ações sensíveis</td><td>Nenhum</td><td>Manual externo</td><td class="anova">Nativo</td></tr>
+          <tr><td>Trilha auditável</td><td>Volátil</td><td>Parcial</td><td class="anova">Imutável · audit-by-design</td></tr>
+          <tr><td>Regulação embarcada</td><td>Externa</td><td>Depende</td><td class="anova">CVM · SUSEP · ANS · BACEN</td></tr>
+          <tr><td>Produtos suportados</td><td>1 (FAQ)</td><td>1 vertical</td><td class="anova">6 verticais reguladas</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
 
-<!-- ═══ CTA FINAL ═══ -->
-<section id="cta" class="section section-dark">
+<!-- ═══ § 06 GANHOS OPERACIONAIS ═══ -->
+<section class="section section-alt" data-chapter="06 / 08" data-chapter-num="06">
   <div class="container">
-    <span class="eyebrow">04 · Próximo passo</span>
-    <h2 style="margin-top:var(--s4);max-width:22ch;color:var(--white);"><strong>Pronto</strong> pra plugar seu produto numa rede já orquestrada?</h2>
-    <div style="margin-top:var(--s7);">
-      <a href="mailto:integracoes@anova.com.br" class="btn btn-primary btn-lg">Falar com integrações →</a>
+    <span class="eyebrow" data-reveal>06 · Ganhos operacionais</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:26ch;"><strong>O canal</strong> que o cliente já usa. Sem app. Sem curva de aprendizado.</h2>
+    <p class="lead" data-reveal="up" data-delay="1" style="margin-top:var(--s5);">Nenhum app construído do zero entrega, no primeiro dia, o que o WhatsApp entrega de base. Migrar pra dentro do canal trouxe três ganhos imediatos — e permanentes.</p>
+
+    <div class="problem-cards">
+      <article class="problem-card" data-reveal="up">
+        <div class="problem-num">G · 01 · ACEITE</div>
+        <h3>Taxa de implementação e aceite maior.</h3>
+        <p>O cliente não precisa instalar nada. Responde uma mensagem. Onboarding de consultor e de cliente acontecem no mesmo canal onde a rotina já existe — sem migração, sem senha nova, sem fricção.</p>
+      </article>
+      <article class="problem-card" data-reveal="up" data-delay="1">
+        <div class="problem-num">G · 02 · CUSTO</div>
+        <h3>Custo operacional reduzido.</h3>
+        <p>Adoção já instalada = zero investimento em aquisição de canal. Zero time de produto mantendo app vivo. A Meta carrega o que é infraestrutura — a Anova cuida da operação.</p>
+      </article>
+      <article class="problem-card" data-reveal="up" data-delay="2">
+        <div class="problem-num">G · 03 · EFFORT</div>
+        <h3>Effort score baixíssimo na primeira interação.</h3>
+        <p>O cliente executa a ação certa sem aprender nada novo. Consultor opera na tela que já conhece. A fricção operacional colapsa pro lugar onde a conversa já acontecia.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ § 07 PARA QUEM ═══ -->
+<section class="section" data-chapter="07 / 08" data-chapter-num="07">
+  <div class="container">
+    <span class="eyebrow" data-reveal>07 · Para quem</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:26ch;"><strong>Quem</strong> opera produto regulado e precisa de canal com governança nativa.</h2>
+    <div class="aud-grid">
+      <article class="aud-card" data-reveal="up">
+        <div class="aud-tag">A · 01 · Gestora · Rede · Hub</div>
+        <h3>Plugue seu produto numa rede já orquestrada.</h3>
+        <p>Opere sobre a mesma camada que já rodou mais de <a href="index.html">R$ 2Bi sob operação</a> — com <a href="research.html">Research</a> alimentando a tese, <a href="life-invest.html">Life Invest</a> executando a carteira e <a href="credito.html">80+ instituições reguladas</a> do outro lado. Monte ou expanda sua gestora pelos <a href="wealth-hubs.html">Wealth Hubs</a>.</p>
+        <a href="#cta" class="aud-cta">Conversar sobre integração</a>
+      </article>
+      <article class="aud-card" data-reveal="up" data-delay="1">
+        <div class="aud-tag">A · 02 · Advocacia · Contabilidade · Adjacentes</div>
+        <h3>Um braço financeiro sem construir infraestrutura.</h3>
+        <p>Cliente pergunta sobre sucessão, crédito, seguro, investimento — e a conversa vai embora. Com o Orquestrador, o escritório mantém o relacionamento e entrega pela camada Anova: governança, execução e regulação embarcadas. Sem conhecimento prévio de mercado financeiro.</p>
+        <a href="#cta" class="aud-cta">Ver modelo de expansão</a>
+      </article>
+      <article class="aud-card" data-reveal="up" data-delay="2">
+        <div class="aud-tag">A · 03 · Diretor de operações · Compliance</div>
+        <h3>Visão consolidada do que hoje mora em janelas soltas.</h3>
+        <p>Kanban pra mesa. Chat pro consultor. Grupos pra <a href="credito.html">conexão de negócios</a>. Trilha imutável por operação, HITL parametrizável, relatórios regulatórios nativos. Uma superfície — três lentes sobre o mesmo dado.</p>
+        <a href="#cta" class="aud-cta">Ver o Orquestrador em ação</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ § 08 CTA FINAL ═══ -->
+<section id="cta" class="section section-dark" data-chapter="08 / 08" data-chapter-num="08">
+  <div class="container">
+    <span class="eyebrow" data-reveal>08 · Próximo passo</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:24ch;color:var(--white);"><strong>Agende</strong> uma demo de 30 minutos. Saia com o fluxo desenhado.</h2>
+    <p class="lead" data-reveal="up" data-delay="1" style="margin-top:var(--s5);color:var(--text-3);max-width:62ch;">Mostramos o Orquestrador rodando — intenção, roteamento, HITL, trilha — e desenhamos junto como seu produto entra na camada. Sem deck genérico. Sem promessa vazia. A conversa começa onde o cliente já está.</p>
+    <div style="margin-top:var(--s7);display:flex;gap:var(--s3);flex-wrap:wrap;" data-reveal="up" data-delay="2">
+      <a href="index.html#contato" class="btn btn-primary btn-lg">Ver o Orquestrador em ação <span class="arr">→</span></a>
+      <a href="mailto:integracoes@anova.com.br" class="btn btn-outline btn-lg" style="border-color:var(--white);color:var(--white);">Falar com integrações</a>
     </div>
   </div>
 </section>
@@ -148,5 +299,6 @@
 <div id="anova-footer"></div>
 
 <script src="js/shell.js" defer></script>
+<script src="js/motion.js" defer></script>
 </body>
 </html>
