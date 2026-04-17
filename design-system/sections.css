@@ -230,7 +230,7 @@ h3{font-size:22px;letter-spacing:-.015em;line-height:1.2;}
 .footer{background:var(--onyx);color:var(--silver);padding:var(--s8) 0 var(--s6);font-size:13px;}
 .footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--s6);flex-wrap:wrap;padding-bottom:var(--s6);border-bottom:1px solid var(--charcoal);}
 .footer-brand{display:flex;align-items:center;gap:var(--s3);}
-.footer-brand .nav-logo{width:36px;height:36px;}
+.footer-brand .nav-logo{width:36px;height:36px;background:var(--white);color:var(--onyx);}
 .footer-brand .nav-name{color:var(--white);font-size:16px;}
 .footer-cols{display:flex;gap:var(--s8);flex-wrap:wrap;}
 .footer-col h4{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--silver);margin-bottom:var(--s3);font-weight:600;}

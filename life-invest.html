@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Life Invest — Anova</title>
-<meta name="description" content="O algoritmo proprietário da Anova. Observa o mercado em tempo real, gera sinais e alimenta decisões de portfolio.">
+<title>Life Invest Anova · De áudio a proposta institucional em 5 minutos</title>
+<meta name="description" content="O consultor descreve o cliente em 60 segundos de áudio. O Life Invest devolve um PDF institucional em menos de 5 minutos 50k simulações Monte Carlo, divisão multibanco, três cenários. Fundamentado pelas teses ativas da Research.">
 <link rel="stylesheet" href="design-system/tokens.css">
 <link rel="stylesheet" href="design-system/components.css">
 <link rel="stylesheet" href="design-system/sections.css">
 <link rel="stylesheet" href="design-system/nav.css">
+<link rel="stylesheet" href="design-system/editorial.css">
 <style>
   /* ─── PAGE-SPECIFIC ─── */
   html{scroll-behavior:smooth;}
@@ -24,10 +25,42 @@
   .lead{font-size:clamp(16px,1.4vw,19px);color:var(--text-2);line-height:1.55;max-width:60ch;}
   .what-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--s8);align-items:center;margin-top:var(--s6);}
   @media(max-width:880px){.what-grid{grid-template-columns:1fr;}}
-  .what-visual{border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;background:var(--bg-alt);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;padding:var(--s5);}
+  .what-visual{border-radius:var(--r-xl);overflow:hidden;background:var(--bg-alt);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;padding:var(--s5);}
   .what-visual img{max-width:80%;max-height:100%;object-fit:contain;}
   .feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s3) var(--s6);margin-top:var(--s6);}
   @media(max-width:680px){.feat-grid{grid-template-columns:1fr;}}
+  .proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s5);margin-top:var(--s6);}
+  @media(max-width:760px){.proof-grid{grid-template-columns:1fr;}}
+  .proof-card{border:1px solid var(--border);border-radius:24px;padding:var(--s5);}
+  .proof-label{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:var(--s3);}
+  .proof-num{font-size:clamp(28px,3.5vw,40px);font-weight:700;letter-spacing:-.03em;line-height:1;color:var(--text-1);}
+  .proof-sub{font-size:14px;color:var(--text-2);margin-top:var(--s2);line-height:1.4;}
+  /* ─── DIAGRAM: grid + ícones soltos + blueprint reticle ─── */
+  .fv-diagram{position:relative;display:grid;grid-template-columns:72px 1fr 92px;gap:0 24px;align-items:center;margin:var(--s5) 0 var(--s2);padding:var(--s6) 0;}
+  .fv-svg-lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:0;}
+  .fv-diagram-cv{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;}
+  .fv-zone{display:flex;flex-direction:column;align-items:center;position:relative;z-index:2;}
+  .fv-zone--left{justify-content:center;}
+  .fv-zone--center{gap:36px;justify-content:center;}
+  .fv-zone--right{gap:24px;}
+  .fv-node-wrap{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;opacity:0;animation:fv-appear .55s cubic-bezier(.34,1.4,.64,1) both;}
+  @keyframes fv-appear{from{opacity:0;transform:translateY(6px) scale(.88);}to{opacity:1;transform:translateY(0) scale(1);}}
+  /* Satélites: ícone puro, sem contêiner */
+  .fv-node{display:flex;align-items:center;justify-content:center;position:relative;}
+  .fv-node svg{width:20px;height:20px;stroke:var(--stone);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;fill:none;}
+  /* Cérebro: ícone maior + reticle blueprint (4 cantos) */
+  .fv-node--brain{padding:14px;}
+  .fv-node--brain svg.fv-icon{width:46px;height:46px;stroke:var(--charcoal);stroke-width:1.3;animation:fv-brain-pulse 3.6s ease-in-out infinite;}
+  .fv-reticle{position:absolute;inset:0;width:100%;height:100%;stroke:var(--dust);stroke-width:1.1;fill:none;stroke-linecap:round;opacity:.85;}
+  @keyframes fv-brain-pulse{0%,100%{opacity:.6;}50%{opacity:1;}}
+  .fv-label{font-size:11px;font-weight:600;color:var(--text-1);letter-spacing:-.01em;font-family:var(--font);white-space:nowrap;line-height:1.3;}
+  /* Label do brain: mono uppercase sensação de módulo/processador */
+  #nd-brain .fv-label{font-size:9.5px;font-family:var(--mono);font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--text-1);}
+  .fv-sub{font-size:9px;color:var(--text-3);font-family:var(--mono);letter-spacing:.07em;text-transform:uppercase;line-height:1;}
+  /* ─── CANVAS BACKGROUNDS ─── */
+  .cv-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;}
+  .cv-bg canvas{position:absolute;inset:0;display:block;width:100%;height:100%;}
+  .cv-content{position:relative;z-index:1;}
 </style>
 </head>
 <body data-page="life-invest">
@@ -45,102 +78,200 @@
   </nav>
 </noscript>
 
-<!-- ═══ HERO ═══ -->
-<header class="hero">
+<!-- ═══ HERO ═══ Canvas 1: linhas radiais, centro segue mouse -->
+<header id="cv-hero-wrap" class="hero" style="position:relative;">
   <div class="hero-bp"></div>
-  <div class="container hero-grid">
-    <div>
-      <span class="eyebrow">Tecnologia · Motor de decisão</span>
-      <h1><strong>Mercados</strong> observados continuamente. Decisões com fundamento.</h1>
-      <p class="hero-sub">Life Invest é o algoritmo proprietário da Anova. Consulta o mercado em tempo real, constrói correlações entre ativos, gera sinais acionáveis e alimenta as carteiras geridas pela plataforma. Fundamento acima de intuição.</p>
+  <div class="cv-bg"><canvas id="cv-hero"></canvas></div>
+  <div class="container hero-grid cv-content">
+    <div data-reveal="up">
+      <span class="eyebrow">00 · Life Invest · Para consultores e assessores</span>
+      <h1><strong>Proposta</strong> artesanal de carteira leva um dia. Com o Life Invest, 5 minutos.</h1>
+      <p class="hero-sub">Cada proposta montada na mão é tempo tirado do cliente. O Life Invest enquadra o perfil, consulta o mercado secundário em tempo real e alinha com as teses ativas da <a href="research.html">Research</a>. O resultado chega no WhatsApp em menos de 5 minutos: PDF institucional com plano de alocação, 50.000 simulações Monte Carlo e três cenários. A execução vai direto para o <a href="wealth-management.html">multibanco</a>. O consultor fica com o que importa: o relacionamento.</p>
       <div class="hero-cta">
-        <a href="#cta" class="btn btn-primary btn-lg">Entender o algoritmo →</a>
-        <a href="#o-que-e" class="btn btn-outline btn-lg">Como funciona</a>
+        <a href="#cta" class="btn btn-primary btn-lg">Ver o Life Invest rodando com um caso real <span class="arr">→</span></a>
+        <a href="#como-funciona" class="btn btn-outline btn-lg">Como funciona</a>
       </div>
       <div class="hero-meta">
-        <span>Dados em tempo real</span>
-        <span>Multiativos</span>
-        <span>Auditoria algorítmica</span>
+        <span>Áudio → PDF em menos de 5 minutos</span>
+        <span>50.000 simulações Monte Carlo por proposta</span>
+        <span>BTG, XP, Avenue, Safra, IBKR</span>
       </div>
     </div>
-    <div class="hero-visual">
-      <img src="assets/img/product-life.png" alt="Life Invest — motor de decisão">
-      <span class="hero-tag">Motor proprietário</span>
+    <div class="hero-visual" data-reveal="left" data-delay="2">
+      <!-- Diagrama: layout grid, linhas calculadas pelo JS -->
+      <div class="fv-diagram" id="fv-diagram">
+        <svg class="fv-svg-lines" id="fv-svg-lines" fill="none" aria-hidden="true">
+          <defs>
+            <marker id="fv-arr" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto">
+              <polyline points="1,1 4,3 1,5" stroke="rgba(0,0,0,.38)" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+            <marker id="fv-arr-b" markerWidth="6" markerHeight="6" refX="2" refY="3" orient="auto-start-reverse">
+              <polyline points="1,1 4,3 1,5" stroke="rgba(0,0,0,.38)" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+        </svg>
+        <canvas class="fv-diagram-cv" id="fv-cv"></canvas>
+
+        <!-- Esquerda: Áudio -->
+        <div class="fv-zone fv-zone--left">
+          <div class="fv-node-wrap" id="nd-audio">
+            <div class="fv-node">
+              <svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3M8 22h8"/></svg>
+            </div>
+            <span class="fv-label">Áudio</span>
+            <span class="fv-sub">entrada</span>
+          </div>
+        </div>
+
+        <!-- Centro: Life Invest + PDF -->
+        <div class="fv-zone fv-zone--center">
+          <div class="fv-node-wrap" id="nd-brain">
+            <div class="fv-node fv-node--brain">
+              <svg viewBox="0 0 24 24"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>
+            </div>
+            <span class="fv-label">Life Invest</span>
+          </div>
+          <div class="fv-node-wrap" id="nd-pdf">
+            <div class="fv-node">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <span class="fv-label">PDF · WhatsApp</span>
+            <span class="fv-sub">saída</span>
+          </div>
+        </div>
+
+        <!-- Direita: fontes de conhecimento -->
+        <div class="fv-zone fv-zone--right">
+          <div class="fv-node-wrap" id="nd-research">
+            <div class="fv-node">
+              <svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            </div>
+            <span class="fv-label">Research</span>
+            <span class="fv-sub">teses ativas</span>
+          </div>
+          <div class="fv-node-wrap" id="nd-modelo">
+            <div class="fv-node">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </div>
+            <span class="fv-label">Modelo</span>
+            <span class="fv-sub">motor</span>
+          </div>
+          <div class="fv-node-wrap" id="nd-if">
+            <div class="fv-node">
+              <svg viewBox="0 0 24 24"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>
+            </div>
+            <span class="fv-label">IF</span>
+            <span class="fv-sub">multibanco</span>
+          </div>
+        </div>
+      </div>
+      <span class="hero-tag">Motor de proposta</span>
     </div>
   </div>
 </header>
 
-<!-- ═══ O QUE É ═══ -->
-<section id="o-que-e" class="section section-alt">
+<!-- ═══ O PROBLEMA ═══ -->
+<section id="o-problema" class="section section-alt" data-chapter="01 / 05">
   <div class="container">
-    <span class="eyebrow">01 · O que é</span>
+    <span class="eyebrow" data-reveal>01 · O problema</span>
     <div class="what-grid">
-      <div>
-        <h2><strong>Um motor</strong> que observa o mercado por você.</h2>
-        <p class="lead">O Life Invest processa continuamente dados de ativos, volumes, correlações e eventos macro, transformando ruído em sinal acionável. Os sinais alimentam as carteiras administradas pela Anova (via Gestão Patrimonial) e ficam disponíveis dentro das ferramentas operadas pelos parceiros (via Wealth Hubs). Todo sinal passa por revisão humana antes de virar ordem — HITL desde o dia um.</p>
+      <div data-reveal="right">
+        <h2><strong>Proposta</strong> bem feita levava um dia. Às vezes dois.</h2>
+        <p class="lead">Planilha. Pesquisa de mercado. Formatação. PDF manual. Horas que deveriam estar com o cliente foram para dentro de um arquivo e se o cliente não aprovar, começa de zero. Quanto mais carteiras o consultor gere, mais esse processo engole o dia.</p>
+        <p class="lead" style="margin-top:var(--s4);">O Life Invest nasceu dentro desse problema porque a Anova sentiu ele antes de resolver. A proposta que era artesanato passa a ser sistema: enquadramento automático, mercado em tempo real, tese da <a href="research.html">Research</a>, PDF completo. Em 5 minutos. No WhatsApp do cliente.</p>
       </div>
-      <div class="what-visual">
-        <img src="assets/img/product-research.png" alt="Visualização do algoritmo">
+      <div class="what-visual" data-reveal="left" data-delay="1">
+        <div class="img-slot"></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ COMO FUNCIONA ═══ -->
-<section class="section">
-  <div class="container">
-    <span class="eyebrow">02 · Como funciona</span>
-    <h2 style="margin-top:var(--s4);max-width:24ch;"><strong>Coleta.</strong> Analisa. Sinaliza. Decide (com humano).</h2>
+<!-- ═══ COMO FUNCIONA ═══ Canvas 2: nós atraídos, inputs convergindo para o motor -->
+<section id="cv-map-wrap" class="section" data-chapter="02 / 05" style="position:relative;">
+  <div class="cv-bg"><canvas id="cv-map"></canvas></div>
+  <div id="como-funciona" class="container cv-content">
+    <span class="eyebrow" data-reveal>02 · Como funciona</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:24ch;"><strong>Áudio.</strong> Análise. Proposta. Execução.</h2>
     <div class="how-grid">
-      <article class="how-step">
-        <div class="how-num">PASSO 01</div>
-        <h3>Coleta em tempo real</h3>
-        <p>Feed contínuo de cotações, volumes, indicadores macro e eventos corporativos de múltiplos ativos.</p>
+      <article class="how-step" data-reveal="up">
+        <div class="how-num">STEP · 01</div>
+        <h3>Áudio do consultor</h3>
+        <p>O representante descreve o cliente em um áudio de 60 segundos: perfil de risco, objetivos de vida, patrimônio declarado, horizonte de investimento. Nenhuma planilha. Nenhum formulário.</p>
       </article>
-      <article class="how-step">
-        <div class="how-num">PASSO 02</div>
-        <h3>Análise multiativos</h3>
-        <p>Cruzamento de correlações, volume profile e sinais técnicos-fundamentais em um único modelo proprietário.</p>
+      <article class="how-step" data-reveal="up" data-delay="1">
+        <div class="how-num">STEP · 02</div>
+        <h3>Processamento + Research</h3>
+        <p>O Life Invest enquadra no perfil proprietário Anova, consulta o mercado secundário em tempo real e alinha com as teses ativas da <a href="research.html">Research</a> metodologia que antecipou Argentina 2023, Chile e Colômbia 2025, dólar e Selic 2025. A Research toma a decisão final de alocação.</p>
       </article>
-      <article class="how-step">
-        <div class="how-num">PASSO 03</div>
-        <h3>Sinal acionável</h3>
-        <p>O motor produz um sinal com fundamento explícito — por que, em quê, com qual confiança.</p>
+      <article class="how-step" data-reveal="up" data-delay="2">
+        <div class="how-num">STEP · 03</div>
+        <h3>PDF institucional em 5 minutos</h3>
+        <p>O cliente recebe no WhatsApp: plano estratégico, divisão por classe e banco, 50.000 simulações Monte Carlo, volatilidade histórica e três cenários pessimista, médio e otimista. Pronto. Sem edição manual.</p>
       </article>
-      <article class="how-step">
-        <div class="how-num">PASSO 04</div>
-        <h3>Decisão humana</h3>
-        <p>O sinal é revisado por um humano autorizado antes de virar ordem. Toda decisão fica na trilha de auditoria.</p>
+      <article class="how-step" data-reveal="up" data-delay="3">
+        <div class="how-num">STEP · 04</div>
+        <h3>Aprovação e execução multibanco</h3>
+        <p>O cliente aprova. O representante executa via <a href="wealth-management.html">multibanco</a>. Carteiras de renda variável passam a rodar automatizadas pela Anova seguindo as teses da Research em tempo real.</p>
       </article>
     </div>
   </div>
 </section>
 
-<!-- ═══ CAPACIDADES ═══ -->
-<section class="section section-alt">
+<!-- ═══ O QUE O PDF ENTREGA ═══ -->
+<section class="section section-alt" data-chapter="03 / 05">
   <div class="container">
-    <span class="eyebrow">03 · Capacidades</span>
-    <h2 style="margin-top:var(--s4);max-width:24ch;"><strong>Observação</strong> contínua, decisão humana.</h2>
-    <ul class="gallery-feats feat-grid">
-      <li>Feed multiativos em tempo real</li>
-      <li>Correlações e volume profile</li>
-      <li>Sinais com explicação de fundamento</li>
-      <li>Integração nativa com carteiras</li>
-      <li>HITL obrigatório antes de ordem</li>
-      <li>Alertas acionáveis por operador</li>
-      <li>Trilha de auditoria algorítmica</li>
-      <li>Backtesting de sinais anteriores</li>
+    <span class="eyebrow" data-reveal>03 · O que o PDF entrega</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:24ch;"><strong>Cinquenta mil</strong> cenários. Três conclusões. Um PDF.</h2>
+    <ul class="gallery-feats feat-grid" data-reveal="up" data-delay="1">
+      <li>Plano estratégico de alocação por classe de ativo</li>
+      <li>50.000+ simulações Monte Carlo por proposta</li>
+      <li>Três cenários: pessimista, médio e otimista</li>
+      <li>Volatilidade histórica da carteira proposta</li>
+      <li>Divisão multibanco por classe e instituição</li>
+      <li>Calibrado pelas teses ativas da Research</li>
+      <li>Pronto para execução sem revisão manual</li>
+      <li>Carteiras de renda variável geridas automaticamente</li>
     </ul>
   </div>
 </section>
 
-<!-- ═══ CTA FINAL ═══ -->
-<section id="cta" class="section section-dark">
-  <div class="container">
-    <span class="eyebrow">04 · Ver em ação</span>
-    <h2 style="margin-top:var(--s4);max-width:22ch;color:var(--white);"><strong>Quer</strong> ver o Life Invest funcionando com um caso real?</h2>
-    <div style="margin-top:var(--s7);">
-      <a href="mailto:institucional@anova.com.br" class="btn btn-primary btn-lg">Agendar demo →</a>
+<!-- ═══ A TESE POR TRÁS ═══ Canvas 3: mesh repelido, Research irradia insights -->
+<section id="cv-mesh-wrap" class="section" data-chapter="04 / 05" style="position:relative;">
+  <div class="cv-bg"><canvas id="cv-mesh"></canvas></div>
+  <div class="container cv-content">
+    <span class="eyebrow" data-reveal>04 · Por que a alocação funciona</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:26ch;"><strong>A tese</strong> não vem de um modelo genérico. Vem da Research.</h2>
+    <p class="lead" data-reveal="up" data-delay="1" style="margin-top:var(--s5);">O Life Invest não decide alocação sozinho. Cada proposta é calibrada pelas teses ativas da <a href="research.html">Research</a> metodologia preditiva construída desde 2020 por Paulo Martins e Pedro Pivotto. A mesma análise que antecipou Argentina 2023, Chile e Colômbia 2025, dólar e Selic 2025. O consultor entrega uma proposta fundamentada. O cliente recebe o mesmo fundamento que move R$ 2Bi sob operação.</p>
+    <div class="proof-grid" data-reveal="up" data-delay="2">
+      <div class="proof-card">
+        <div class="proof-label">Track record</div>
+        <div class="proof-num">4 teses</div>
+        <div class="proof-sub">Foram contra o consenso de mercado e o mercado confirmou depois</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-label">Sob operação</div>
+        <div class="proof-num">R$ 2Bi</div>
+        <div class="proof-sub">O mesmo fundamento que calibra cada proposta já está em operação</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-label">Cobertura editorial</div>
+        <div class="proof-num">3 veículos</div>
+        <div class="proof-sub">Valor Econômico, Valor Invest e Estadão sobre a metodologia</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA FINAL ═══ Canvas 3 invertido: mesh branco, rede de execução multibanco -->
+<section id="cv-cta-wrap" class="section section-dark" data-chapter="05 / 05" style="position:relative;">
+  <div class="cv-bg"><canvas id="cv-cta"></canvas></div>
+  <div id="cta" class="container cv-content">
+    <span class="eyebrow" data-reveal>05 · Ver em ação</span>
+    <h2 data-reveal="up" style="margin-top:var(--s4);max-width:22ch;color:var(--white);"><strong>Ver</strong> o Life Invest rodando com um caso real.</h2>
+    <p class="lead" data-reveal="up" data-delay="1" style="margin-top:var(--s5);max-width:58ch;">Áudio de entrada. PDF de saída. Cinco minutos. A gente mostra o Life Invest ao vivo com um caso real enquadramento de perfil, tese da <a href="research.html" style="border-bottom:1px solid var(--dust);color:var(--white);">Research</a>, 50.000 simulações Monte Carlo, execução via <a href="wealth-management.html" style="border-bottom:1px solid var(--dust);color:var(--white);">multibanco</a>. Do áudio ao PDF, sem corte.</p>
+    <div style="margin-top:var(--s7);" data-reveal="up" data-delay="2">
+      <a href="mailto:institucional@anovaresearch.com.br" class="btn btn-primary btn-lg">Ver Life Invest rodando <span class="arr">→</span></a>
     </div>
   </div>
 </section>
@@ -148,5 +279,472 @@
 <div id="anova-footer"></div>
 
 <script src="js/shell.js" defer></script>
+<script src="js/motion.js" defer></script>
+
+<script>
+// ─── CANVAS BACKGROUNDS · Life Invest ──────────────────────────────────────
+(function () {
+  const dpr = window.devicePixelRatio || 1;
+
+  function setupCanvas(cvId, wrapEl) {
+    const cv = document.getElementById(cvId);
+    if (!cv || !wrapEl) return null;
+    const ctx = cv.getContext('2d');
+    const r = wrapEl.getBoundingClientRect();
+    const w = r.width, h = r.height;
+    cv.width = w * dpr;
+    cv.height = h * dpr;
+    cv.style.width = w + 'px';
+    cv.style.height = h + 'px';
+    return { cv, ctx, w, h };
+  }
+
+  function trackMouse(wrapEl) {
+    const m = { x: -999, y: -999, active: false };
+    wrapEl.addEventListener('mousemove', e => {
+      const r = wrapEl.getBoundingClientRect();
+      m.x = e.clientX - r.left;
+      m.y = e.clientY - r.top;
+      m.active = true;
+    });
+    wrapEl.addEventListener('mouseleave', () => { m.active = false; });
+    return m;
+  }
+
+  function observe(wrapEl, start, stop) {
+    const io = new IntersectionObserver(entries => {
+      entries[0].isIntersecting ? start() : stop();
+    }, { threshold: 0.02 });
+    io.observe(wrapEl);
+  }
+
+  // ── Canvas 1 · Hero · Linhas radiais, centro segue mouse ──────────────────
+  function initHero() {
+    const wrap = document.getElementById('cv-hero-wrap');
+    const s = setupCanvas('cv-hero', wrap);
+    if (!s) return;
+    const { ctx, w, h } = s;
+    const m = trackMouse(wrap);
+    let cx = w * .5, cy = h * .5, t = 0, raf;
+
+    function draw() {
+      t++;
+      // Lerp centro ao mouse
+      const tx = m.active ? m.x : w * .5;
+      const ty = m.active ? m.y : h * .5;
+      cx += (tx - cx) * .04;
+      cy += (ty - cy) * .04;
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, w, h);
+
+      // 28 linhas radiais
+      const N = 28;
+      for (let i = 0; i < N; i++) {
+        const ang = (i / N) * Math.PI * 2 + t * .00006;
+        const len = Math.hypot(w, h);
+        const a = .018 + Math.sin(t * .0012 + i * .4) * .006;
+        ctx.strokeStyle = `rgba(0,0,0,${a.toFixed(4)})`;
+        ctx.lineWidth = .5;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(cx + Math.cos(ang) * len, cy + Math.sin(ang) * len);
+        ctx.stroke();
+      }
+      // Anéis concêntricos
+      for (let r = 55; r < Math.hypot(w, h); r += 65) {
+        const breathe = r + Math.sin(t * .0012 + r * .015) * 3;
+        const a = .012 + Math.sin(t * .0012 + r * .015) * .004;
+        ctx.strokeStyle = `rgba(0,0,0,${a.toFixed(4)})`;
+        ctx.lineWidth = .5;
+        ctx.beginPath();
+        ctx.arc(cx, cy, breathe, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+      // Nó central com halo
+      const dot = 2.5 + Math.sin(t * .003) * 1;
+      ctx.fillStyle = 'rgba(0,0,0,.05)';
+      ctx.beginPath(); ctx.arc(cx, cy, dot + 7, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = 'rgba(0,0,0,.1)';
+      ctx.beginPath(); ctx.arc(cx, cy, dot, 0, Math.PI * 2); ctx.fill();
+
+      raf = requestAnimationFrame(draw);
+    }
+    observe(wrap, () => { raf = requestAnimationFrame(draw); }, () => cancelAnimationFrame(raf));
+  }
+
+  // ── Canvas 2 · §02 Como funciona · Nós atraídos pelo mouse ───────────────
+  function initMap() {
+    const wrap = document.getElementById('cv-map-wrap');
+    const s = setupCanvas('cv-map', wrap);
+    if (!s) return;
+    const { ctx, w, h } = s;
+    const m = trackMouse(wrap);
+    let t = 0, raf;
+
+    // 14 nós distribuídos organicamente
+    const nodes = Array.from({ length: 14 }, (_, i) => {
+      const ang = (i / 14) * Math.PI * 2;
+      const rad = (.25 + (i % 3) * .09) * Math.min(w, h) * .5;
+      const bx = w * .5 + Math.cos(ang) * rad * (w / Math.min(w, h));
+      const by = h * .5 + Math.sin(ang) * rad;
+      return { x: bx, y: by, bx, by, vx: 0, vy: 0, ph: i * .8 };
+    });
+
+    function draw() {
+      t++;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, w, h);
+
+      // Grid estático de fundo
+      ctx.strokeStyle = 'rgba(0,0,0,.022)';
+      ctx.lineWidth = .4;
+      for (let x = 0; x < w; x += 28) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+      }
+      for (let y = 0; y < h; y += 28) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+      }
+
+      // Física: spring + atração do mouse + drift
+      nodes.forEach(nd => {
+        const sx = (nd.bx - nd.x) * .018, sy = (nd.by - nd.y) * .018;
+        let gx = 0, gy = 0;
+        if (m.active) {
+          const dx = m.x - nd.x, dy = m.y - nd.y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 130 && d > .1) {
+            const f = .65 * (1 - d / 130);
+            gx = (dx / d) * f; gy = (dy / d) * f;
+          }
+        }
+        nd.vx = (nd.vx + sx + gx + Math.sin(t * .0005 + nd.ph) * .05) * .92;
+        nd.vy = (nd.vy + sy + gy + Math.cos(t * .0005 + nd.ph) * .05) * .92;
+        nd.x += nd.vx; nd.y += nd.vy;
+      });
+
+      // Conexões entre nós próximos
+      const maxD = w * .44;
+      for (let a = 0; a < nodes.length; a++) {
+        for (let b = a + 1; b < nodes.length; b++) {
+          const dx = nodes[b].x - nodes[a].x, dy = nodes[b].y - nodes[a].y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < maxD) {
+            ctx.strokeStyle = `rgba(0,0,0,${(.026 * (1 - d / maxD)).toFixed(4)})`;
+            ctx.lineWidth = .5;
+            ctx.beginPath();
+            ctx.moveTo(nodes[a].x, nodes[a].y);
+            ctx.lineTo(nodes[b].x, nodes[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Nós como crosshairs
+      nodes.forEach(nd => {
+        ctx.strokeStyle = 'rgba(0,0,0,.07)';
+        ctx.lineWidth = .5;
+        ctx.beginPath(); ctx.moveTo(nd.x - 5, nd.y); ctx.lineTo(nd.x + 5, nd.y); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(nd.x, nd.y - 5); ctx.lineTo(nd.x, nd.y + 5); ctx.stroke();
+        ctx.fillStyle = 'rgba(0,0,0,.1)';
+        ctx.beginPath(); ctx.arc(nd.x, nd.y, 1.5, 0, Math.PI * 2); ctx.fill();
+      });
+
+      raf = requestAnimationFrame(draw);
+    }
+    observe(wrap, () => { raf = requestAnimationFrame(draw); }, () => cancelAnimationFrame(raf));
+  }
+
+  // ── Canvas 3 · §04 Research · Mesh repelido pelo mouse ───────────────────
+  function initMesh() {
+    const wrap = document.getElementById('cv-mesh-wrap');
+    const s = setupCanvas('cv-mesh', wrap);
+    if (!s) return;
+    const { ctx, w, h } = s;
+    const m = trackMouse(wrap);
+    let t = 0, raf;
+
+    const nodes = Array.from({ length: 10 }, (_, i) => {
+      const ang = (i / 10) * Math.PI * 2;
+      const rad = (.22 + (i % 3) * .1) * Math.min(w, h) * .5;
+      const bx = w * .5 + Math.cos(ang) * rad * (w / Math.min(w, h));
+      const by = h * .5 + Math.sin(ang) * rad;
+      return { x: bx, y: by, bx, by, vx: 0, vy: 0, ph: i * .7 };
+    });
+
+    function draw() {
+      t++;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, w, h);
+
+      // Física: spring + repulsão do mouse
+      nodes.forEach(nd => {
+        const sx = (nd.bx - nd.x) * .014, sy = (nd.by - nd.y) * .014;
+        let rx = 0, ry = 0;
+        if (m.active) {
+          const dx = nd.x - m.x, dy = nd.y - m.y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 110 && d > .1) {
+            const f = 2.2 * (1 - d / 110);
+            rx = (dx / d) * f; ry = (dy / d) * f;
+          }
+        }
+        nd.vx = (nd.vx + sx + rx + Math.sin(t * .0004 + nd.ph) * .04) * .94;
+        nd.vy = (nd.vy + sy + ry + Math.cos(t * .0004 + nd.ph) * .04) * .94;
+        nd.x += nd.vx; nd.y += nd.vy;
+      });
+
+      // Conexões mesh
+      const maxD = w * .42;
+      for (let a = 0; a < nodes.length; a++) {
+        for (let b = a + 1; b < nodes.length; b++) {
+          const dx = nodes[b].x - nodes[a].x, dy = nodes[b].y - nodes[a].y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < maxD) {
+            ctx.strokeStyle = `rgba(0,0,0,${(.052 * (1 - d / maxD)).toFixed(4)})`;
+            ctx.lineWidth = .5;
+            ctx.beginPath();
+            ctx.moveTo(nodes[a].x, nodes[a].y);
+            ctx.lineTo(nodes[b].x, nodes[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Linhas fantasma do cursor aos nós próximos
+      if (m.active) {
+        nodes.forEach(nd => {
+          const dx = nd.x - m.x, dy = nd.y - m.y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 140) {
+            ctx.strokeStyle = `rgba(0,0,0,${(.032 * (1 - d / 140)).toFixed(4)})`;
+            ctx.lineWidth = .4;
+            ctx.setLineDash([2, 5]);
+            ctx.beginPath(); ctx.moveTo(m.x, m.y); ctx.lineTo(nd.x, nd.y); ctx.stroke();
+            ctx.setLineDash([]);
+          }
+        });
+      }
+
+      // Nós com halo pulsante
+      nodes.forEach(nd => {
+        const pulse = Math.sin(t * .003 + nd.ph);
+        ctx.fillStyle = 'rgba(0,0,0,.04)';
+        ctx.beginPath(); ctx.arc(nd.x, nd.y, 4 + pulse * 2.5, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = 'rgba(0,0,0,.1)';
+        ctx.beginPath(); ctx.arc(nd.x, nd.y, 2, 0, Math.PI * 2); ctx.fill();
+      });
+
+      raf = requestAnimationFrame(draw);
+    }
+    observe(wrap, () => { raf = requestAnimationFrame(draw); }, () => cancelAnimationFrame(raf));
+  }
+
+  // ── Canvas 4 · §05 CTA dark · Mesh branco, rede de execução multibanco ───
+  function initCtaMesh() {
+    const wrap = document.getElementById('cv-cta-wrap');
+    const s = setupCanvas('cv-cta', wrap);
+    if (!s) return;
+    const { ctx, w, h } = s;
+    const m = trackMouse(wrap);
+    let t = 0, raf;
+
+    const nodes = Array.from({ length: 8 }, (_, i) => {
+      const ang = (i / 8) * Math.PI * 2;
+      const rad = (.28 + (i % 2) * .14) * Math.min(w, h) * .5;
+      const bx = w * .5 + Math.cos(ang) * rad * (w / Math.min(w, h));
+      const by = h * .5 + Math.sin(ang) * rad;
+      return { x: bx, y: by, bx, by, vx: 0, vy: 0, ph: i * .9 };
+    });
+
+    function draw() {
+      t++;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, w, h);
+
+      nodes.forEach(nd => {
+        const sx = (nd.bx - nd.x) * .014, sy = (nd.by - nd.y) * .014;
+        let rx = 0, ry = 0;
+        if (m.active) {
+          const dx = nd.x - m.x, dy = nd.y - m.y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 100 && d > .1) {
+            const f = 2.0 * (1 - d / 100);
+            rx = (dx / d) * f; ry = (dy / d) * f;
+          }
+        }
+        nd.vx = (nd.vx + sx + rx + Math.sin(t * .0004 + nd.ph) * .04) * .94;
+        nd.vy = (nd.vy + sy + ry + Math.cos(t * .0004 + nd.ph) * .04) * .94;
+        nd.x += nd.vx; nd.y += nd.vy;
+      });
+
+      const maxD = w * .5;
+      for (let a = 0; a < nodes.length; a++) {
+        for (let b = a + 1; b < nodes.length; b++) {
+          const dx = nodes[b].x - nodes[a].x, dy = nodes[b].y - nodes[a].y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < maxD) {
+            ctx.strokeStyle = `rgba(255,255,255,${(.055 * (1 - d / maxD)).toFixed(4)})`;
+            ctx.lineWidth = .5;
+            ctx.beginPath();
+            ctx.moveTo(nodes[a].x, nodes[a].y);
+            ctx.lineTo(nodes[b].x, nodes[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      nodes.forEach(nd => {
+        const pulse = Math.sin(t * .003 + nd.ph);
+        ctx.fillStyle = `rgba(255,255,255,${(.03 + pulse * .008).toFixed(4)})`;
+        ctx.beginPath(); ctx.arc(nd.x, nd.y, 4 + pulse * 2, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = 'rgba(255,255,255,.07)';
+        ctx.beginPath(); ctx.arc(nd.x, nd.y, 1.5, 0, Math.PI * 2); ctx.fill();
+      });
+
+      raf = requestAnimationFrame(draw);
+    }
+    observe(wrap, () => { raf = requestAnimationFrame(draw); }, () => cancelAnimationFrame(raf));
+  }
+
+  // ── Diagrama: grid CSS + linhas SVG calculadas via DOM ───────────────────
+  function initDiagram() {
+    const diagram = document.getElementById('fv-diagram');
+    const svgEl  = document.getElementById('fv-svg-lines');
+    const cv     = document.getElementById('fv-cv');
+    if (!diagram || !cv) return;
+    const ctx = cv.getContext('2d');
+    let W = 0, H = 0, raf;
+    let paths = [];
+
+    // Stagger entrance animation
+    diagram.querySelectorAll('.fv-node-wrap').forEach((el, i) => {
+      el.style.animationDelay = (0.1 + i * 0.15) + 's';
+    });
+
+    // Get circle center + radius relative to diagram container
+    function getCenter(id) {
+      const wrap = document.getElementById(id);
+      if (!wrap) return null;
+      const nd = wrap.querySelector('.fv-node');
+      const dr = diagram.getBoundingClientRect();
+      const nr = nd.getBoundingClientRect();
+      return { x: nr.left - dr.left + nr.width/2, y: nr.top - dr.top + nr.height/2, r: nr.width/2 };
+    }
+
+    // Compute edge-to-edge endpoints between two circles
+    function edgePts(a, b) {
+      const dx = b.x-a.x, dy = b.y-a.y, len = Math.sqrt(dx*dx+dy*dy)||1;
+      const nx = dx/len, ny = dy/len;
+      return { x1: a.x+nx*a.r, y1: a.y+ny*a.r, x2: b.x-nx*b.r, y2: b.y-ny*b.r };
+    }
+
+    function mkPath(pts, dashed, bidir, bold) {
+      const el = document.createElementNS('http://www.w3.org/2000/svg','path');
+      el.setAttribute('d', `M${pts.x1.toFixed(1)},${pts.y1.toFixed(1)} L${pts.x2.toFixed(1)},${pts.y2.toFixed(1)}`);
+      el.setAttribute('stroke', bold ? 'rgba(0,0,0,.22)' : 'rgba(0,0,0,.13)');
+      el.setAttribute('stroke-width', bold ? '1.2' : '1');
+      el.setAttribute('fill','none');
+      if (dashed) el.setAttribute('stroke-dasharray','3 4');
+      if (bidir) { el.setAttribute('marker-start','url(#fv-arr-b)'); el.setAttribute('marker-end','url(#fv-arr)'); }
+      else el.setAttribute('marker-end','url(#fv-arr)');
+      svgEl.appendChild(el);
+    }
+
+    const PH = [0, 0.25, 0.5, 0.75, 0.1];
+
+    function buildLines() {
+      svgEl.querySelectorAll('path,line').forEach(e => e.remove());
+      paths = [];
+      const brain    = getCenter('nd-brain');
+      const audio    = getCenter('nd-audio');
+      const pdf      = getCenter('nd-pdf');
+      const research = getCenter('nd-research');
+      const modelo   = getCenter('nd-modelo');
+      const ifNode   = getCenter('nd-if');
+      if (!brain || !audio) return;
+
+      const edges = [
+        { a:audio,    b:brain,    dashed:false, bidir:false, bold:true  },
+        { a:research, b:brain,    dashed:true,  bidir:true,  bold:false },
+        { a:modelo,   b:brain,    dashed:true,  bidir:true,  bold:false },
+        { a:ifNode,   b:brain,    dashed:true,  bidir:true,  bold:false },
+        { a:brain,    b:pdf,      dashed:false, bidir:false, bold:true  },
+      ];
+      edges.forEach((e, i) => {
+        if (!e.a || !e.b) return;
+        const pts = edgePts(e.a, e.b);
+        mkPath(pts, e.dashed, e.bidir, e.bold);
+        paths.push({ s:[pts.x1,pts.y1], e:[pts.x2,pts.y2], bidir:e.bidir, ph:PH[i] });
+      });
+
+      // Data spine: vertical dashes grouping right-side nodes
+      if (research && ifNode) {
+        const spine = document.createElementNS('http://www.w3.org/2000/svg','line');
+        const rx = research.x + research.r + 5;
+        spine.setAttribute('x1',rx); spine.setAttribute('y1', research.y);
+        spine.setAttribute('x2',rx); spine.setAttribute('y2', ifNode.y);
+        spine.setAttribute('stroke','rgba(0,0,0,.07)');
+        spine.setAttribute('stroke-width','0.7');
+        spine.setAttribute('stroke-dasharray','2 6');
+        svgEl.appendChild(spine);
+      }
+    }
+
+    function resize() {
+      const r = diagram.getBoundingClientRect();
+      W = r.width; H = r.height;
+      cv.width = W*dpr; cv.height = H*dpr;
+      cv.style.width = W+'px'; cv.style.height = H+'px';
+      requestAnimationFrame(buildLines);
+    }
+    requestAnimationFrame(() => {
+      resize();
+      if (window.ResizeObserver) new ResizeObserver(resize).observe(diagram);
+      else window.addEventListener('resize', resize);
+    });
+
+    function lerp2(a,b,u){ return [a[0]+(b[0]-a[0])*u, a[1]+(b[1]-a[1])*u]; }
+    const SPD=0.007, TRAIL=3, GAP=0.09;
+    let t=0;
+
+    function draw() {
+      t++;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      ctx.clearRect(0,0,W,H);
+      paths.forEach(p => {
+        for (let i=0;i<TRAIL;i++) {
+          const u = ((t*SPD+p.ph-i*GAP)%1+1)%1;
+          const pt = lerp2(p.s,p.e,u);
+          const a = (1-i/TRAIL)*(i===0?.68:.38);
+          ctx.fillStyle=`rgba(10,10,10,${a.toFixed(3)})`;
+          ctx.beginPath(); ctx.arc(pt[0],pt[1],i===0?2.4:1.4,0,Math.PI*2); ctx.fill();
+        }
+        if (p.bidir) {
+          for (let i=0;i<TRAIL-1;i++) {
+            const u = ((t*SPD*.8+p.ph+.5-i*GAP)%1+1)%1;
+            const pt = lerp2(p.e,p.s,u);
+            const a = (1-i/TRAIL)*(i===0?.45:.25);
+            ctx.fillStyle=`rgba(10,10,10,${a.toFixed(3)})`;
+            ctx.beginPath(); ctx.arc(pt[0],pt[1],i===0?1.9:1.2,0,Math.PI*2); ctx.fill();
+          }
+        }
+      });
+      raf = requestAnimationFrame(draw);
+    }
+    const hero = document.getElementById('cv-hero-wrap');
+    observe(hero||diagram, ()=>{raf=requestAnimationFrame(draw);}, ()=>cancelAnimationFrame(raf));
+  }
+
+  // Init após DOM pronto
+  window.addEventListener('load', () => {
+    initDiagram();
+    initHero();
+    initMap();
+    initMesh();
+    initCtaMesh();
+  });
+})();
+</script>
 </body>
 </html>

@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Seja um Parceiro — Anova · Do repasse 8-12% ao 40-70%</title>
+<title>Seja um Parceiro Anova · Do repasse 8-12% ao 40-70%</title>
 <meta name="description" content="Para sócios de escritório, consultores e MFOs. Opere gestão patrimonial multibanco sobre a stack Anova e fique com 40 a 70% da receita gerada. Sem construir tecnologia, sem montar TI, sem perder autonomia.">
 <link rel="stylesheet" href="design-system/tokens.css">
 <link rel="stylesheet" href="design-system/components.css">
 <link rel="stylesheet" href="design-system/sections.css">
 <link rel="stylesheet" href="design-system/nav.css">
+<link rel="stylesheet" href="design-system/editorial.css">
 <style>
   /* ─── PAGE-SPECIFIC ─── */
   html{scroll-behavior:smooth;}
@@ -24,7 +25,7 @@
   .lead{font-size:clamp(16px,1.4vw,19px);color:var(--text-2);line-height:1.55;max-width:60ch;}
   .what-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--s8);align-items:center;margin-top:var(--s6);}
   @media(max-width:880px){.what-grid{grid-template-columns:1fr;}}
-  .what-visual{border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;background:var(--bg-alt);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;padding:var(--s5);}
+  .what-visual{border-radius:var(--r-xl);overflow:hidden;background:var(--bg-alt);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;padding:var(--s5);}
   .what-visual img{max-width:80%;max-height:100%;object-fit:contain;}
   .feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s3) var(--s6);margin-top:var(--s6);}
   @media(max-width:680px){.feat-grid{grid-template-columns:1fr;}}
@@ -49,22 +50,22 @@
 <header class="hero">
   <div class="hero-bp"></div>
   <div class="container hero-grid">
-    <div>
-      <span class="eyebrow">Seja um Parceiro · Para sócios de escritório, consultores e MFOs</span>
-      <h1><strong>Do</strong> repasse 8–12% ao repasse 40–70%.</h1>
-      <p class="hero-sub">Hoje o seu escritório entrega o cliente, carrega a relação, assume a operação — e fica com a fração. Na Anova, você opera gestão patrimonial multibanco sobre a nossa stack (backoffice, research, orquestrador, crédito e compliance) e fica com <strong>40 a 70% da receita gerada</strong>. Sem construir tecnologia, sem montar TI, sem perder autonomia.</p>
+    <div data-reveal="up">
+      <span class="eyebrow">00 · Seja um parceiro · Escritórios, consultores, MFOs</span>
+      <h1><strong>Do</strong> repasse 8–12% ao 40–70%.</h1>
+      <p class="hero-sub">Você entregou o cliente. Você carrega a relação. O modelo devolveu 8 a 12%. Na Anova, você opera <a href="wealth-management.html">gestão patrimonial multibanco</a> sobre a stack completa <a href="research.html">Research</a>, <a href="life-invest.html">Life Invest</a>, <a href="orquestrador.html">Orquestrador</a>, <a href="credito.html">crédito</a>, backoffice e compliance e fica com <strong>40 a 70% da receita gerada</strong>. Seu cliente, sua marca, sua relação. A infraestrutura fica com a gente.</p>
       <div class="hero-cta">
-        <a href="#cta" class="btn btn-primary btn-lg">Agendar diagnóstico do escritório →</a>
+        <a href="#cta" class="btn btn-primary btn-lg">Agendar diagnóstico do escritório <span class="arr">→</span></a>
         <a href="#modelo" class="btn btn-outline btn-lg">Ver o modelo completo</a>
       </div>
       <div class="hero-meta">
-        <span>Repasse 40–70%</span>
-        <span>Stack completa incluída</span>
-        <span>Zero TI própria</span>
+        <span>Repasse 40–70% combinado em contrato</span>
+        <span>Stack completa incluída sem montar TI</span>
+        <span>Cliente, marca e relação continuam seus</span>
       </div>
     </div>
-    <div class="hero-visual">
-      <img src="assets/img/product-central.png" alt="Seja um parceiro Anova — plataforma completa">
+    <div class="hero-visual" data-reveal="left" data-delay="2">
+      <div class="img-slot"></div>
       <span class="hero-tag">Plataforma operacional</span>
     </div>
   </div>
@@ -76,19 +77,19 @@
     <div class="proof-grid">
       <div>
         <div class="proof-num">40–70<sub>%</sub></div>
-        <div class="proof-label">Repasse da receita que o seu escritório gerar</div>
+        <div class="proof-label">Da receita gerada fica com o parceiro combinado em contrato</div>
       </div>
       <div>
         <div class="proof-num">R$2<sub>Bi</sub></div>
-        <div class="proof-label">Operados via stack Anova em multi-custódia real</div>
+        <div class="proof-label">Sob operação via stack Anova multi-custódia real, dinheiro na conta do cliente</div>
       </div>
       <div>
-        <div class="proof-num">60<sub>+</sub></div>
-        <div class="proof-label">Parceiros de crédito regulados conectados</div>
+        <div class="proof-num">80<sub>+</sub></div>
+        <div class="proof-label">Instituições parceiras conectadas BTG, XP, Avenue, Safra, IBKR e mais</div>
       </div>
       <div>
         <div class="proof-num">0<sub>TI</sub></div>
-        <div class="proof-label">Tecnologia construída, mantida e evoluída por você</div>
+        <div class="proof-label">Tecnologia construída, mantida e evoluída pela Anova não pelo seu escritório</div>
       </div>
     </div>
   </div>
@@ -100,12 +101,13 @@
     <span class="eyebrow">01 · O problema estrutural</span>
     <div class="what-grid">
       <div>
-        <h2><strong>Seu</strong> escritório faz o trabalho — e a assessoria tradicional fica com a receita.</h2>
+        <h2><strong>Você</strong> faz o trabalho. O modelo tradicional fica com a receita.</h2>
         <p class="lead">Você captou o cliente. Você carrega a relação. Você resolve problema, explica produto, aguenta ligação no sábado, entrega resultado quando o mercado vira. E no fim do mês, o modelo tradicional de assessoria te devolve 8 a 12% do que a sua operação gerou.</p>
-        <p class="lead" style="margin-top:var(--s4);">Não é porque você é ruim. É porque o modelo foi desenhado assim. A plataforma captura a maior parte do valor, cobra pelo risco regulatório, monetiza o cliente via rebate — e o escritório vira ponta de distribuição barata. <strong>Enquanto for assim, escalar significa trabalhar mais, não mais previsível.</strong></p>
+        <p class="lead" style="margin-top:var(--s4);">Não é porque você é ruim. É porque o modelo foi desenhado assim a plataforma captura o valor, cobra pelo risco regulatório, monetiza o cliente via rebate. O escritório vira ponta de distribuição barata. <strong>Enquanto for assim, crescer significa trabalhar mais, não ganhar mais.</strong></p>
+        <p class="lead" style="margin-top:var(--s4);">A Anova encontrou esse mesmo problema ao construir a própria rede de distribuição. Resolveu dor por dor com <a href="research.html">research própria</a>, <a href="life-invest.html">algoritmo de alocação</a>, <a href="orquestrador.html">governança no WhatsApp</a> e 80+ parceiros multibanco. E depois de sete anos construindo para dentro, abriu o mesmo sistema para quem já tem o que nenhuma infraestrutura entrega: o relacionamento.</p>
       </div>
       <div class="what-visual">
-        <img src="assets/img/product-advisor-carteira.png" alt="Escritório tradicional com repasse baixo">
+        <div class="img-slot"></div>
       </div>
     </div>
   </div>
@@ -116,18 +118,18 @@
   <div class="container">
     <span class="eyebrow">02 · A virada</span>
     <h2 style="margin-top:var(--s4);max-width:28ch;"><strong>Opere</strong> o seu escritório sobre a estrutura inteira da Anova.</h2>
-    <p class="lead" style="margin-top:var(--s5);max-width:62ch;">Anova Parceiros é o modelo onde o seu escritório passa a operar gestão patrimonial multibanco sobre a nossa stack completa. A tecnologia, o backoffice, o research, o compliance e a prateleira de produtos são nossos — operados há 8 anos, sobre R$ 2 Bi em patrimônio real. O cliente, a relação, a marca e a estratégia comercial continuam seus. E o repasse cresce de 8–12% pra <strong>40 a 70% da receita gerada</strong>, combinado em contrato.</p>
+    <p class="lead" style="margin-top:var(--s5);max-width:62ch;">Anova Parceiros é o modelo onde o seu escritório opera <a href="wealth-management.html">gestão patrimonial multibanco</a> sobre a mesma stack que a Anova construiu dor por dor da <a href="research.html">Research</a> ao <a href="orquestrador.html">Orquestrador</a>, até virar sistema operacional. A tecnologia, o backoffice, o compliance e a prateleira de produtos são nossos o mesmo sistema que opera R$ 2Bi em patrimônio real hoje. O cliente, a relação, a marca e a estratégia comercial continuam seus. O repasse sai de 8–12% e vai pra <strong>40 a 70% da receita gerada</strong>, combinado em contrato.</p>
 
     <div class="pivot-grid" style="margin-top:var(--s7);align-items:stretch;">
       <div style="display:flex;flex-direction:column;justify-content:center;">
         <ul class="pivot-list" style="margin-top:0;">
-          <li style="border-color:var(--border);"><b style="color:var(--text-3);">Mais receita, mesmo cliente</b><span style="color:var(--text-1);">O seu escritório passa a ficar com 40 a 70% da receita gerada pela mesma base de clientes que você já atende hoje. Sem trocar o cliente, sem mudar a relação.</span></li>
-          <li style="border-color:var(--border);"><b style="color:var(--text-3);">Menos custo fixo, mais escala</b><span style="color:var(--text-1);">Tecnologia, backoffice, research e compliance entram inclusos. Você para de pagar licença de software, para de manter time de TI e para de contratar gente pra fazer papel.</span></li>
-          <li style="border-color:var(--border);"><b style="color:var(--text-3);">Autonomia preservada</b><span style="color:var(--text-1);">A marca é sua. O cliente é seu. A relação comercial é sua. A Anova é a camada de operação — não entra na frente do relacionamento, nem na sua estratégia de captação.</span></li>
+          <li style="border-color:var(--border);"><b style="color:var(--text-3);">Mais receita, mesmo cliente</b><span style="color:var(--text-1);">40 a 70% da receita gerada pela mesma base que você já atende hoje. Sem trocar o cliente, sem mudar a relação, sem começar do zero.</span></li>
+          <li style="border-color:var(--border);"><b style="color:var(--text-3);">Menos custo fixo, mais escala</b><span style="color:var(--text-1);"><a href="research.html">Research</a>, <a href="life-invest.html">Life Invest</a>, <a href="orquestrador.html">Orquestrador</a>, backoffice e compliance entram inclusos. Você para de pagar licença, para de manter TI, para de contratar gente pra fazer papel.</span></li>
+          <li style="border-color:var(--border);"><b style="color:var(--text-3);">Autonomia preservada</b><span style="color:var(--text-1);">A marca é sua. O cliente é seu. A relação comercial é sua. A Anova é a camada de operação não entra na frente do relacionamento, nem na sua estratégia de captação.</span></li>
         </ul>
       </div>
       <div class="what-visual">
-        <img src="assets/img/product-central.png" alt="Stack Anova para escritórios parceiros">
+        <div class="img-slot"></div>
       </div>
     </div>
   </div>
@@ -137,12 +139,12 @@
 <section class="section section-alt">
   <div class="container">
     <span class="eyebrow">03 · O que muda no seu bolso</span>
-    <h2 style="margin-top:var(--s4);max-width:28ch;"><strong>Mesma</strong> operação. Economia diferente.</h2>
-    <p class="lead" style="margin-top:var(--s5);max-width:60ch;">Três pontos concretos onde o modelo Anova muda o resultado do escritório. Sem promessa de captação, sem projeção de crescimento — só estrutura de repasse, custo e receita que você já pode comparar com o que roda hoje.</p>
+    <h2 style="margin-top:var(--s4);max-width:28ch;"><strong>Mesma</strong> base de clientes. Resultado econômico diferente.</h2>
+    <p class="lead" style="margin-top:var(--s5);max-width:60ch;">Três pontos onde o modelo Anova muda o resultado do escritório. Sem promessa de captação, sem projeção de crescimento só repasse, custo e receita que você já pode comparar com o que roda hoje.</p>
 
     <div style="margin-top:var(--s7);display:flex;flex-direction:column;gap:var(--s5);">
 
-      <!-- Card 1 — Repasse da receita -->
+      <!-- Card 1 Repasse da receita -->
       <article style="background:var(--white);border-radius:var(--r-2xl);padding:var(--s7) var(--s6);">
         <div style="font-size:11px;color:var(--text-3);font-weight:500;letter-spacing:.1em;text-transform:uppercase;margin-bottom:var(--s3);">Critério 01</div>
         <h3 style="font-size:26px;font-weight:700;letter-spacing:-.02em;color:var(--text-1);margin-bottom:var(--s5);">Repasse da receita gerada</h3>
@@ -163,7 +165,7 @@
         </div>
       </article>
 
-      <!-- Card 2 — Custo de operação -->
+      <!-- Card 2 Custo de operação -->
       <article style="background:var(--white);border-radius:var(--r-2xl);padding:var(--s7) var(--s6);">
         <div style="font-size:11px;color:var(--text-3);font-weight:500;letter-spacing:.1em;text-transform:uppercase;margin-bottom:var(--s3);">Critério 02</div>
         <h3 style="font-size:26px;font-weight:700;letter-spacing:-.02em;color:var(--text-1);margin-bottom:var(--s5);">Custo de operação</h3>
@@ -179,12 +181,12 @@
           </div>
           <div style="background:var(--onyx);color:var(--white);padding:var(--s5) var(--s5);border-radius:var(--r-xl);display:flex;flex-direction:column;justify-content:center;">
             <div style="font-size:10px;color:var(--silver);font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:var(--s2);">★ Anova Parceiro</div>
-            <div style="font-size:17px;font-weight:700;line-height:1.3;">Stack completa incluída — zero TI, zero licença, zero esteira própria</div>
+            <div style="font-size:17px;font-weight:700;line-height:1.3;">Stack completa incluída zero TI, zero licença, zero esteira própria</div>
           </div>
         </div>
       </article>
 
-      <!-- Card 3 — Autonomia -->
+      <!-- Card 3 Autonomia -->
       <article style="background:var(--white);border-radius:var(--r-2xl);padding:var(--s7) var(--s6);">
         <div style="font-size:11px;color:var(--text-3);font-weight:500;letter-spacing:.1em;text-transform:uppercase;margin-bottom:var(--s3);">Critério 03</div>
         <h3 style="font-size:26px;font-weight:700;letter-spacing:-.02em;color:var(--text-1);margin-bottom:var(--s5);">Autonomia sobre o cliente</h3>
@@ -200,7 +202,7 @@
           </div>
           <div style="background:var(--onyx);color:var(--white);padding:var(--s5) var(--s5);border-radius:var(--r-xl);display:flex;flex-direction:column;justify-content:center;">
             <div style="font-size:10px;color:var(--silver);font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:var(--s2);">★ Anova Parceiro</div>
-            <div style="font-size:17px;font-weight:700;line-height:1.3;">Cliente, marca e relação continuam seus — a Anova é infraestrutura</div>
+            <div style="font-size:17px;font-weight:700;line-height:1.3;">Cliente, marca e relação continuam seus a Anova é infraestrutura</div>
           </div>
         </div>
       </article>
@@ -213,48 +215,48 @@
 <section class="section">
   <div class="container">
     <span class="eyebrow">04 · O que vem junto no modelo</span>
-    <h2 style="margin-top:var(--s4);max-width:28ch;"><strong>Oito</strong> camadas já operando, sob a sua marca.</h2>
-    <p class="lead" style="margin-top:var(--s5);max-width:62ch;">Tudo que um escritório precisa pra operar gestão patrimonial moderna — sem você ter que construir, contratar ou manter. A stack é nossa, o escritório é seu.</p>
+    <h2 style="margin-top:var(--s4);max-width:28ch;"><strong>Oito</strong> camadas. Todas em operação. Todas sob a sua marca.</h2>
+    <p class="lead" style="margin-top:var(--s5);max-width:62ch;">Tudo que um escritório precisa pra operar gestão patrimonial moderna sem construir, sem contratar, sem manter. A stack é nossa. O escritório é seu. Cada camada tem página própria clique pra entender o que opera por trás.</p>
     <div class="how-grid" style="grid-template-columns:repeat(2,1fr);margin-top:var(--s6);">
       <article class="how-step">
         <div class="how-num">INCLUÍDO 01</div>
         <h3>Backoffice completo</h3>
-        <p>Clientes, operações, comissões, contratos e pipeline — tudo em uma única tela, mantida e evoluída pela Anova.</p>
+        <p>Clientes, operações, comissões, contratos e pipeline tudo em uma única tela, mantida e evoluída pela Anova. Sem planilha costurando o resto.</p>
       </article>
       <article class="how-step">
         <div class="how-num">INCLUÍDO 02</div>
-        <h3>Gestão patrimonial multibanco</h3>
-        <p>BTG, XP, Avenue, Safra, BTG Global, XP Internacional e Interactive Brokers — a mesma arquitetura que opera R$ 2 Bi hoje.</p>
+        <h3><a href="wealth-management.html">Gestão patrimonial multibanco</a></h3>
+        <p>BTG, XP, Avenue, Safra, BTG Global, XP Internacional e Interactive Brokers a mesma arquitetura que opera R$ 2 Bi em patrimônio real hoje. Multi-custódia real, dinheiro na conta do cliente.</p>
       </article>
       <article class="how-step">
         <div class="how-num">INCLUÍDO 03</div>
-        <h3>Anova Research</h3>
-        <p>A casa de análise proprietária — carteiras, teses e relatórios alimentando as estratégias que você vai oferecer ao cliente.</p>
+        <h3><a href="research.html">Anova Research</a></h3>
+        <p>Casa de análise proprietária com metodologia Wyckoff reescrita em software. Carteiras, teses e sinais preditivos alimentando as estratégias que você vai oferecer ao cliente antes da manchete, não depois.</p>
       </article>
       <article class="how-step">
         <div class="how-num">INCLUÍDO 04</div>
-        <h3>Life Invest</h3>
-        <p>O motor algorítmico que acompanha o mercado e alimenta as decisões de portfolio — disponível dentro do seu ambiente.</p>
+        <h3><a href="life-invest.html">Life Invest</a></h3>
+        <p>Áudio do consultor → PDF institucional em 5 minutos, com 50k simulações Monte Carlo e três cenários. Aprovação → execução multibanco automatizada. O motor que fecha carteira sem depender de velocidade humana.</p>
       </article>
       <article class="how-step">
         <div class="how-num">INCLUÍDO 05</div>
-        <h3>Crédito multibanco</h3>
-        <p>Mais de 60 parceiros regulados conectados. Empréstimo, financiamento, consórcio, seguro e previdência, com comparação lado a lado de taxa e CET.</p>
+        <h3><a href="credito.html">Crédito multibanco</a></h3>
+        <p>80+ parceiros regulados conectados. Financiamento, consórcio, home equity, seguro e previdência com comparação de taxa, CET e prazo lado a lado. Do lado do detentor do capital. Sempre.</p>
       </article>
       <article class="how-step">
         <div class="how-num">INCLUÍDO 06</div>
-        <h3>Orquestrador WhatsApp</h3>
-        <p>Atendimento conversacional governado — histórico, auditoria e roteamento por cliente, para o seu time operar sem perder rastro.</p>
+        <h3><a href="orquestrador.html">Orquestrador WhatsApp</a></h3>
+        <p>Atendimento conversacional governado dentro da API oficial do WhatsApp Business. Histórico, auditoria, roteamento e HITL em ações sensíveis para o seu time operar sem perder rastro, dentro do canal onde o cliente já está.</p>
       </article>
       <article class="how-step">
         <div class="how-num">INCLUÍDO 07</div>
         <h3>Compliance embutido</h3>
-        <p>Esteira regulatória na camada de execução. Compliance não é checklist manual — é parte do fluxo operacional.</p>
+        <p>CVM, SUSEP, ANS, BACEN esteira regulatória na camada de execução. Compliance não é checklist manual nem auditoria adicional. É parte do fluxo operacional, audit-by-design.</p>
       </article>
       <article class="how-step">
         <div class="how-num">INCLUÍDO 08</div>
-        <h3>Suporte e governança</h3>
-        <p>Time dedicado à sua operação no onboarding e no dia a dia. Quando o mercado vira, você tem gente de verdade do outro lado.</p>
+        <h3>Suporte e governança contínua</h3>
+        <p>Time dedicado no onboarding e no dia a dia depois do go-live. Playbooks distribuindo metodologia pra toda a rede. Quando o mercado vira, você tem gente de verdade do outro lado não um ticket aberto.</p>
       </article>
     </div>
   </div>
@@ -264,24 +266,24 @@
 <section class="section section-alt">
   <div class="container">
     <span class="eyebrow">05 · Para quem faz sentido</span>
-    <h2 style="margin-top:var(--s4);max-width:30ch;"><strong>Escritórios</strong> que já operam — e querem mudar de patamar estrutural.</h2>
-    <p class="lead" style="margin-top:var(--s5);max-width:62ch;">Anova Parceiros não é pra quem está começando do zero. É pra quem já tem operação, já tem base de clientes, já entendeu onde o modelo atual fura — e hoje busca uma estrutura que transforme o trabalho já feito em receita maior e mais previsível.</p>
+    <h2 style="margin-top:var(--s4);max-width:30ch;"><strong>Para</strong> quem já opera e quer mudar de patamar.</h2>
+    <p class="lead" style="margin-top:var(--s5);max-width:62ch;">Anova Parceiros não é pra quem está começando. É pra quem já tem operação, já tem base, já entendeu onde o modelo atual fura e busca a estrutura que faz o trabalho já feito valer mais.</p>
 
     <div class="aud-grid" style="margin-top:var(--s7);">
       <article class="aud-card">
         <div class="aud-tag">SÓCIO DE ESCRITÓRIO</div>
         <h3>5 a 50 assessores, crescimento travado.</h3>
-        <p>Você já tem um escritório rodando dentro de uma assessoria tradicional. Bateu o teto de crescimento que aquele modelo permite — receita por assessor não sobe, o repasse não cresce e o custo de manter operação só aumenta.</p>
+        <p>Você tem um escritório rodando dentro de uma assessoria tradicional. Bateu o teto receita por assessor não sobe, repasse não cresce, custo de manter operação só aumenta. O modelo te travou, não a sua capacidade.</p>
       </article>
       <article class="aud-card">
         <div class="aud-tag">CONSULTOR INDEPENDENTE</div>
         <h3>Carteira própria, estrutura inexistente.</h3>
-        <p>Você atende clientes sofisticados há anos, carrega relação forte, mas hoje opera improvisando entre sistemas. Precisa de backoffice de verdade, research, compliance e tecnologia — sem construir nada do zero.</p>
+        <p>Você atende clientes sofisticados há anos, carrega relação forte mas hoje opera improvisando entre sistemas. Precisa de backoffice de verdade, <a href="research.html">research</a>, compliance e tecnologia sem construir nada do zero.</p>
       </article>
       <article class="aud-card">
         <div class="aud-tag">MULTI-FAMILY OFFICE</div>
         <h3>Clientes premium, gargalo operacional.</h3>
-        <p>Família, sucessão, offshore, consolidação. Você já entrega serviço premium — mas a infraestrutura operacional por trás consome margem e atenção que deveriam ir pra estratégia do cliente.</p>
+        <p>Família, sucessão, offshore, consolidação. Você já entrega serviço premium mas a infraestrutura operacional consome margem e atenção que deveriam ir pra estratégia. A gente tira esse peso do seu colo.</p>
       </article>
     </div>
   </div>
@@ -292,27 +294,27 @@
   <div class="container">
     <span class="eyebrow">06 · Como começar</span>
     <h2 style="margin-top:var(--s4);max-width:28ch;"><strong>Diagnóstico.</strong> Proposta. Contrato. Operação.</h2>
-    <p class="lead" style="margin-top:var(--s5);max-width:60ch;">Quatro etapas claras, sem mistério. O objetivo do primeiro encontro é entender se faz sentido pros dois lados — não é pitch, é análise da sua operação atual.</p>
+    <p class="lead" style="margin-top:var(--s5);max-width:60ch;">Quatro etapas. Sem mistério. O primeiro encontro é pra entender se faz sentido pros dois lados não é pitch, é análise da sua operação. Você sai com um número, não com uma apresentação.</p>
     <div class="how-grid" style="margin-top:var(--s6);">
       <article class="how-step">
         <div class="how-num">ETAPA 01</div>
         <h3>Diagnóstico do escritório</h3>
-        <p>Entendemos sua base de clientes, seu modelo atual de repasse, sua estrutura operacional e onde o modelo está travando o seu crescimento.</p>
+        <p>Olhamos sua base de clientes, modelo atual de repasse, estrutura operacional e onde o modelo está travando o crescimento. Você sai com uma leitura honesta fique ou não fique.</p>
       </article>
       <article class="how-step">
         <div class="how-num">ETAPA 02</div>
         <h3>Proposta de parceria</h3>
-        <p>Apresentamos o modelo de repasse (40 a 70%, combinado caso a caso), o escopo da stack incluída e a projeção operacional do seu escritório dentro do modelo Anova.</p>
+        <p>Apresentamos o repasse específico pra sua operação (40 a 70%, combinado caso a caso), o escopo da stack incluída e a projeção de como o seu escritório fica dentro do modelo Anova.</p>
       </article>
       <article class="how-step">
         <div class="how-num">ETAPA 03</div>
         <h3>Contrato e onboarding</h3>
-        <p>Contrato formalizado com responsabilidades claras. Onboarding técnico: acessos, times, identidade visual, compliance, migração de operação.</p>
+        <p>Contrato com responsabilidades claras sem letra miúda sobre cliente e marca. Onboarding técnico: acessos, identidade visual, compliance, migração de operação, conexão com as custódias.</p>
       </article>
       <article class="how-step">
         <div class="how-num">ETAPA 04</div>
-        <h3>Operação com suporte</h3>
-        <p>Seu escritório entra em operação com time Anova dedicado nas primeiras semanas. O suporte contínuo não vai embora depois do go-live.</p>
+        <h3>Operação com suporte contínuo</h3>
+        <p>Seu escritório entra em operação com time Anova dedicado nas primeiras semanas. O suporte não vai embora depois do go-live está lá quando o mercado vira também.</p>
       </article>
     </div>
   </div>
@@ -330,7 +332,7 @@
           <span>O que define se meu repasse vai ser 40% ou 70%?</span>
           <span style="font-size:18px;color:var(--text-3);">+</span>
         </summary>
-        <p style="margin-top:var(--s4);color:var(--text-2);line-height:1.6;">O percentual é combinado no contrato e depende do mix operacional do seu escritório — volume sob gestão, perfil dos clientes, complexidade de atendimento, verticais que você vai operar (só gestão patrimonial, ou também crédito, seguros, câmbio) e o escopo de suporte que você vai precisar. A conversa de diagnóstico é quem responde isso com número concreto pra sua operação.</p>
+        <p style="margin-top:var(--s4);color:var(--text-2);line-height:1.6;">O percentual é combinado no contrato e depende do mix operacional do seu escritório volume sob gestão, perfil dos clientes, complexidade de atendimento, verticais que você vai operar (só gestão patrimonial, ou também crédito, seguros, câmbio) e o escopo de suporte que você vai precisar. A conversa de diagnóstico é quem responde isso com número concreto pra sua operação.</p>
       </details>
 
       <details style="border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s4) var(--s5);transition:border-color .2s;background:var(--white);" onmouseover="this.style.borderColor='var(--text-1)'" onmouseout="this.style.borderColor='var(--border)'">
@@ -338,7 +340,7 @@
           <span>Meu cliente vira cliente da Anova?</span>
           <span style="font-size:18px;color:var(--text-3);">+</span>
         </summary>
-        <p style="margin-top:var(--s4);color:var(--text-2);line-height:1.6;">Não. A relação comercial, a marca visível e o contato direto continuam seus. A Anova opera a camada de infraestrutura (backoffice, research, compliance, multi-custódia) e aparece nos contratos necessários à regulação — mas o cliente do seu escritório continua sendo seu cliente, com a sua marca na frente. O contrato de parceria é explícito sobre isso.</p>
+        <p style="margin-top:var(--s4);color:var(--text-2);line-height:1.6;">Não. A relação comercial, a marca visível e o contato direto continuam seus. A Anova opera a camada de infraestrutura (backoffice, research, compliance, multi-custódia) e aparece nos contratos necessários à regulação mas o cliente do seu escritório continua sendo seu cliente, com a sua marca na frente. O contrato de parceria é explícito sobre isso.</p>
       </details>
 
       <details style="border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s4) var(--s5);transition:border-color .2s;background:var(--white);" onmouseover="this.style.borderColor='var(--text-1)'" onmouseout="this.style.borderColor='var(--border)'">
@@ -346,7 +348,7 @@
           <span>Preciso ter CNPJ, licenciamento ou estrutura mínima?</span>
           <span style="font-size:18px;color:var(--text-3);">+</span>
         </summary>
-        <p style="margin-top:var(--s4);color:var(--text-2);line-height:1.6;">Dependendo do perfil do parceiro, existem caminhos diferentes: sócio com estrutura montada entra como escritório parceiro; consultor individual pode entrar via unidade credenciada dentro do modelo. A parte regulatória é tratada no diagnóstico — não existe um único "formato mínimo". A gente adapta a estrutura do parceiro ao marco regulatório, não o contrário.</p>
+        <p style="margin-top:var(--s4);color:var(--text-2);line-height:1.6;">Dependendo do perfil do parceiro, existem caminhos diferentes: sócio com estrutura montada entra como escritório parceiro; consultor individual pode entrar via unidade credenciada dentro do modelo. A parte regulatória é tratada no diagnóstico não existe um único "formato mínimo". A gente adapta a estrutura do parceiro ao marco regulatório, não o contrário.</p>
       </details>
 
       <details style="border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s4) var(--s5);transition:border-color .2s;background:var(--white);" onmouseover="this.style.borderColor='var(--text-1)'" onmouseout="this.style.borderColor='var(--border)'">
@@ -354,7 +356,7 @@
           <span>Quanto tempo leva pra entrar em operação?</span>
           <span style="font-size:18px;color:var(--text-3);">+</span>
         </summary>
-        <p style="margin-top:var(--s4);color:var(--text-2);line-height:1.6;">Depois do contrato assinado, o onboarding técnico leva algumas semanas — acessos, configuração da identidade do escritório, migração dos clientes, treinamento do time, conexão com as instituições multi-custódia. Escritórios menores costumam começar a operar antes; estruturas maiores levam mais tempo porque têm mais peças pra migrar. A gente define o cronograma no diagnóstico.</p>
+        <p style="margin-top:var(--s4);color:var(--text-2);line-height:1.6;">Depois do contrato assinado, o onboarding técnico leva algumas semanas acessos, configuração da identidade do escritório, migração dos clientes, treinamento do time, conexão com as instituições multi-custódia. Escritórios menores costumam começar a operar antes; estruturas maiores levam mais tempo porque têm mais peças pra migrar. A gente define o cronograma no diagnóstico.</p>
       </details>
 
       <details style="border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s4) var(--s5);transition:border-color .2s;background:var(--white);" onmouseover="this.style.borderColor='var(--text-1)'" onmouseout="this.style.borderColor='var(--border)'">
@@ -362,7 +364,7 @@
           <span>E se eu quiser sair da parceria depois?</span>
           <span style="font-size:18px;color:var(--text-3);">+</span>
         </summary>
-        <p style="margin-top:var(--s4);color:var(--text-2);line-height:1.6;">Contratos de parceria têm regras claras de saída, combinadas antes da assinatura. Seus clientes continuam seus, a sua marca continua sua. A camada operacional Anova sai de cena, você migra pra onde quiser. Não existe captura de cliente nem cláusula de retenção abusiva — a parceria só faz sentido enquanto estiver gerando valor pra você.</p>
+        <p style="margin-top:var(--s4);color:var(--text-2);line-height:1.6;">Contratos de parceria têm regras claras de saída, combinadas antes da assinatura. Seus clientes continuam seus, a sua marca continua sua. A camada operacional Anova sai de cena, você migra pra onde quiser. Não existe captura de cliente nem cláusula de retenção abusiva a parceria só faz sentido enquanto estiver gerando valor pra você.</p>
       </details>
 
       <details style="border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s4) var(--s5);transition:border-color .2s;background:var(--white);" onmouseover="this.style.borderColor='var(--text-1)'" onmouseout="this.style.borderColor='var(--border)'">
@@ -370,7 +372,7 @@
           <span>E se meu escritório é pequeno demais?</span>
           <span style="font-size:18px;color:var(--text-3);">+</span>
         </summary>
-        <p style="margin-top:var(--s4);color:var(--text-2);line-height:1.6;">Depende do perfil, não só do tamanho. Escritórios menores com clientes de alta sofisticação costumam fazer muito sentido; escritórios maiores com base fragmentada também. O diagnóstico é exatamente pra responder essa pergunta com clareza — se não fizer sentido pros dois lados, a gente diz na primeira conversa.</p>
+        <p style="margin-top:var(--s4);color:var(--text-2);line-height:1.6;">Depende do perfil, não só do tamanho. Escritórios menores com clientes de alta sofisticação costumam fazer muito sentido; escritórios maiores com base fragmentada também. O diagnóstico é exatamente pra responder essa pergunta com clareza se não fizer sentido pros dois lados, a gente diz na primeira conversa.</p>
       </details>
     </div>
   </div>
@@ -380,11 +382,11 @@
 <section id="cta" class="section section-dark">
   <div class="container">
     <span class="eyebrow">08 · Próximo passo</span>
-    <h2 style="margin-top:var(--s4);max-width:26ch;color:var(--white);"><strong>Agende</strong> o diagnóstico do seu escritório.</h2>
-    <p class="lead" style="margin-top:var(--s5);max-width:62ch;">Conversa franca. A gente olha pra sua operação atual, entende seus números, e responde se faz sentido seguir. Sem pitch, sem obrigação, sem empurrar contrato. Você sai com uma leitura honesta do potencial — fique ou não fique.</p>
+    <h2 style="margin-top:var(--s4);max-width:26ch;color:var(--white);"><strong>Licencie</strong> a plataforma. Mantenha o que já funciona.</h2>
+    <p class="lead" style="margin-top:var(--s5);max-width:62ch;">Uma conversa. A gente olha pra sua operação atual, entende o número e responde se faz sentido seguir. Sem pitch, sem obrigação. Você sai com uma proposta concreta não com uma apresentação genérica. Se não fizer sentido pros dois lados, a gente diz na primeira conversa.</p>
     <div style="margin-top:var(--s7);display:flex;gap:var(--s3);flex-wrap:wrap;">
-      <a href="mailto:parcerias@anova.com.br" class="btn btn-primary btn-lg">Agendar diagnóstico do escritório →</a>
-      <a href="mailto:parcerias@anova.com.br" class="btn btn-outline btn-lg" style="color:var(--white);border-color:var(--white);">Falar com parcerias</a>
+      <a href="mailto:parcerias@anovaresearch.com.br" class="btn btn-primary btn-lg">Agendar diagnóstico do escritório →</a>
+      <a href="mailto:parcerias@anovaresearch.com.br" class="btn btn-outline btn-lg" style="color:var(--white);border-color:var(--white);">Falar com parcerias</a>
     </div>
   </div>
 </section>
@@ -392,5 +394,6 @@
 <div id="anova-footer"></div>
 
 <script src="js/shell.js" defer></script>
+<script src="js/motion.js" defer></script>
 </body>
 </html>
