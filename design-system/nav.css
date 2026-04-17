@@ -1,0 +1,41 @@
+/* ─────────────────────────────────────────────────────────
+   ANOVA — NAV (estrutura referência §11)
+   Logo squircle apenas (sem label "Anova") + links diretos.
+   Usado por: partials/nav.html
+   Depende de: tokens.css
+   ───────────────────────────────────────────────────────── */
+
+/* ─── NAV container ─────────────────────────────────────── */
+.anova-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.anova-nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1180px;margin:0 auto;padding:0 var(--s5);gap:var(--s6);}
+
+/* ─── Brand: squircle 28px com "ANOVA" interno ──────────── */
+.anova-nav-brand{display:flex;align-items:center;flex-shrink:0;color:var(--text-1);text-decoration:none;}
+.anova-nav-logo{width:28px;height:28px;background:var(--onyx);border-radius:22%;display:flex;align-items:center;justify-content:center;padding:3px;transition:transform .3s var(--ease-spring);}
+.anova-nav-brand:hover .anova-nav-logo{transform:scale(.94);}
+.anova-nav-logo span{font-family:var(--font);font-size:6px;font-weight:700;letter-spacing:.1em;color:var(--white);margin-right:-.1em;text-align:center;}
+
+/* ─── Links ─────────────────────────────────────────────── */
+.anova-nav-links{display:flex;gap:var(--s5);align-items:center;flex:1;justify-content:center;}
+.anova-nav-link{font-size:13px;color:var(--text-3);transition:color .15s;padding:4px 0;border-bottom:2px solid transparent;background:none;border-left:none;border-right:none;border-top:none;cursor:pointer;font-family:inherit;text-decoration:none;font-weight:500;white-space:nowrap;}
+.anova-nav-link:hover{color:var(--text-1);}
+.anova-nav-link[aria-current="page"]{color:var(--text-1);border-bottom-color:var(--onyx);}
+
+/* ─── CTA ───────────────────────────────────────────────── */
+.anova-nav-cta{display:inline-flex;align-items:center;padding:8px 16px;background:var(--onyx);color:var(--white);border-radius:var(--r-md);font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;transition:opacity .2s;flex-shrink:0;margin-left:auto;}
+.anova-nav-cta:hover{opacity:.85;}
+
+/* ─── Mobile ────────────────────────────────────────────── */
+.anova-nav-toggle{display:none;background:none;border:none;font-size:20px;color:var(--text-1);cursor:pointer;padding:8px;}
+
+@media(max-width:980px){
+  .anova-nav-links{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;background:var(--white);flex-direction:column;align-items:stretch;justify-content:flex-start;padding:var(--s6) var(--s5);gap:var(--s2);overflow-y:auto;}
+  .anova-nav.mobile-open .anova-nav-links{display:flex;}
+  .anova-nav-toggle{display:block;}
+  .anova-nav-link{font-size:18px;padding:var(--s4) 0;border-bottom:1px solid var(--border);}
+  .anova-nav-link[aria-current="page"]{border-bottom-color:var(--onyx);}
+  .anova-nav-cta{margin-top:var(--s4);justify-content:center;font-size:12px;padding:var(--s4);}
+}
+
+/* ─── Active page body offset (nav is fixed) ────────────── */
+body{padding-top:64px;}

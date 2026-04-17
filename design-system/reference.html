@@ -1,0 +1,1900 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ANOVA — Design System v1.0.1</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════════════════════
+   ANOVA DESIGN SYSTEM — v1.0 DEFINITIVO
+   Manual de Identidade Visual
+   Monocromático · Flat · Line-art · Blueprint
+   "Confiança que vira execução."
+   ═══════════════════════════════════════════════════════ */
+
+@font-face{font-family:'SF Pro Display';src:url('https://sf.abarber.me/SF-Pro-Display-Regular.otf') format('opentype');font-weight:400;font-display:swap}
+@font-face{font-family:'SF Pro Display';src:url('https://sf.abarber.me/SF-Pro-Display-Medium.otf') format('opentype');font-weight:500;font-display:swap}
+@font-face{font-family:'SF Pro Display';src:url('https://sf.abarber.me/SF-Pro-Display-Semibold.otf') format('opentype');font-weight:600;font-display:swap}
+@font-face{font-family:'SF Pro Display';src:url('https://sf.abarber.me/SF-Pro-Display-Bold.otf') format('opentype');font-weight:700;font-display:swap}
+@font-face{font-family:'SF Pro Display';src:url('https://sf.abarber.me/SF-Pro-Display-Light.otf') format('opentype');font-weight:300;font-display:swap}
+
+/* ─── PALETA MONOCROMÁTICA ABSOLUTA ───────────────────── */
+/* 6 tons. Zero exceções. Conforme manual de identidade.  */
+:root{
+  --onyx:      #000000;
+  --white:     #FFFFFF;
+  --charcoal:  #333333;
+  --grey:      #888888;
+  --silver:    #CCCCCC;
+  --snow:      #F8F8F8;
+
+  /* Semantic mapping — Light (padrão) */
+  --bg:        var(--white);
+  --bg-alt:    var(--snow);
+  --surface:   var(--white);
+  --border:    var(--silver);
+  --border-hi: var(--grey);
+  --text-1:    var(--onyx);
+  --text-2:    var(--charcoal);
+  --text-3:    var(--grey);
+  --accent:    var(--onyx);
+  --accent-inv:var(--white);
+
+  /* Typography — SF Pro Display + DM Mono */
+  --font:      'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --mono:      'DM Mono', 'SF Mono', monospace;
+
+  /* Scale — Apple-aligned hierarchy (from material)
+     Display/Body: SF Pro Display wght 300–800
+     Code: DM Mono wght 400–500 */
+  --text-hero: 76px;   /* Hero headline — Bold 700 */
+  --text-3xl:  56px;   /* Display — Bold 700 */
+  --text-2xl:  40px;   /* Heading 1 — Semibold 600 */
+  --text-xl:   28px;   /* Heading 2 — Semibold 600 */
+  --text-lg:   22px;   /* Heading 3 — Medium 500 */
+  --text-md:   18px;   /* Lead/subtitle — Regular 400 */
+  --text-base: 15px;   /* Body — Regular 400 */
+  --text-sm:   13px;   /* Labels, captions — Medium 500 */
+  --text-xs:   11px;   /* Badges, tokens, code — DM Mono */
+  --text-micro:10px;   /* Smallest — DM Mono uppercase */
+
+  /* Legacy aliases for backward compat */
+  --t-impact:  var(--text-hero);
+  --t-subtitle:var(--text-xl);
+  --t-section: var(--text-2xl);
+  --t-body:    var(--text-base);
+  --t-label:   var(--text-sm);
+  --t-aux:     var(--text-xs);
+  --t-micro:   var(--text-micro);
+
+  /* Spacing — 8pt grid */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px;
+  --s5:24px; --s6:32px; --s7:48px; --s8:64px; --s9:96px; --s10:128px;
+
+  /* Radius — generoso, moderno, Apple-style */
+  --r-sm:6px; --r-md:10px; --r-lg:16px; --r-xl:24px; --r-2xl:32px; --r-squircle:22%; --r-pill:99px;
+
+  /* ZERO sombras. Flat design absoluto. Regra 05 do manual. */
+  /* ZERO gradientes. Monocromático. Regra 01. */
+
+  /* Motion */
+  --ease:cubic-bezier(.25,.1,.25,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --ease-spring:cubic-bezier(.34,1.56,.64,1);
+  --dur:300ms;
+}
+
+/* ─── RESET ───────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text-1);font-family:var(--font);font-size:var(--text-base);line-height:1.6;-webkit-font-smoothing:antialiased}
+::selection{background:var(--text-1);color:var(--bg)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:99px}
+
+/* ─── LAYOUT ──────────────────────────────────────────── */
+.ds-layout{display:grid;grid-template-columns:220px 1fr;min-height:100vh}
+
+/* ─── SIDEBAR ─────────────────────────────────────────── */
+.ds-sidebar{
+  position:sticky;top:0;height:100vh;overflow-y:auto;
+  background:var(--bg-alt);border-right:1px solid var(--border);
+  padding:var(--s6) 0;display:flex;flex-direction:column;gap:2px;z-index:20;
+}
+/* Logo squircle */
+.sidebar-logo{
+  display:flex;align-items:center;gap:var(--s3);
+  padding:0 var(--s5) var(--s5);border-bottom:1px solid var(--border);margin-bottom:var(--s4);
+  cursor:pointer;
+}
+.logo-squircle{
+  width:36px;height:36px;background:var(--accent);
+  border-radius:var(--r-squircle);display:flex;align-items:center;justify-content:center;
+  padding:4px;
+  transition:transform .3s var(--ease-spring);
+}
+.sidebar-logo:hover .logo-squircle{transform:scale(.94)}
+.logo-squircle span{
+  font-family:var(--font);font-size:8px;font-weight:700;
+  letter-spacing:.1em;color:var(--accent-inv);
+  margin-right:-.1em; /* compensate trailing letter-spacing */
+  text-align:center;
+}
+.sidebar-brand{font-size:var(--t-label);font-weight:700;letter-spacing:.06em;color:var(--text-1);text-transform:uppercase}
+
+.nav-group{font-size:var(--t-micro);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);padding:var(--s4) var(--s5) var(--s1);font-family:var(--mono)}
+.nav-link{
+  display:flex;align-items:center;gap:var(--s2);padding:6px var(--s5);
+  color:var(--text-3);text-decoration:none;font-size:13px;
+  border-left:2px solid transparent;transition:all .2s var(--ease);
+}
+.nav-link:hover{color:var(--text-1);background:var(--bg-alt);border-left-color:var(--text-1)}
+.nav-link.active{color:var(--text-1);border-left-color:var(--text-1);font-weight:600}
+
+/* ─── MAIN ────────────────────────────────────────────── */
+.ds-main{padding:0 var(--s8) var(--s10);max-width:960px;overflow-x:hidden}
+
+/* ─── SCROLL REVEAL ───────────────────────────────────── */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out);will-change:opacity,transform}
+.rv.vis{opacity:1;transform:none}
+.rv-d1{transition-delay:.08s!important}.rv-d2{transition-delay:.16s!important}
+.rv-d3{transition-delay:.24s!important}.rv-d4{transition-delay:.32s!important}
+.rv-d5{transition-delay:.40s!important}.rv-d6{transition-delay:.48s!important}
+
+/* ═══════════════════════════════════════════════════════
+   HERO — Blueprint background
+   ═══════════════════════════════════════════════════════ */
+.hero{
+  position:relative;padding:var(--s10) 0 var(--s9);
+  border-bottom:1px solid var(--border);margin-bottom:var(--s9);
+  overflow:hidden;
+}
+.hero-canvas{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero-canvas canvas{width:100%;height:100%;display:block}
+.hero-content{position:relative;z-index:1}
+.hero-eyebrow{font-family:var(--mono);font-size:var(--text-xs);letter-spacing:.2em;text-transform:uppercase;color:var(--text-3);margin-bottom:var(--s3)}
+.hero-title{font-size:clamp(40px,6vw,var(--text-hero));font-weight:700;line-height:1.04;letter-spacing:-.04em;margin-bottom:var(--s4)}
+.hero-sub{font-size:var(--text-md);font-weight:300;color:var(--text-2);max-width:520px;line-height:1.7;margin-bottom:var(--s6)}
+.hero-meta{display:flex;gap:var(--s7);flex-wrap:wrap}
+.meta-item{display:flex;flex-direction:column;gap:2px}
+.meta-label{font-family:var(--mono);font-size:var(--t-micro);letter-spacing:.12em;text-transform:uppercase;color:var(--text-3)}
+.meta-val{font-family:var(--mono);font-size:12px;color:var(--text-2)}
+
+/* ═══════════════════════════════════════════════════════
+   SECTIONS
+   ═══════════════════════════════════════════════════════ */
+.section{margin-bottom:var(--s9);scroll-margin-top:var(--s7);padding-top:var(--s7)}
+.section-head{display:flex;align-items:baseline;gap:var(--s4);margin-bottom:var(--s6);padding-bottom:var(--s4);border-bottom:1px solid var(--border)}
+.section-num{font-family:var(--mono);font-size:var(--text-xs);color:var(--text-3)}
+.section-title{font-size:var(--text-xl);font-weight:700;letter-spacing:-.02em;text-transform:uppercase}
+.section-sub{font-size:var(--text-sm);color:var(--text-2);margin-top:2px;text-transform:none}
+.label{font-family:var(--mono);font-size:var(--text-micro);letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:var(--s3)}
+.badge{display:inline-flex;padding:2px var(--s3);border-radius:99px;font-family:var(--mono);font-size:var(--text-micro);font-weight:500;border:1px solid var(--border);color:var(--text-3)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4)}
+
+/* ═══════════════════════════════════════════════════════
+   01 — LOGO
+   ═══════════════════════════════════════════════════════ */
+.logo-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);margin-bottom:var(--s6)}
+.logo-block{
+  border:1px solid var(--border);border-radius:var(--r-xl);
+  padding:var(--s7) var(--s6);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:var(--s4);
+  min-height:180px;transition:border-color .2s;
+}
+.logo-block:hover{border-color:var(--text-1)}
+.logo-block-dark{background:var(--onyx)}
+.logo-block-label{font-family:var(--mono);font-size:var(--t-micro);color:var(--text-3);letter-spacing:.08em}
+.logo-block-dark .logo-block-label{color:var(--grey)}
+/* Squircle in showcase */
+.logo-sq{
+  width:64px;height:64px;border-radius:var(--r-squircle);
+  display:flex;align-items:center;justify-content:center;
+  padding:8px;
+}
+.logo-sq-dark{background:var(--onyx)}
+.logo-sq-light{background:var(--white);border:1px solid var(--silver)}
+.logo-sq span{font-family:var(--font);font-weight:700;font-size:10px;letter-spacing:.12em;margin-right:-.12em;text-align:center}
+.logo-sq-dark span{color:var(--white)}
+.logo-sq-light span{color:var(--onyx)}
+
+/* Exclusion zone */
+.exclusion-demo{
+  border:1px dashed var(--border);border-radius:var(--r-xl);
+  padding:var(--s6);display:flex;align-items:center;justify-content:center;
+  position:relative;margin-top:var(--s5);
+}
+.exclusion-inner{
+  position:relative;display:flex;align-items:center;gap:var(--s5);
+}
+.exclusion-zone{
+  position:absolute;inset:calc(var(--s4) * -1);
+  border:1px dashed var(--grey);border-radius:var(--r-xl);
+}
+.exclusion-label{
+  position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);
+  font-family:var(--mono);font-size:var(--t-micro);color:var(--grey);white-space:nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════
+   02 — PALETA
+   ═══════════════════════════════════════════════════════ */
+.color-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--s3);margin-bottom:var(--s5)}
+.color-swatch{
+  border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;
+  transition:transform .2s var(--ease);
+}
+.color-swatch:hover{transform:translateY(-2px)}
+.color-preview{height:64px}
+.color-info{padding:var(--s2) var(--s3) var(--s3)}
+.color-name{font-size:11px;font-weight:600;color:var(--text-1)}
+.color-hex{font-family:var(--mono);font-size:var(--t-micro);color:var(--text-3)}
+
+/* ═══════════════════════════════════════════════════════
+   03 — TIPOGRAFIA
+   ═══════════════════════════════════════════════════════ */
+.type-row{display:flex;align-items:baseline;gap:var(--s5);padding:var(--s4) 0;border-bottom:1px solid var(--border)}
+.type-meta{width:140px;flex-shrink:0;display:flex;flex-direction:column;gap:2px}
+.type-token{font-family:var(--mono);font-size:var(--t-micro);color:var(--text-3)}
+.type-spec{font-family:var(--mono);font-size:var(--t-micro);color:var(--text-2);font-weight:500}
+.type-sample{color:var(--text-1);line-height:1.2}
+/* Title emphasis rule */
+.emphasis-demo{
+  border:1px solid var(--border);border-radius:var(--r-xl);
+  padding:var(--s6);margin-top:var(--s5);
+}
+.emphasis-title{font-size:28px;font-weight:300;letter-spacing:-.01em;line-height:1.3}
+.emphasis-title strong{font-weight:700}
+.emphasis-note{font-family:var(--mono);font-size:var(--t-micro);color:var(--text-3);margin-top:var(--s3)}
+
+/* ═══════════════════════════════════════════════════════
+   04 — ESPAÇAMENTO
+   ═══════════════════════════════════════════════════════ */
+.space-row{display:flex;align-items:center;gap:var(--s5);padding:8px 0;border-bottom:1px solid var(--border)}
+.space-token{font-family:var(--mono);font-size:11px;color:var(--text-1);width:56px;flex-shrink:0;font-weight:500}
+.space-px{font-family:var(--mono);font-size:var(--t-micro);color:var(--text-3);width:32px;flex-shrink:0}
+.space-bar{height:3px;background:var(--text-1);border-radius:99px;opacity:.2;transform-origin:left}
+.space-row.rv .space-bar{transform:scaleX(0)}
+.space-row.rv.vis .space-bar{transform:scaleX(1);transition:transform .8s var(--ease-out)}
+
+/* ═══════════════════════════════════════════════════════
+   05 — COMPONENTES
+   ═══════════════════════════════════════════════════════ */
+/* Buttons — flat, no shadows */
+.comp-row{display:flex;gap:var(--s3);flex-wrap:wrap;align-items:center;margin-bottom:var(--s5)}
+.btn{
+  display:inline-flex;align-items:center;gap:var(--s2);
+  padding:10px var(--s5);border-radius:var(--r-md);
+  font-size:var(--t-label);font-weight:700;font-family:var(--font);
+  letter-spacing:.04em;text-transform:uppercase;
+  cursor:pointer;border:2px solid transparent;
+  transition:all .2s var(--ease);line-height:1;text-decoration:none;
+}
+.btn-primary{background:var(--accent);color:var(--accent-inv);border-color:var(--accent)}
+.btn-primary:hover{opacity:.85;transform:scale(.98)}
+.btn-outline{background:transparent;color:var(--text-1);border-color:var(--text-1)}
+.btn-outline:hover{background:var(--text-1);color:var(--bg)}
+
+/* Cards — flat, border only */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--s4);margin-bottom:var(--s5)}
+.comp-card{
+  border:1px solid var(--border);border-radius:var(--r-xl);
+  padding:var(--s5);transition:border-color .2s;
+}
+.comp-card:hover{border-color:var(--text-1)}
+.comp-card-title{font-weight:700;font-size:15px;margin-bottom:var(--s1)}
+.comp-card-desc{font-size:14px;color:var(--text-2);line-height:1.5}
+
+/* Metrics */
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:var(--s3);margin-bottom:var(--s5)}
+.metric-card{border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s5);transition:border-color .2s}
+.metric-card:hover{border-color:var(--text-1)}
+.metric-label{font-family:var(--mono);font-size:var(--t-micro);color:var(--text-3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:var(--s2)}
+.metric-value{font-size:var(--t-subtitle);font-weight:700;line-height:1;letter-spacing:-.02em}
+.metric-change{font-size:11px;font-weight:700;margin-top:var(--s1);font-family:var(--mono);letter-spacing:.02em}
+/* Positive — dark green metallic gradient */
+.metric-up{
+  background:linear-gradient(135deg, #1a3a2a 0%, #2d6b4f 30%, #4a9e72 60%, #6fc496 80%, #3d7a5a 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+/* Negative — orange to red metallic gradient */
+.metric-down{
+  background:linear-gradient(135deg, #8b3a00 0%, #c45200 25%, #e86800 50%, #d43d2f 75%, #9a2a1a 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+/* Inputs — flat */
+.input-demo{display:flex;flex-direction:column;gap:var(--s3);max-width:360px;margin-bottom:var(--s5)}
+.input-group{display:flex;flex-direction:column;gap:4px}
+.input-label{font-size:var(--t-aux);font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:.06em}
+.input{
+  width:100%;padding:10px var(--s4);background:var(--bg);
+  border:1px solid var(--border);border-radius:var(--r-md);
+  font-size:14px;color:var(--text-1);font-family:var(--font);
+  outline:none;transition:border-color .2s;
+}
+.input:focus{border-color:var(--text-1)}
+.input::placeholder{color:var(--text-3)}
+
+/* Nav bar */
+.nav-bar{
+  border:1px solid var(--border);border-radius:var(--r-xl);
+  padding:var(--s3) var(--s5);display:flex;align-items:center;
+  justify-content:space-between;margin-bottom:var(--s5);
+}
+.nav-bar-logo{font-size:15px;font-weight:700;letter-spacing:.04em}
+.nav-bar-links{display:flex;gap:var(--s6)}
+.nav-bar-link{font-size:13px;color:var(--text-3);text-decoration:none;font-weight:500;transition:color .2s}
+.nav-bar-link:hover{color:var(--text-1)}
+.nav-bar-cta{
+  background:var(--accent);color:var(--accent-inv);
+  padding:7px var(--s4);border-radius:var(--r-md);
+  font-size:var(--t-aux);font-weight:700;text-decoration:none;
+  letter-spacing:.04em;text-transform:uppercase;transition:opacity .2s;
+}
+.nav-bar-cta:hover{opacity:.85}
+
+/* ═══════════════════════════════════════════════════════
+   06 — MOTIVOS GRÁFICOS
+   ═══════════════════════════════════════════════════════ */
+.pattern-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4);margin-bottom:var(--s5)}
+.pattern-card{
+  border:1px solid var(--border);border-radius:var(--r-xl);
+  overflow:hidden;aspect-ratio:4/3;position:relative;cursor:crosshair;
+  transition:border-color .2s;
+}
+.pattern-card:hover{border-color:var(--text-1)}
+.pattern-card canvas{width:100%;height:100%;display:block}
+.pattern-label{
+  position:absolute;bottom:var(--s3);left:var(--s3);
+  font-family:var(--mono);font-size:var(--t-micro);color:var(--text-3);
+}
+
+/* ═══════════════════════════════════════════════════════
+   07 — 10 REGRAS
+   ═══════════════════════════════════════════════════════ */
+.rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:var(--s5)}
+.rule-item{display:flex;gap:var(--s3);padding:var(--s4) 0;border-bottom:1px solid var(--border)}
+.rule-num{font-size:var(--t-subtitle);font-weight:700;color:var(--text-1);width:40px;flex-shrink:0;line-height:1}
+.rule-text{font-size:14px;color:var(--text-2);line-height:1.5}
+.rule-text strong{color:var(--text-1);font-weight:700}
+.rules-grid .rule-item:nth-child(odd){padding-right:var(--s5)}
+.rules-grid .rule-item:nth-child(even){padding-left:var(--s5);border-left:1px solid var(--border)}
+
+/* Code block */
+.code-block{background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s5);font-family:var(--mono);font-size:11px;line-height:1.9;color:var(--text-2);overflow-x:auto;margin-top:var(--s4)}
+.cv{color:var(--text-1)}.cs{color:var(--grey)}.cc{color:var(--silver)}
+
+/* Changelog */
+.changelog-item{display:grid;grid-template-columns:120px 1fr;gap:var(--s5);padding:var(--s4) 0;border-bottom:1px solid var(--border)}
+.changelog-date{font-family:var(--mono);font-size:var(--t-micro);color:var(--text-3)}
+.changelog-desc{font-size:13px;color:var(--text-2)}
+.changelog-desc strong{color:var(--text-1)}
+
+/* Impact phrase */
+.impact-block{
+  border-left:3px solid var(--text-1);padding:var(--s5) var(--s6);
+  margin:var(--s6) 0;
+}
+.impact-text{font-size:20px;font-weight:400;line-height:1.6;color:var(--text-1)}
+
+/* ═══════════════════════════════════════════════════════
+   EXTENDED COMPONENTS — Forms, Tables, Charts, etc.
+   ═══════════════════════════════════════════════════════ */
+
+/* ── FORMS ──────────────────────────────────────────── */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);max-width:640px;margin-bottom:var(--s5)}
+.form-full{grid-column:1/-1}
+.field{display:flex;flex-direction:column;gap:4px}
+.field-label{font-size:var(--text-xs);font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:.06em;font-family:var(--mono)}
+.field-hint{font-size:var(--text-micro);color:var(--text-3);font-family:var(--mono)}
+.field-error{font-size:var(--text-micro);color:var(--charcoal);font-weight:600;font-family:var(--mono)}
+.field-error::before{content:'⚠ '}
+
+/* Select */
+.select-wrap{position:relative}
+.select{
+  width:100%;padding:10px var(--s4);padding-right:36px;background:var(--bg);
+  border:1px solid var(--border);border-radius:var(--r-md);
+  font-size:14px;color:var(--text-1);font-family:var(--font);
+  appearance:none;-webkit-appearance:none;outline:none;cursor:pointer;transition:border-color .2s;
+}
+.select:focus{border-color:var(--text-1)}
+.select-arrow{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:16px;height:16px;pointer-events:none}
+.select-arrow svg{width:16px;height:16px;stroke:var(--text-3);fill:none;stroke-width:1.5}
+
+/* Textarea */
+.textarea{
+  width:100%;padding:12px var(--s4);background:var(--bg);
+  border:1px solid var(--border);border-radius:var(--r-md);
+  font-size:14px;color:var(--text-1);font-family:var(--font);
+  outline:none;resize:vertical;min-height:100px;transition:border-color .2s;line-height:1.6;
+}
+.textarea:focus{border-color:var(--text-1)}
+.textarea::placeholder{color:var(--text-3)}
+
+/* Checkbox + Radio */
+.check-group{display:flex;flex-direction:column;gap:var(--s3)}
+.check-item{display:flex;align-items:center;gap:var(--s2);cursor:pointer;font-size:14px;color:var(--text-2)}
+.check-box,.radio-box{
+  width:18px;height:18px;border:1.5px solid var(--border);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .15s;cursor:pointer;background:var(--bg);
+}
+.check-box{border-radius:var(--r-sm)}
+.radio-box{border-radius:50%}
+.check-box.checked{background:var(--onyx);border-color:var(--onyx)}
+.check-box.checked::after{content:'✓';color:var(--white);font-size:11px;font-weight:700}
+.radio-box.checked{border-color:var(--onyx)}
+.radio-box.checked::after{content:'';width:8px;height:8px;background:var(--onyx);border-radius:50%}
+
+/* Toggle */
+.toggle-row{display:flex;align-items:center;gap:var(--s3);font-size:14px;color:var(--text-2)}
+.toggle{
+  width:40px;height:22px;border-radius:11px;background:var(--border);
+  position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;
+}
+.toggle.on{background:var(--onyx)}
+.toggle-knob{
+  position:absolute;top:2px;left:2px;width:18px;height:18px;
+  border-radius:50%;background:var(--white);transition:transform .2s var(--ease-spring);
+}
+.toggle.on .toggle-knob{transform:translateX(18px)}
+
+/* File / Image upload */
+.upload-zone{
+  border:1.5px dashed var(--border);border-radius:var(--r-xl);
+  padding:var(--s7) var(--s5);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:var(--s3);
+  cursor:pointer;transition:border-color .2s,background .2s;text-align:center;
+}
+.upload-zone:hover{border-color:var(--text-1);background:var(--bg-alt)}
+.upload-zone svg{width:32px;height:32px;stroke:var(--text-3);fill:none;stroke-width:1.5}
+.upload-zone:hover svg{stroke:var(--text-1)}
+.upload-text{font-size:14px;color:var(--text-2)}
+.upload-hint{font-size:var(--text-xs);color:var(--text-3);font-family:var(--mono)}
+.upload-preview{
+  width:80px;height:80px;border-radius:var(--r-md);border:1px solid var(--border);
+  background:var(--bg-alt);display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+
+/* ── TABLES ─────────────────────────────────────────── */
+.tbl-wrap{border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;margin-bottom:var(--s4)}
+.tbl-header{display:flex;align-items:center;justify-content:space-between;padding:var(--s4) var(--s5);border-bottom:1px solid var(--border);background:var(--bg)}
+.tbl-title{font-size:15px;font-weight:700;display:flex;align-items:center;gap:var(--s2)}
+.tbl-count{font-family:var(--mono);font-size:var(--text-micro);background:var(--bg-alt);border:1px solid var(--border);border-radius:99px;padding:2px 8px;color:var(--text-3);font-weight:500}
+.tbl-search{padding:7px 12px;border:1px solid var(--border);border-radius:var(--r-md);font-size:13px;font-family:var(--font);width:200px;outline:none;transition:border-color .15s;background:var(--bg-alt);color:var(--text-1)}
+.tbl-search:focus{border-color:var(--text-1);background:var(--bg)}
+.tbl-search::placeholder{color:var(--text-3)}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{
+  font-family:var(--mono);font-size:var(--text-micro);font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);
+  text-align:left;padding:10px var(--s5);background:var(--bg-alt);border-bottom:1px solid var(--border);
+  cursor:pointer;user-select:none;transition:color .15s;white-space:nowrap;
+}
+.tbl th:hover{color:var(--text-1)}
+.tbl th.align-r{text-align:right}
+.tbl th .sort-ico{display:inline-flex;flex-direction:column;gap:1px;margin-left:4px;vertical-align:middle;opacity:.3;transition:opacity .15s}
+.tbl th:hover .sort-ico{opacity:.6}
+.tbl th.sorted .sort-ico{opacity:1}
+.sort-ico span{display:block;width:0;height:0;border-left:3px solid transparent;border-right:3px solid transparent}
+.sort-ico .up{border-bottom:3.5px solid currentColor}
+.sort-ico .dn{border-top:3.5px solid currentColor}
+.tbl td{padding:14px var(--s5);border-bottom:1px solid var(--border);font-size:14px;vertical-align:middle}
+.tbl tbody tr{transition:background .12s var(--ease)}
+.tbl tbody tr:hover{background:var(--bg-alt)}
+.tbl tbody tr:last-child td{border-bottom:none}
+.tbl tbody tr.selected{background:var(--bg-alt)}
+.tbl tbody tr.selected td:first-child{box-shadow:inset 3px 0 0 var(--onyx)}
+
+/* Cell types */
+.cell-id{font-family:var(--mono);font-size:12px;color:var(--text-3);font-weight:500;white-space:nowrap}
+.cell-client{display:flex;align-items:center;gap:var(--s3)}
+.cell-client-name{font-weight:600;font-size:14px;color:var(--text-1)}
+.cell-client-sub{font-size:12px;color:var(--text-3);margin-top:1px}
+.cell-avatar{width:32px;height:32px;border-radius:50%;background:var(--onyx);color:var(--white);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;font-weight:700;flex-shrink:0}
+.cell-avatar-light{background:var(--bg-alt);color:var(--text-2);border:1px solid var(--border)}
+.cell-meta{font-size:13px;color:var(--text-2)}
+.cell-value{font-family:var(--mono);font-size:14px;font-weight:600;text-align:right;letter-spacing:.01em}
+.cell-date{font-family:var(--mono);font-size:12px;color:var(--text-3);white-space:nowrap}
+.cell-actions{display:flex;gap:6px;justify-content:flex-end}
+.cell-action{
+  width:28px;height:28px;border-radius:var(--r-sm);border:1px solid transparent;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  transition:all .12s;background:none;
+}
+.cell-action:hover{border-color:var(--border);background:var(--bg-alt)}
+.cell-action svg{width:15px;height:15px;stroke:var(--text-3);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.cell-action:hover svg{stroke:var(--text-1)}
+/* Checkbox in table */
+.tbl-chk{width:16px;height:16px;border:1.5px solid var(--border);border-radius:3px;cursor:pointer;appearance:none;-webkit-appearance:none;background:var(--bg);transition:all .12s;flex-shrink:0}
+.tbl-chk:checked{background:var(--onyx);border-color:var(--onyx)}
+.tbl-chk:checked::after{content:'✓';color:var(--white);font-size:10px;display:flex;align-items:center;justify-content:center;height:100%}
+
+/* Status badges — monochrome system */
+.status{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:4px 12px;border-radius:99px;font-size:var(--text-xs);
+  font-weight:600;font-family:var(--mono);letter-spacing:.02em;
+}
+.status-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.status-active{background:var(--onyx);color:var(--white)}
+.status-active .status-dot{background:var(--white)}
+.status-pending{background:var(--bg-alt);border:1px solid var(--border);color:var(--text-2)}
+.status-pending .status-dot{background:var(--text-3)}
+.status-progress{background:var(--bg);border:1px solid var(--charcoal);color:var(--charcoal)}
+.status-progress .status-dot{background:var(--charcoal);animation:pulse 2s ease infinite}
+.status-error{background:var(--bg);border:1px solid var(--grey);color:var(--grey)}
+.status-error .status-dot{background:var(--grey)}
+.status-none{background:var(--bg);border:1px solid var(--silver);color:var(--silver)}
+.status-none .status-dot{border:1.5px solid var(--silver);background:transparent}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* Pagination */
+.pagination{display:flex;align-items:center;gap:4px;justify-content:center;padding:var(--s4) 0}
+.page-btn{
+  width:32px;height:32px;display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--border);border-radius:var(--r-md);font-size:12px;
+  font-family:var(--mono);cursor:pointer;background:var(--bg);color:var(--text-2);
+  transition:all .15s;font-weight:500;
+}
+.page-btn:hover{border-color:var(--text-1);color:var(--text-1)}
+.page-btn.active{background:var(--onyx);color:var(--white);border-color:var(--onyx)}
+.page-nav{padding:6px 14px;width:auto;font-size:12px;font-weight:600}
+
+/* ── CHARTS ─────────────────────────────────────────── */
+.chart-card{border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s5);margin-bottom:var(--s4);transition:border-color .2s}
+.chart-card:hover{border-color:var(--text-1)}
+.chart-title{font-size:15px;font-weight:700;margin-bottom:var(--s1)}
+.chart-sub{font-size:var(--text-xs);color:var(--text-3);font-family:var(--mono);margin-bottom:var(--s4)}
+.chart-canvas{width:100%;display:block}
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);margin-bottom:var(--s4)}
+.chart-legend{display:flex;gap:var(--s4);flex-wrap:wrap;margin-top:var(--s3)}
+.chart-legend-item{display:flex;align-items:center;gap:6px;font-size:var(--text-xs);color:var(--text-3);font-family:var(--mono)}
+.legend-line{width:16px;height:2px;border-radius:1px}
+.legend-dot{width:8px;height:8px;border-radius:50%}
+
+/* ── ALERTS ─────────────────────────────────────────── */
+.alert{
+  display:flex;align-items:flex-start;gap:var(--s3);
+  padding:var(--s4) var(--s5);border:1px solid var(--border);border-radius:var(--r-xl);
+  margin-bottom:var(--s3);transition:border-color .2s;
+}
+.alert svg{width:18px;height:18px;stroke:var(--text-2);fill:none;stroke-width:1.5;flex-shrink:0;margin-top:1px}
+.alert-content{flex:1}
+.alert-title{font-size:14px;font-weight:700;margin-bottom:2px}
+.alert-desc{font-size:13px;color:var(--text-2)}
+.alert-action{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--text-1);cursor:pointer;margin-top:var(--s2);font-family:var(--mono)}
+.alert-info{background:var(--bg-alt)}
+.alert-warn{border-color:var(--grey)}
+.alert-critical{border-color:var(--onyx);border-width:2px}
+
+/* ── PROGRESS / STEPS ──────────────────────────────── */
+.progress-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:var(--onyx);border-radius:2px;transition:width .6s var(--ease-out)}
+.steps{display:flex;align-items:center;gap:0;margin-bottom:var(--s5)}
+.step{display:flex;align-items:center;gap:var(--s2);flex:1}
+.step-num{
+  width:32px;height:32px;border-radius:50%;border:2px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:12px;font-weight:700;color:var(--text-3);
+  flex-shrink:0;transition:all .2s;
+}
+.step.done .step-num{background:var(--onyx);color:var(--white);border-color:var(--onyx)}
+.step.current .step-num{border-color:var(--onyx);color:var(--onyx)}
+.step-label{font-size:12px;color:var(--text-3);font-weight:500}
+.step.done .step-label,.step.current .step-label{color:var(--text-1)}
+.step-line{flex:1;height:1px;background:var(--border);margin:0 var(--s2)}
+.step.done .step-line{background:var(--onyx)}
+
+/* ── AVATARS ────────────────────────────────────────── */
+.avatar{
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-weight:700;flex-shrink:0;
+}
+.avatar-sm{width:28px;height:28px;font-size:10px}
+.avatar-md{width:36px;height:36px;font-size:12px}
+.avatar-lg{width:48px;height:48px;font-size:14px}
+.avatar-dark{background:var(--onyx);color:var(--white)}
+.avatar-light{background:var(--bg-alt);color:var(--text-2);border:1px solid var(--border)}
+.avatar-group{display:flex}
+.avatar-group .avatar{margin-left:-8px;border:2px solid var(--white)}
+.avatar-group .avatar:first-child{margin-left:0}
+
+/* ── PRODUCT CARD ───────────────────────────────────── */
+.product-card{
+  border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;
+  transition:border-color .2s;
+}
+.product-card:hover{border-color:var(--text-1)}
+.product-img{height:180px;background:var(--bg-alt);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border)}
+.product-img svg{width:32px;height:32px;stroke:var(--border);fill:none;stroke-width:1.5}
+.product-body{padding:var(--s5)}
+.product-tag{font-family:var(--mono);font-size:var(--text-micro);color:var(--text-3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:var(--s2)}
+.product-name{font-size:17px;font-weight:700;margin-bottom:var(--s1)}
+.product-desc{font-size:13px;color:var(--text-2);line-height:1.5;margin-bottom:var(--s4)}
+.product-footer{display:flex;align-items:center;justify-content:space-between;padding-top:var(--s3);border-top:1px solid var(--border)}
+.product-price{font-size:20px;font-weight:700}
+.product-price sub{font-size:12px;color:var(--text-3);font-weight:400}
+
+/* ── MODAL ──────────────────────────────────────────── */
+.modal-demo{border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;margin-bottom:var(--s5)}
+.modal-overlay{background:rgba(0,0,0,.04);padding:var(--s7)}
+.modal-box{
+  background:var(--white);border:1px solid var(--border);border-radius:var(--r-xl);
+  padding:var(--s6);max-width:420px;margin:0 auto;
+}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--s4)}
+.modal-title{font-size:18px;font-weight:700}
+.modal-close{width:28px;height:28px;border:1px solid var(--border);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .15s;background:none}
+.modal-close:hover{border-color:var(--text-1)}
+.modal-close svg{width:14px;height:14px;stroke:var(--text-3);fill:none;stroke-width:2}
+.modal-body{font-size:14px;color:var(--text-2);line-height:1.6;margin-bottom:var(--s5)}
+.modal-actions{display:flex;gap:var(--s3);justify-content:flex-end}
+
+/* ── EMPTY STATE ────────────────────────────────────── */
+.empty{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:var(--s9) var(--s5);text-align:center;
+}
+.empty svg{width:48px;height:48px;stroke:var(--border);fill:none;stroke-width:1.5;margin-bottom:var(--s4)}
+.empty-title{font-size:17px;font-weight:700;margin-bottom:var(--s2)}
+.empty-desc{font-size:14px;color:var(--text-3);max-width:360px;margin-bottom:var(--s5)}
+
+/* ── TABS ───────────────────────────────────────────── */
+.tab-bar{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:var(--s5)}
+.tab-item{
+  padding:10px 20px;font-size:13px;font-weight:500;cursor:pointer;
+  color:var(--text-3);border-bottom:2px solid transparent;transition:all .15s;
+  background:none;border-top:none;border-left:none;border-right:none;font-family:var(--font);
+}
+.tab-item:hover{color:var(--text-1)}
+.tab-item.active{color:var(--text-1);border-bottom-color:var(--onyx);font-weight:600}
+.tab-count{font-family:var(--mono);font-size:10px;background:var(--onyx);color:var(--white);border-radius:99px;padding:1px 6px;margin-left:6px}
+
+/* ── BREADCRUMBS ────────────────────────────────────── */
+.breadcrumb{display:flex;align-items:center;gap:var(--s2);margin-bottom:var(--s4)}
+.breadcrumb-item{font-family:var(--mono);font-size:var(--text-micro);color:var(--text-3);text-decoration:none;transition:color .15s;letter-spacing:.04em}
+.breadcrumb-item:hover{color:var(--text-1)}
+.breadcrumb-current{color:var(--text-1);font-weight:600}
+.breadcrumb-sep{color:var(--border);font-size:10px}
+
+/* ── TOOLTIP ────────────────────────────────────────── */
+.tooltip-demo{position:relative;display:inline-block}
+.tooltip{
+  position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+  background:var(--onyx);color:var(--white);font-family:var(--mono);font-size:var(--text-xs);
+  padding:6px 12px;border-radius:var(--r-md);white-space:nowrap;pointer-events:none;
+  opacity:0;transition:opacity .15s;
+}
+.tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:4px solid transparent;border-top-color:var(--onyx)}
+.tooltip-demo:hover .tooltip{opacity:1}
+
+/* ═══════════════════════════════════════════════════════
+   SCREEN SHOWCASES — Login, Sidebar, Central Alocação
+   ═══════════════════════════════════════════════════════ */
+
+/* ── SCREEN FRAME ──────────────────────────────────── */
+.screen-frame{
+  border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;
+  margin-bottom:var(--s5);transition:border-color .2s;
+}
+.screen-frame:hover{border-color:var(--text-1)}
+.screen-bar{height:32px;background:var(--bg-alt);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 var(--s3);gap:6px}
+.screen-dot{width:8px;height:8px;border-radius:50%;border:1px solid var(--border)}
+.screen-body{background:var(--bg)}
+
+/* ── LOGIN ─────────────────────────────────────────── */
+.login-bg{display:flex;align-items:center;justify-content:center;min-height:480px;background:var(--bg-alt);position:relative;overflow:hidden}
+.login-bg canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.login-card{
+  background:var(--white);border:1px solid var(--border);border-radius:var(--r-xl);
+  padding:var(--s7) var(--s6);width:380px;max-width:90%;position:relative;z-index:1;
+  display:flex;flex-direction:column;align-items:center;
+}
+.login-logo{margin-bottom:var(--s5)}
+.login-title{font-size:var(--text-xl);font-weight:700;letter-spacing:-.02em;text-align:center;margin-bottom:var(--s1)}
+.login-sub{font-size:var(--text-sm);color:var(--text-3);margin-bottom:var(--s6);text-align:center}
+.login-field{width:100%;margin-bottom:var(--s4)}
+.login-field .input{padding:12px var(--s4)}
+.login-forgot{font-size:var(--text-xs);color:var(--text-3);align-self:flex-end;margin-bottom:var(--s5);cursor:pointer;transition:color .15s;font-family:var(--mono)}
+.login-forgot:hover{color:var(--text-1)}
+.login-btn{width:100%;padding:14px;border-radius:var(--r-md);background:var(--onyx);color:var(--white);border:none;font-size:14px;font-weight:700;font-family:var(--font);letter-spacing:.04em;cursor:pointer;transition:opacity .15s}
+.login-btn:hover{opacity:.85}
+.login-pw-wrap{position:relative;width:100%}
+.login-pw-wrap .input{padding-right:40px}
+.login-pw-toggle{position:absolute;right:12px;top:50%;transform:translateY(-50%);border:none;background:none;cursor:pointer;padding:0}
+.login-pw-toggle svg{width:18px;height:18px;stroke:var(--text-3);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.login-pw-toggle:hover svg{stroke:var(--text-1)}
+
+/* ── SIDEBAR SHOWCASE ──────────────────────────────── */
+.sidebar-demo{display:grid;grid-template-columns:64px 220px 1fr;height:400px;overflow:hidden}
+.sb-col{background:var(--bg-alt);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:var(--s4) 0;gap:4px}
+.sb-exp{background:var(--bg-alt);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:var(--s5) 0}
+.sb-exp-head{display:flex;align-items:center;gap:var(--s3);padding:0 var(--s5) var(--s5);border-bottom:1px solid var(--border);margin-bottom:var(--s4)}
+.sb-exp-brand{font-size:var(--text-sm);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.sb-exp-group{font-family:var(--mono);font-size:var(--text-micro);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);padding:var(--s4) var(--s5) var(--s1)}
+.sb-exp-link{display:flex;align-items:center;gap:var(--s2);padding:7px var(--s5);color:var(--text-3);font-size:13px;border-left:2px solid transparent;transition:all .15s;cursor:pointer}
+.sb-exp-link:hover{color:var(--text-1);border-left-color:var(--text-1)}
+.sb-exp-link.on{color:var(--text-1);border-left-color:var(--text-1);font-weight:600}
+.sb-content{padding:var(--s5);display:flex;flex-direction:column;gap:var(--s3);background:var(--white)}
+.sb-content-title{font-size:var(--text-lg);font-weight:700;color:var(--text-3)}
+
+/* ── ALLOCATION FORM ───────────────────────────────── */
+.alloc-demo{padding:var(--s5);background:var(--white)}
+.alloc-head{display:flex;align-items:center;gap:var(--s3);margin-bottom:var(--s5)}
+.alloc-back{width:32px;height:32px;border:1px solid var(--border);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .15s;background:none}
+.alloc-back:hover{border-color:var(--text-1)}
+.alloc-back svg{width:16px;height:16px;stroke:var(--text-2);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.alloc-form-card{border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s5);margin-bottom:var(--s4)}
+.alloc-search{display:flex;align-items:center;gap:var(--s3);padding-bottom:var(--s4);border-bottom:1px solid var(--border);margin-bottom:var(--s4)}
+.alloc-search-input{flex:1;padding:10px var(--s4);border:1px solid var(--border);border-radius:var(--r-md);font-size:14px;font-family:var(--font);outline:none;transition:border-color .15s}
+.alloc-search-input:focus{border-color:var(--text-1)}
+.alloc-search-btn{width:36px;height:36px;border:1px solid var(--border);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;cursor:pointer;background:none;transition:border-color .15s}
+.alloc-search-btn:hover{border-color:var(--text-1)}
+.alloc-search-btn svg{width:16px;height:16px;stroke:var(--text-3);fill:none;stroke-width:1.5}
+.alloc-client-empty{display:flex;align-items:center;gap:var(--s3);padding:var(--s3) 0;color:var(--text-3);font-size:14px}
+.alloc-client-empty svg{width:28px;height:28px;stroke:var(--silver);fill:none;stroke-width:1.5}
+.alloc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--s4);margin-bottom:var(--s4)}
+.alloc-g2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);margin-bottom:var(--s4)}
+.alloc-footer{display:flex;align-items:center;justify-content:flex-end;gap:var(--s3);padding-top:var(--s4);border-top:1px solid var(--border)}
+.alloc-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border:1px solid var(--border);border-radius:99px;font-family:var(--mono);font-size:var(--text-xs);color:var(--text-3)}
+.alloc-time{font-family:var(--mono);font-size:var(--text-xs);color:var(--text-3)}
+.alloc-assets{margin-top:var(--s4)}
+.alloc-assets-title{font-size:16px;font-weight:700;margin-bottom:var(--s3)}
+.alloc-empty-box{border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s7);text-align:center;color:var(--text-3);font-size:14px}
+
+@media(max-width:768px){
+  .ds-layout{grid-template-columns:1fr}
+  .ds-sidebar{position:static;height:auto}
+  .ds-main{padding:var(--s5)}
+  .g2,.logo-grid,.rules-grid,.pattern-grid,.color-grid{grid-template-columns:1fr}
+  .nav-bar-links{display:none}
+}
+</style>
+</head>
+<body>
+<div class="ds-layout">
+
+<!-- ══ SIDEBAR ══════════════════════════════════════════ -->
+<aside class="ds-sidebar">
+  <div class="sidebar-logo" id="anovaLogo">
+    <div class="logo-squircle"><span>ANOVA</span></div>
+    <div class="sidebar-brand">Anova</div>
+  </div>
+
+  <span class="nav-group">Identidade</span>
+  <a href="#logo" class="nav-link">Logo</a>
+  <a href="#paleta" class="nav-link">Paleta</a>
+  <a href="#tipografia" class="nav-link">Tipografia</a>
+  <a href="#espacamento" class="nav-link">Espaçamento</a>
+
+  <span class="nav-group">Visual</span>
+  <a href="#motivos" class="nav-link">Motivos Gráficos</a>
+  <a href="#layout" class="nav-link">Layout</a>
+
+  <span class="nav-group">Componentes</span>
+  <a href="#botoes" class="nav-link">Botões</a>
+  <a href="#cards" class="nav-link">Cards</a>
+  <a href="#metrics" class="nav-link">Métricas</a>
+  <a href="#inputs" class="nav-link">Inputs</a>
+  <a href="#navcomp" class="nav-link">Navegação</a>
+
+  <span class="nav-group">Plataforma</span>
+  <a href="#forms" class="nav-link">Formulários</a>
+  <a href="#tabelas" class="nav-link">Tabelas</a>
+  <a href="#graficos" class="nav-link">Gráficos</a>
+  <a href="#alertas" class="nav-link">Alertas</a>
+  <a href="#progress" class="nav-link">Progress</a>
+  <a href="#avatars" class="nav-link">Avatares</a>
+  <a href="#produto" class="nav-link">Produto &amp; Modal</a>
+  <a href="#navigation" class="nav-link">Estados</a>
+
+  <span class="nav-group">Telas</span>
+  <a href="#tela-login" class="nav-link">Login</a>
+  <a href="#tela-sidebar" class="nav-link">Sidebar</a>
+  <a href="#tela-alocacao" class="nav-link">Central de Alocação</a>
+
+  <span class="nav-group">Sistema</span>
+  <a href="#regras" class="nav-link">10 Regras</a>
+  <a href="#tokens" class="nav-link">Tokens</a>
+  <a href="#changelog" class="nav-link">Changelog</a>
+
+</aside>
+
+<!-- ══ MAIN ════════════════════════════════════════════ -->
+<main class="ds-main">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-canvas"><canvas id="heroCanvas"></canvas></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow rv">ANOVA — Design System v1.0.1</p>
+      <h1 class="hero-title rv rv-d1">Confiança que<br>vira execução.</h1>
+      <p class="hero-sub rv rv-d2">O sistema visual definitivo da Anova. Monocromático, flat, line-art. 6 tons, zero exceções. Fiel ao Manual de Identidade Visual.</p>
+      <div class="hero-meta rv rv-d3">
+        <div class="meta-item"><span class="meta-label">Versão</span><span class="meta-val">1.0</span></div>
+        <div class="meta-item"><span class="meta-label">Paleta</span><span class="meta-val">Monocromática</span></div>
+        <div class="meta-item"><span class="meta-label">Estilo</span><span class="meta-val">Flat · Line-art</span></div>
+        <div class="meta-item"><span class="meta-label">Foco</span><span class="meta-val">Light Mode</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 01 — LOGO -->
+  <section class="section" id="logo">
+    <div class="section-head rv"><span class="section-num">01</span><div><h2 class="section-title">A Logo</h2><p class="section-sub">Variantes oficiais · Quatro versões para qualquer contexto</p></div></div>
+    <div class="logo-grid">
+      <div class="logo-block rv rv-d1"><div class="logo-sq logo-sq-dark"><span>ANOVA</span></div><span class="logo-block-label">Principal (Fundo Claro)</span></div>
+      <div class="logo-block logo-block-dark rv rv-d2"><div class="logo-sq logo-sq-light"><span>ANOVA</span></div><span class="logo-block-label">Invertida (Fundo Escuro)</span></div>
+      <div class="logo-block rv rv-d3" style="background:var(--bg-alt)"><div style="font-size:20px;font-weight:700;letter-spacing:.08em">ANOVA</div><span class="logo-block-label">Perfil Claro</span></div>
+      <div class="logo-block logo-block-dark rv rv-d4"><div style="font-size:20px;font-weight:700;letter-spacing:.08em;color:#fff">ANOVA</div><span class="logo-block-label">Perfil Escuro</span></div>
+    </div>
+    <div class="label rv">Zona de Exclusão</div>
+    <div class="exclusion-demo rv rv-d1">
+      <div class="exclusion-inner">
+        <div class="exclusion-zone"></div>
+        <div class="logo-sq logo-sq-dark" style="width:80px;height:80px"><span style="font-size:12px">ANOVA</span></div>
+        <div style="font-family:var(--mono);font-size:var(--t-micro);color:var(--grey)">← Altura do "A" →<br>como margem mínima</div>
+      </div>
+      <div class="exclusion-label">Zona de Exclusão — protegendo a integridade da marca</div>
+    </div>
+  </section>
+
+  <!-- 02 — PALETA -->
+  <section class="section" id="paleta">
+    <div class="section-head rv"><span class="section-num">02</span><div><h2 class="section-title">Paleta de Cores</h2><p class="section-sub">Monocromática Absoluta — Seis tons. Zero exceções.</p></div></div>
+    <div class="color-grid">
+      <div class="color-swatch rv rv-d1"><div class="color-preview" style="background:#000"></div><div class="color-info"><div class="color-name">Preto (Onyx)</div><div class="color-hex">#000000</div></div></div>
+      <div class="color-swatch rv rv-d2"><div class="color-preview" style="background:#fff;border-bottom:1px solid #eee"></div><div class="color-info"><div class="color-name">Branco</div><div class="color-hex">#FFFFFF</div></div></div>
+      <div class="color-swatch rv rv-d3"><div class="color-preview" style="background:#333"></div><div class="color-info"><div class="color-name">Charcoal</div><div class="color-hex">#333333</div></div></div>
+      <div class="color-swatch rv rv-d4"><div class="color-preview" style="background:#888"></div><div class="color-info"><div class="color-name">Grey</div><div class="color-hex">#888888</div></div></div>
+      <div class="color-swatch rv rv-d5"><div class="color-preview" style="background:#ccc"></div><div class="color-info"><div class="color-name">Silver</div><div class="color-hex">#CCCCCC</div></div></div>
+      <div class="color-swatch rv rv-d6"><div class="color-preview" style="background:#f8f8f8;border-bottom:1px solid #eee"></div><div class="color-info"><div class="color-name">Snow</div><div class="color-hex">#F8F8F8</div></div></div>
+    </div>
+    <div class="label rv">Aplicação Fundo Claro vs Escuro</div>
+    <div class="g2 rv rv-d1">
+      <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s5);background:#fff">
+        <div style="display:flex;justify-content:flex-end;margin-bottom:var(--s3)"><div class="logo-sq logo-sq-dark" style="width:32px;height:32px"><span style="font-size:6px">ANOVA</span></div></div>
+        <div style="font-weight:700;font-size:16px;color:#000;margin-bottom:var(--s2)">Título de Exemplo</div>
+        <div style="font-size:13px;color:#333;margin-bottom:var(--s4)">Texto de corpo para o modo claro, demonstrando legibilidade e contraste.</div>
+        <div class="btn btn-primary" style="font-size:11px;padding:8px 16px">CTA Button</div>
+      </div>
+      <div style="border:1px solid #333;border-radius:var(--r-xl);padding:var(--s5);background:#000">
+        <div style="display:flex;justify-content:flex-end;margin-bottom:var(--s3)"><div class="logo-sq logo-sq-light" style="width:32px;height:32px"><span style="font-size:6px">ANOVA</span></div></div>
+        <div style="font-weight:700;font-size:16px;color:#fff;margin-bottom:var(--s2)">Título de Exemplo</div>
+        <div style="font-size:13px;color:#ccc;margin-bottom:var(--s4)">Texto de corpo para o modo escuro, demonstrando legibilidade e contraste.</div>
+        <div style="display:inline-flex;padding:8px 16px;border:2px solid #fff;border-radius:var(--r-md);color:#fff;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase">CTA Button</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — TIPOGRAFIA -->
+  <section class="section" id="tipografia">
+    <div class="section-head rv"><span class="section-num">03</span><div><h2 class="section-title">Tipografia</h2><p class="section-sub">SF Pro Display (Apple system stack) · DM Mono para código</p></div></div>
+
+    <div class="label rv">Famílias</div>
+    <div class="g2 rv rv-d1" style="margin-bottom:var(--s6)">
+      <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s5);transition:border-color .2s" onmouseover="this.style.borderColor='var(--text-1)'" onmouseout="this.style.borderColor='var(--border)'">
+        <div class="label">Display / Body</div>
+        <div style="font-size:36px;font-weight:700;letter-spacing:-.03em;line-height:1;margin-bottom:var(--s2)">SF Pro</div>
+        <div style="font-family:var(--mono);font-size:var(--text-micro);color:var(--text-3)">--font · wght 300–800</div>
+        <div style="font-size:var(--text-sm);color:var(--text-2);margin-top:var(--s2)">Única família para display e corpo. Elegante, neutra e com excelente legibilidade em todas as escalas.</div>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s5);transition:border-color .2s" onmouseover="this.style.borderColor='var(--text-1)'" onmouseout="this.style.borderColor='var(--border)'">
+        <div class="label">Code / Monospace</div>
+        <div style="font-family:var(--mono);font-size:28px;line-height:1;margin-bottom:var(--s2)">DM Mono</div>
+        <div style="font-family:var(--mono);font-size:var(--text-micro);color:var(--text-3)">--mono · wght 400–500</div>
+        <div style="font-size:var(--text-sm);color:var(--text-2);margin-top:var(--s2)">Tokens, badges, labels técnicos, breadcrumbs e código. Limpa em tamanhos pequenos.</div>
+      </div>
+    </div>
+
+    <div class="label rv">Escala tipográfica</div>
+    <div class="type-row rv rv-d1"><div class="type-meta"><span class="type-token">--text-hero</span><span class="type-spec">76px · Bold</span></div><div class="type-sample" style="font-size:clamp(40px,5vw,64px);font-weight:700;letter-spacing:-.04em">Hero</div></div>
+    <div class="type-row rv rv-d2"><div class="type-meta"><span class="type-token">--text-3xl</span><span class="type-spec">56px · Bold</span></div><div class="type-sample" style="font-size:clamp(32px,4vw,48px);font-weight:700;letter-spacing:-.03em">Display</div></div>
+    <div class="type-row rv rv-d3"><div class="type-meta"><span class="type-token">--text-2xl</span><span class="type-spec">40px · Semibold</span></div><div class="type-sample" style="font-size:clamp(28px,3.5vw,36px);font-weight:600;letter-spacing:-.02em">Heading 1</div></div>
+    <div class="type-row rv rv-d4"><div class="type-meta"><span class="type-token">--text-xl</span><span class="type-spec">28px · Semibold</span></div><div class="type-sample" style="font-size:24px;font-weight:600">Heading 2</div></div>
+    <div class="type-row rv rv-d5"><div class="type-meta"><span class="type-token">--text-lg</span><span class="type-spec">22px · Medium</span></div><div class="type-sample" style="font-size:20px;font-weight:500">Heading 3</div></div>
+    <div class="type-row rv rv-d6"><div class="type-meta"><span class="type-token">--text-md</span><span class="type-spec">18px · Regular</span></div><div class="type-sample" style="font-size:17px;font-weight:400;color:var(--text-2)">Lead / subtítulo — texto introdutório</div></div>
+    <div class="type-row rv"><div class="type-meta"><span class="type-token">--text-base</span><span class="type-spec">15px · Regular</span></div><div class="type-sample" style="font-size:15px">Corpo de texto padrão — interface e conteúdo geral da página</div></div>
+    <div class="type-row rv"><div class="type-meta"><span class="type-token">--text-sm</span><span class="type-spec">13px · Medium</span></div><div class="type-sample" style="font-size:13px;font-weight:500;color:var(--text-2)">Labels, captions, meta informação secundária</div></div>
+    <div class="type-row rv"><div class="type-meta"><span class="type-token">--text-xs</span><span class="type-spec">11px · DM Mono</span></div><div class="type-sample" style="font-family:var(--mono);font-size:11px;color:var(--text-3);letter-spacing:.1em">BADGES · TAGS · TOKENS · CÓDIGO</div></div>
+
+    <div class="label rv" style="margin-top:var(--s6)">Padrões Especiais</div>
+    <div class="emphasis-demo rv rv-d1">
+      <div class="label">Title Emphasis Rule</div>
+      <div class="emphasis-title"><strong>SISTEMA</strong> Integrado de Indicação e Venda</div>
+      <div class="emphasis-note">↑ Primeira palavra em Bold (Âncora Visual)</div>
+    </div>
+    <div class="emphasis-demo rv rv-d2" style="margin-top:var(--s3)">
+      <div class="label">Impact Phrase Rule</div>
+      <div style="font-size:22px;font-weight:700;letter-spacing:-.01em">Passageiro pede. Motorista aceita. A plataforma conecta.</div>
+      <div class="emphasis-note">↑ Frase de Impacto (Rodapé Centralizado)</div>
+    </div>
+  </section>
+
+  <!-- 04 — ESPAÇAMENTO -->
+  <section class="section" id="espacamento">
+    <div class="section-head rv"><span class="section-num">04</span><div><h2 class="section-title">Espaçamento</h2><p class="section-sub">Grid 8pt — Whitespace é sagrado</p></div></div>
+    <div class="space-row rv rv-d1"><span class="space-token">--s2</span><span class="space-px">8</span><div style="flex:1"><div class="space-bar" style="width:8px"></div></div></div>
+    <div class="space-row rv rv-d2"><span class="space-token">--s4</span><span class="space-px">16</span><div style="flex:1"><div class="space-bar" style="width:16px"></div></div></div>
+    <div class="space-row rv rv-d3"><span class="space-token">--s5</span><span class="space-px">24</span><div style="flex:1"><div class="space-bar" style="width:24px"></div></div></div>
+    <div class="space-row rv rv-d4"><span class="space-token">--s6</span><span class="space-px">32</span><div style="flex:1"><div class="space-bar" style="width:32px"></div></div></div>
+    <div class="space-row rv rv-d5"><span class="space-token">--s8</span><span class="space-px">64</span><div style="flex:1"><div class="space-bar" style="width:64px"></div></div></div>
+    <div class="space-row rv rv-d6"><span class="space-token">--s10</span><span class="space-px">128</span><div style="flex:1"><div class="space-bar" style="width:128px"></div></div></div>
+
+    <div class="label rv" style="margin-top:var(--s6)">Border Radius — cantos arredondados</div>
+    <div style="display:flex;gap:var(--s5);flex-wrap:wrap;align-items:flex-end" class="rv rv-d1">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:var(--s2)">
+        <div style="width:48px;height:48px;background:var(--bg-alt);border:1px solid var(--border);border-radius:6px;transition:border-color .2s" onmouseover="this.style.borderColor='var(--text-1)'" onmouseout="this.style.borderColor='var(--border)'"></div>
+        <div style="font-family:var(--mono);font-size:var(--text-micro);color:var(--text-3);text-align:center">--r-sm<br>6px</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:var(--s2)">
+        <div style="width:48px;height:48px;background:var(--bg-alt);border:1px solid var(--border);border-radius:10px;transition:border-color .2s" onmouseover="this.style.borderColor='var(--text-1)'" onmouseout="this.style.borderColor='var(--border)'"></div>
+        <div style="font-family:var(--mono);font-size:var(--text-micro);color:var(--text-3);text-align:center">--r-md<br>10px</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:var(--s2)">
+        <div style="width:56px;height:56px;background:var(--bg-alt);border:1px solid var(--border);border-radius:16px;transition:border-color .2s" onmouseover="this.style.borderColor='var(--text-1)'" onmouseout="this.style.borderColor='var(--border)'"></div>
+        <div style="font-family:var(--mono);font-size:var(--text-micro);color:var(--text-3);text-align:center">--r-lg<br>16px</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:var(--s2)">
+        <div style="width:64px;height:64px;background:var(--bg-alt);border:1px solid var(--border);border-radius:24px;transition:border-color .2s" onmouseover="this.style.borderColor='var(--text-1)'" onmouseout="this.style.borderColor='var(--border)'"></div>
+        <div style="font-family:var(--mono);font-size:var(--text-micro);color:var(--text-3);text-align:center">--r-xl<br>24px</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:var(--s2)">
+        <div style="width:72px;height:72px;background:var(--bg-alt);border:1px solid var(--border);border-radius:32px;transition:border-color .2s" onmouseover="this.style.borderColor='var(--text-1)'" onmouseout="this.style.borderColor='var(--border)'"></div>
+        <div style="font-family:var(--mono);font-size:var(--text-micro);color:var(--text-3);text-align:center">--r-2xl<br>32px</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:var(--s2)">
+        <div style="width:80px;height:40px;background:var(--bg-alt);border:1px solid var(--border);border-radius:99px;transition:border-color .2s" onmouseover="this.style.borderColor='var(--text-1)'" onmouseout="this.style.borderColor='var(--border)'"></div>
+        <div style="font-family:var(--mono);font-size:var(--text-micro);color:var(--text-3);text-align:center">--r-pill<br>99px</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:var(--s2)">
+        <div style="width:64px;height:64px;background:var(--onyx);border-radius:22%;display:flex;align-items:center;justify-content:center"><span style="font-size:9px;font-weight:700;letter-spacing:.12em;color:var(--white)">ANOVA</span></div>
+        <div style="font-family:var(--mono);font-size:var(--text-micro);color:var(--text-3);text-align:center">--r-squircle<br>22%</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 — MOTIVOS GRÁFICOS -->
+  <section class="section" id="motivos">
+    <div class="section-head rv"><span class="section-num">05</span><div><h2 class="section-title">Motivos Gráficos</h2><p class="section-sub">A Assinatura Visual — Line-art, nunca filled · Passe o mouse para interagir</p></div></div>
+    <div class="pattern-grid">
+      <div class="pattern-card rv rv-d1"><canvas id="patternLines"></canvas><div class="pattern-label">Linhas de Rede</div></div>
+      <div class="pattern-card rv rv-d2"><canvas id="patternMap"></canvas><div class="pattern-label">Padrão de Mapa</div></div>
+      <div class="pattern-card rv rv-d3"><canvas id="patternMesh"></canvas><div class="pattern-label">Mesh Geométrico</div></div>
+    </div>
+  </section>
+
+  <!-- 06 — LAYOUT -->
+  <section class="section" id="layout">
+    <div class="section-head rv"><span class="section-num">06</span><div><h2 class="section-title">Layout</h2><p class="section-sub">Princípios de Composição</p></div></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4)" class="rv rv-d1">
+      <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s5);text-align:center">
+        <div style="font-weight:700;font-size:15px;margin-bottom:var(--s2)">Whitespace</div>
+        <div style="font-size:13px;color:var(--text-3)">O vazio comunica sofisticação.</div>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s5);text-align:center">
+        <div style="font-weight:700;font-size:15px;margin-bottom:var(--s2)">Alinhamento Central</div>
+        <div style="font-size:13px;color:var(--text-3)">Equilíbrio e formalidade.</div>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s5);text-align:center">
+        <div style="font-weight:700;font-size:15px;margin-bottom:var(--s2)">Hierarquia Rígida</div>
+        <div style="font-size:13px;color:var(--text-3)">Ordem lógica de leitura.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 — BOTÕES -->
+  <section class="section" id="botoes">
+    <div class="section-head rv"><span class="section-num">07</span><div><h2 class="section-title">Botões</h2><p class="section-sub">Flat — sem sombras, sem gradientes</p></div></div>
+    <div class="comp-row rv rv-d1">
+      <button class="btn btn-primary">Botão Primário</button>
+      <button class="btn btn-outline">Botão Primário</button>
+    </div>
+  </section>
+
+  <!-- 08 — CARDS -->
+  <section class="section" id="cards">
+    <div class="section-head rv"><span class="section-num">08</span><div><h2 class="section-title">Cards</h2><p class="section-sub">Border only — sem sombra, sem elevação</p></div></div>
+    <div class="card-grid">
+      <div class="comp-card rv rv-d1"><div class="comp-card-title">Card Title</div><div class="comp-card-desc">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed do eiusmod tempor.</div></div>
+      <div class="comp-card rv rv-d2"><div class="comp-card-title">Card Title</div><div class="comp-card-desc">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed do eiusmod tempor.</div></div>
+      <div class="comp-card rv rv-d3"><div class="comp-card-title">Card Title</div><div class="comp-card-desc">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed do eiusmod tempor.</div></div>
+    </div>
+  </section>
+
+  <!-- 09 — MÉTRICAS -->
+  <section class="section" id="metrics">
+    <div class="section-head rv"><span class="section-num">09</span><div><h2 class="section-title">Métricas</h2></div></div>
+    <div class="metric-grid">
+      <div class="metric-card rv rv-d1"><div class="metric-label">Receita</div><div class="metric-value counter" data-target="128" data-pre="$" data-suf="K">$0K</div><div class="metric-change metric-up">↑ 18.4%</div></div>
+      <div class="metric-card rv rv-d2"><div class="metric-label">Leads</div><div class="metric-value counter" data-target="2847">0</div><div class="metric-change metric-up">↑ 6.2%</div></div>
+      <div class="metric-card rv rv-d3"><div class="metric-label">Conversão</div><div class="metric-value counter" data-target="34.8" data-suf="%" data-dec="1">0%</div><div class="metric-change metric-down">↓ 1.1%</div></div>
+      <div class="metric-card rv rv-d4"><div class="metric-label">NPS</div><div class="metric-value counter" data-target="91">0</div><div class="metric-change metric-up">↑ Excelente</div></div>
+    </div>
+  </section>
+
+  <!-- 10 — INPUTS -->
+  <section class="section" id="inputs">
+    <div class="section-head rv"><span class="section-num">10</span><div><h2 class="section-title">Inputs</h2></div></div>
+    <div class="input-demo rv rv-d1">
+      <div class="input-group"><label class="input-label">Placeholder</label><input class="input" placeholder="Placeholder..."/></div>
+      <div class="input-group"><label class="input-label">Preenchido</label><input class="input" value="Texto Digitado"/></div>
+    </div>
+  </section>
+
+  <!-- 11 — NAV -->
+  <section class="section" id="navcomp">
+    <div class="section-head rv"><span class="section-num">11</span><div><h2 class="section-title">Navegação</h2></div></div>
+    <div class="nav-bar rv rv-d1">
+      <div class="logo-sq logo-sq-dark" style="width:28px;height:28px"><span style="font-size:6px">ANOVA</span></div>
+      <nav class="nav-bar-links"><a href="#" class="nav-bar-link">Soluções</a><a href="#" class="nav-bar-link">Plataforma</a><a href="#" class="nav-bar-link">Sobre</a></nav>
+      <a href="#" class="nav-bar-cta">Falar com Especialista</a>
+    </div>
+  </section>
+
+  <!-- 12 — FORMULÁRIOS COMPLETOS -->
+  <section class="section" id="forms">
+    <div class="section-head rv"><span class="section-num">12</span><div><h2 class="section-title">Formulários</h2><p class="section-sub">Todos os campos de entrada — text, select, textarea, checkbox, radio, toggle, upload</p></div></div>
+    <div class="label rv">Campos de texto e seleção</div>
+    <div class="form-grid rv rv-d1">
+      <div class="field"><label class="field-label">Nome completo</label><input class="input" placeholder="Ex: João Silva"/><div class="field-hint">Obrigatório</div></div>
+      <div class="field"><label class="field-label">Email</label><input class="input" value="joao@anova.com.br"/></div>
+      <div class="field"><label class="field-label">Assessor</label><div class="select-wrap"><select class="select"><option>Selecionar assessor...</option><option>Anova Investimentos</option><option>Hub Porto Alegre</option><option>Hub São Paulo</option></select><div class="select-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div></div>
+      <div class="field"><label class="field-label">Tipo de conta</label><div class="select-wrap"><select class="select"><option>Pessoa Física</option><option>Pessoa Jurídica</option></select><div class="select-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div></div>
+      <div class="field form-full"><label class="field-label">Observações</label><textarea class="textarea" placeholder="Informações adicionais sobre o cliente..."></textarea></div>
+      <div class="field"><label class="field-label">CPF (com erro)</label><input class="input" value="123.456" style="border-color:var(--charcoal)"/><div class="field-error">CPF incompleto ou inválido</div></div>
+      <div class="field"><label class="field-label">Valor (desabilitado)</label><input class="input" value="R$ 0,00" disabled style="opacity:.5;cursor:not-allowed"/></div>
+    </div>
+
+    <div class="label rv">Checkbox, Radio e Toggle</div>
+    <div style="display:flex;gap:var(--s8);margin-bottom:var(--s5)" class="rv rv-d1">
+      <div class="check-group">
+        <div class="field-label" style="margin-bottom:4px">Produtos</div>
+        <div class="check-item"><div class="check-box checked" onclick="this.classList.toggle('checked')"></div>Renda Fixa</div>
+        <div class="check-item"><div class="check-box checked" onclick="this.classList.toggle('checked')"></div>Renda Variável</div>
+        <div class="check-item"><div class="check-box" onclick="this.classList.toggle('checked')"></div>Fundos Imobiliários</div>
+        <div class="check-item"><div class="check-box" onclick="this.classList.toggle('checked')"></div>Previdência</div>
+      </div>
+      <div class="check-group">
+        <div class="field-label" style="margin-bottom:4px">Perfil do Investidor</div>
+        <div class="check-item"><div class="radio-box checked" onclick="this.parentElement.parentElement.querySelectorAll('.radio-box').forEach(r=>r.classList.remove('checked'));this.classList.add('checked')"></div>Conservador</div>
+        <div class="check-item"><div class="radio-box" onclick="this.parentElement.parentElement.querySelectorAll('.radio-box').forEach(r=>r.classList.remove('checked'));this.classList.add('checked')"></div>Moderado</div>
+        <div class="check-item"><div class="radio-box" onclick="this.parentElement.parentElement.querySelectorAll('.radio-box').forEach(r=>r.classList.remove('checked'));this.classList.add('checked')"></div>Arrojado</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:var(--s3)">
+        <div class="field-label" style="margin-bottom:4px">Configurações</div>
+        <div class="toggle-row"><div class="toggle on" onclick="this.classList.toggle('on')"><div class="toggle-knob"></div></div>Notificações por email</div>
+        <div class="toggle-row"><div class="toggle" onclick="this.classList.toggle('on')"><div class="toggle-knob"></div></div>Relatório semanal</div>
+        <div class="toggle-row"><div class="toggle on" onclick="this.classList.toggle('on')"><div class="toggle-knob"></div></div>Alertas de vencimento</div>
+      </div>
+    </div>
+
+    <div class="label rv">Upload de arquivo e imagem</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);max-width:640px" class="rv rv-d1">
+      <div class="upload-zone">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <div class="upload-text">Arraste ou clique para enviar</div>
+        <div class="upload-hint">PDF, DOC até 10MB</div>
+      </div>
+      <div class="upload-zone">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <div class="upload-text">Foto do documento</div>
+        <div class="upload-hint">JPG, PNG até 5MB</div>
+        <div style="display:flex;gap:var(--s2);margin-top:var(--s2)">
+          <div class="upload-preview"><svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:var(--silver);fill:none;stroke-width:1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+          <div class="upload-preview"><svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:var(--silver);fill:none;stroke-width:1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 — TABELAS -->
+  <section class="section" id="tabelas">
+    <div class="section-head rv"><span class="section-num">13</span><div><h2 class="section-title">Tabelas</h2><p class="section-sub">Header bar, avatares, status monocromáticos, ações, paginação</p></div></div>
+
+    <div class="label rv">Status badges — sistema monocromático (5 variantes)</div>
+    <div style="display:flex;gap:var(--s3);flex-wrap:wrap;margin-bottom:var(--s6)" class="rv rv-d1">
+      <span class="status status-active"><span class="status-dot"></span>Ativo</span>
+      <span class="status status-pending"><span class="status-dot"></span>Pendente</span>
+      <span class="status status-progress"><span class="status-dot"></span>Em Andamento</span>
+      <span class="status status-error"><span class="status-dot"></span>Rejeitado</span>
+      <span class="status status-none"><span class="status-dot"></span>Não Iniciado</span>
+    </div>
+
+    <div class="label rv">Tabela completa — com header, avatares, ações</div>
+    <div class="tbl-wrap rv rv-d1">
+      <div class="tbl-header">
+        <div class="tbl-title">Clientes <span class="tbl-count">877 registros</span></div>
+        <input class="tbl-search" placeholder="Buscar por nome, ID..."/>
+      </div>
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th style="width:36px;padding-left:var(--s5)"><input type="checkbox" class="tbl-chk"/></th>
+            <th style="width:56px">ID <span class="sort-ico"><span class="up"></span><span class="dn"></span></span></th>
+            <th>CLIENTE</th>
+            <th>ASSESSOR</th>
+            <th>STATUS</th>
+            <th class="align-r">VALOR <span class="sort-ico"><span class="up"></span><span class="dn"></span></span></th>
+            <th>DATA <span class="sort-ico"><span class="up"></span><span class="dn"></span></span></th>
+            <th style="width:100px;text-align:right">AÇÕES</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding-left:var(--s5)"><input type="checkbox" class="tbl-chk"/></td>
+            <td class="cell-id">877</td>
+            <td><div class="cell-client"><div class="cell-avatar">DA</div><div><div class="cell-client-name">Douglas Aquino</div><div class="cell-client-sub">douglas@email.com</div></div></div></td>
+            <td class="cell-meta">Matriz</td>
+            <td><span class="status status-progress"><span class="status-dot"></span>Em Andamento</span></td>
+            <td class="cell-value">R$ 151,52</td>
+            <td class="cell-date">02/03/2026</td>
+            <td><div class="cell-actions"><button class="cell-action"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="cell-action"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button><button class="cell-action"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button></div></td>
+          </tr>
+          <tr class="selected">
+            <td style="padding-left:var(--s5)"><input type="checkbox" class="tbl-chk" checked/></td>
+            <td class="cell-id">876</td>
+            <td><div class="cell-client"><div class="cell-avatar">VS</div><div><div class="cell-client-name">Vitor Schneider Chaoud</div><div class="cell-client-sub">vitor.chaoud@empresa.com</div></div></div></td>
+            <td class="cell-meta">Anova Investimentos</td>
+            <td><span class="status status-active"><span class="status-dot"></span>Ativo</span></td>
+            <td class="cell-value">R$ 1.179,99</td>
+            <td class="cell-date">01/03/2026</td>
+            <td><div class="cell-actions"><button class="cell-action"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="cell-action"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button><button class="cell-action"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button></div></td>
+          </tr>
+          <tr>
+            <td style="padding-left:var(--s5)"><input type="checkbox" class="tbl-chk"/></td>
+            <td class="cell-id">875</td>
+            <td><div class="cell-client"><div class="cell-avatar cell-avatar-light">GP</div><div><div class="cell-client-name">Gleisson Perdigao</div><div class="cell-client-sub">gleisson.p@hub.com</div></div></div></td>
+            <td class="cell-meta">Hub Porto Alegre</td>
+            <td><span class="status status-pending"><span class="status-dot"></span>Pendente</span></td>
+            <td class="cell-value">R$ 78,74</td>
+            <td class="cell-date">28/02/2026</td>
+            <td><div class="cell-actions"><button class="cell-action"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="cell-action"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button><button class="cell-action"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button></div></td>
+          </tr>
+          <tr>
+            <td style="padding-left:var(--s5)"><input type="checkbox" class="tbl-chk"/></td>
+            <td class="cell-id">874</td>
+            <td><div class="cell-client"><div class="cell-avatar cell-avatar-light">MV</div><div><div class="cell-client-name">Marcelo Vitor Gonçalves</div><div class="cell-client-sub">marcelo.vitor@gmail.com</div></div></div></td>
+            <td class="cell-meta">Matriz</td>
+            <td><span class="status status-error"><span class="status-dot"></span>Rejeitado</span></td>
+            <td class="cell-value">R$ 0,00</td>
+            <td class="cell-date">27/02/2026</td>
+            <td><div class="cell-actions"><button class="cell-action"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="cell-action"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button><button class="cell-action"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button></div></td>
+          </tr>
+          <tr>
+            <td style="padding-left:var(--s5)"><input type="checkbox" class="tbl-chk"/></td>
+            <td class="cell-id">873</td>
+            <td><div class="cell-client"><div class="cell-avatar">MT</div><div><div class="cell-client-name">Marcel Takaki Ito</div><div class="cell-client-sub">marcel.takaki@sp.com</div></div></div></td>
+            <td class="cell-meta">Hub São Paulo</td>
+            <td><span class="status status-none"><span class="status-dot"></span>Não Iniciado</span></td>
+            <td class="cell-value">R$ 120,83</td>
+            <td class="cell-date">24/02/2026</td>
+            <td><div class="cell-actions"><button class="cell-action"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="cell-action"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button><button class="cell-action"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pagination rv rv-d2">
+      <button class="page-btn page-nav">← Anterior</button>
+      <button class="page-btn active">1</button><button class="page-btn">2</button><button class="page-btn">3</button>
+      <button class="page-btn" style="border:none;background:none;cursor:default;color:var(--text-3)">…</button>
+      <button class="page-btn">31</button>
+      <button class="page-btn page-nav">Próximo →</button>
+    </div>
+  </section>
+
+  <!-- 14 — GRÁFICOS -->
+  <section class="section" id="graficos">
+    <div class="section-head rv"><span class="section-num">14</span><div><h2 class="section-title">Gráficos</h2><p class="section-sub">Line, Bar, Donut, Sparkline — tudo monocromático</p></div></div>
+    <div class="chart-row">
+      <div class="chart-card rv rv-d1">
+        <div class="chart-title">Gráfico de Linha</div>
+        <div class="chart-sub">Evolução temporal — série principal #000, secundária #CCC tracejada</div>
+        <canvas class="chart-canvas" id="chLine" height="180"></canvas>
+        <div class="chart-legend"><div class="chart-legend-item"><div class="legend-line" style="background:#000"></div>Repasse Pago</div><div class="chart-legend-item"><div class="legend-line" style="background:#CCC;border-top:1px dashed #888"></div>Pendente</div></div>
+      </div>
+      <div class="chart-card rv rv-d2">
+        <div class="chart-title">Gráfico de Barras</div>
+        <div class="chart-sub">Comparativo por período — fill #000, hover #333</div>
+        <canvas class="chart-canvas" id="chBar" height="180"></canvas>
+      </div>
+    </div>
+    <div class="chart-row">
+      <div class="chart-card rv rv-d1">
+        <div class="chart-title">Gráfico Donut</div>
+        <div class="chart-sub">Composição / distribuição — segmentos #000 #333 #888 #CCC</div>
+        <canvas class="chart-canvas" id="chDonut" height="200"></canvas>
+        <div class="chart-legend"><div class="chart-legend-item"><div class="legend-dot" style="background:#000"></div>CDB</div><div class="chart-legend-item"><div class="legend-dot" style="background:#333"></div>LCI/LCA</div><div class="chart-legend-item"><div class="legend-dot" style="background:#888"></div>Fundos</div><div class="chart-legend-item"><div class="legend-dot" style="background:#CCC"></div>Outros</div></div>
+      </div>
+      <div class="chart-card rv rv-d2">
+        <div class="chart-title">Sparklines</div>
+        <div class="chart-sub">Mini gráficos em cards de métrica</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)">
+          <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s4)"><div class="field-label" style="font-size:9px">RECEITA</div><div style="font-size:22px;font-weight:700">R$ 128K</div><canvas class="chart-canvas" id="chSpark1" height="36"></canvas></div>
+          <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s4)"><div class="field-label" style="font-size:9px">CLIENTES</div><div style="font-size:22px;font-weight:700">282</div><canvas class="chart-canvas" id="chSpark2" height="36"></canvas></div>
+          <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s4)"><div class="field-label" style="font-size:9px">TAXA MÉD.</div><div style="font-size:22px;font-weight:700">1,18%</div><canvas class="chart-canvas" id="chSpark3" height="36"></canvas></div>
+          <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s4)"><div class="field-label" style="font-size:9px">NPS</div><div style="font-size:22px;font-weight:700">91</div><canvas class="chart-canvas" id="chSpark4" height="36"></canvas></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 — ALERTAS E NOTIFICAÇÕES -->
+  <section class="section" id="alertas">
+    <div class="section-head rv"><span class="section-num">15</span><div><h2 class="section-title">Alertas</h2><p class="section-sub">Info, aviso, crítico — diferenciação por borda e ícone</p></div></div>
+    <div class="alert alert-info rv rv-d1"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div class="alert-content"><div class="alert-title">Informação</div><div class="alert-desc">As ofertas de ativos são atualizadas diariamente a partir das 11h da manhã.</div></div></div>
+    <div class="alert alert-warn rv rv-d2"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><div class="alert-content"><div class="alert-title">Pendências identificadas</div><div class="alert-desc">Identificamos 34 faturamentos sem Nota Fiscal. O processo está bloqueado para esses itens.</div><div class="alert-action">Resolver agora →</div></div></div>
+    <div class="alert alert-critical rv rv-d3"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg><div class="alert-content"><div class="alert-title">Período de envio de NFs</div><div class="alert-desc">Prazo aberto até dia 5 às 10:00. Faltam 7 dias.</div><div class="alert-action">Enviar notas →</div></div></div>
+  </section>
+
+  <!-- 16 — PROGRESS E STEPS -->
+  <section class="section" id="progress">
+    <div class="section-head rv"><span class="section-num">16</span><div><h2 class="section-title">Progress &amp; Steps</h2><p class="section-sub">Barras de progresso e fluxo de etapas</p></div></div>
+    <div class="label rv">Progress bar</div>
+    <div style="display:flex;flex-direction:column;gap:var(--s4);max-width:480px;margin-bottom:var(--s6)" class="rv rv-d1">
+      <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span class="field-label">Onboarding</span><span class="field-label">75%</span></div><div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div></div>
+      <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span class="field-label">Documentação</span><span class="field-label">30%</span></div><div class="progress-bar"><div class="progress-fill" style="width:30%"></div></div></div>
+      <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span class="field-label">Completo</span><span class="field-label">100%</span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div></div>
+    </div>
+    <div class="label rv">Fluxo de etapas</div>
+    <div class="steps rv rv-d1">
+      <div class="step done"><div class="step-num">✓</div><div class="step-label">Simulação</div></div><div class="step-line" style="background:var(--onyx)"></div>
+      <div class="step done"><div class="step-num">✓</div><div class="step-label">Análise</div></div><div class="step-line" style="background:var(--onyx)"></div>
+      <div class="step current"><div class="step-num">3</div><div class="step-label">Documentação</div></div><div class="step-line"></div>
+      <div class="step"><div class="step-num">4</div><div class="step-label">Liberação</div></div>
+    </div>
+  </section>
+
+  <!-- 17 — AVATARES E TOOLTIPS -->
+  <section class="section" id="avatars">
+    <div class="section-head rv"><span class="section-num">17</span><div><h2 class="section-title">Avatares &amp; Tooltips</h2></div></div>
+    <div class="label rv">Avatares — iniciais monocromáticos</div>
+    <div style="display:flex;gap:var(--s4);align-items:center;margin-bottom:var(--s5)" class="rv rv-d1">
+      <div class="avatar avatar-sm avatar-dark">VA</div>
+      <div class="avatar avatar-md avatar-dark">DS</div>
+      <div class="avatar avatar-lg avatar-dark">RC</div>
+      <div class="avatar avatar-sm avatar-light">JM</div>
+      <div class="avatar avatar-md avatar-light">GP</div>
+      <div class="avatar avatar-lg avatar-light">MT</div>
+      <div style="margin-left:var(--s4)">
+        <div class="field-label" style="margin-bottom:4px">Avatar group</div>
+        <div class="avatar-group"><div class="avatar avatar-md avatar-dark">VA</div><div class="avatar avatar-md avatar-dark">DS</div><div class="avatar avatar-md avatar-light">RC</div><div class="avatar avatar-md avatar-light">+3</div></div>
+      </div>
+    </div>
+    <div class="label rv">Tooltips</div>
+    <div style="display:flex;gap:var(--s5);margin-bottom:var(--s5);padding-top:var(--s7)" class="rv rv-d1">
+      <div class="tooltip-demo"><button class="btn btn-outline" style="font-size:11px;padding:8px 16px">Hover me<div class="tooltip">Tooltip informativo</div></button></div>
+      <div class="tooltip-demo"><span style="border-bottom:1px dashed var(--grey);cursor:help;font-size:14px;color:var(--text-2)">Taxa CDI<div class="tooltip">13.65% a.a. (atualizado)</div></span></div>
+    </div>
+  </section>
+
+  <!-- 18 — PRODUTO E MODAL -->
+  <section class="section" id="produto">
+    <div class="section-head rv"><span class="section-num">18</span><div><h2 class="section-title">Produto &amp; Modal</h2><p class="section-sub">Cards de produto para landing pages e modais de confirmação</p></div></div>
+    <div class="label rv">Cards de produto</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4);margin-bottom:var(--s6)" class="rv rv-d1">
+      <div class="product-card"><div class="product-img"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="product-body"><div class="product-tag">Empréstimo</div><div class="product-name">Garantia de Veículo</div><div class="product-desc">Taxas a partir de 1,49% a.m. Use seu veículo como garantia.</div><div class="product-footer"><div class="product-price">1,49%<sub>/mês</sub></div><button class="btn btn-primary" style="font-size:10px;padding:7px 14px">Simular</button></div></div></div>
+      <div class="product-card"><div class="product-img"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="product-body"><div class="product-tag">Empréstimo</div><div class="product-name">Garantia de Imóvel</div><div class="product-desc">Acesse valores maiores usando seu imóvel como garantia.</div><div class="product-footer"><div class="product-price">1,19%<sub>/mês</sub></div><button class="btn btn-primary" style="font-size:10px;padding:7px 14px">Simular</button></div></div></div>
+      <div class="product-card"><div class="product-img"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div><div class="product-body"><div class="product-tag">Consórcio</div><div class="product-name">Consórcio de Veículos</div><div class="product-desc">Adquira seu veículo de forma planejada e sem juros.</div><div class="product-footer"><div class="product-price">0,00%<sub>/juros</sub></div><button class="btn btn-outline" style="font-size:10px;padding:7px 14px">Conhecer</button></div></div></div>
+    </div>
+    <div class="label rv">Modal de confirmação</div>
+    <div class="modal-demo rv rv-d1"><div class="modal-overlay"><div class="modal-box"><div class="modal-head"><div class="modal-title">Confirmar ação</div><button class="modal-close"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><div class="modal-body">Tem certeza que deseja enviar a ordem de aplicação para 3 clientes selecionados? Esta ação não pode ser desfeita.</div><div class="modal-actions"><button class="btn btn-outline" style="font-size:11px;padding:8px 16px">Cancelar</button><button class="btn btn-primary" style="font-size:11px;padding:8px 16px">Confirmar</button></div></div></div></div>
+  </section>
+
+  <!-- 19 — TABS, BREADCRUMBS, ESTADO VAZIO -->
+  <section class="section" id="navigation">
+    <div class="section-head rv"><span class="section-num">19</span><div><h2 class="section-title">Navegação &amp; Estados</h2><p class="section-sub">Tabs, breadcrumbs e estados vazios</p></div></div>
+    <div class="label rv">Breadcrumbs</div>
+    <div class="breadcrumb rv rv-d1"><a class="breadcrumb-item" href="#">Homepage</a><span class="breadcrumb-sep">›</span><a class="breadcrumb-item" href="#">Produtos Bancários</a><span class="breadcrumb-sep">›</span><a class="breadcrumb-item" href="#">Empréstimos</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-item breadcrumb-current">Garantia de Veículo</span></div>
+    <div class="label rv">Tab bar</div>
+    <div class="tab-bar rv rv-d1"><button class="tab-item active">Alertas <span class="tab-count">191</span></button><button class="tab-item">Recomendações</button><button class="tab-item">Notícias</button><button class="tab-item">Carteira</button><button class="tab-item">Histórico</button></div>
+    <div class="label rv">Estado vazio</div>
+    <div style="border:1px solid var(--border);border-radius:var(--r-xl)" class="rv rv-d1">
+      <div class="empty"><svg viewBox="0 0 24 24"><path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"/><polyline points="13 2 13 9 20 9"/></svg><div class="empty-title">Nenhum documento encontrado</div><div class="empty-desc">Não há documentos pendentes para este cliente. Novos documentos aparecerão aqui automaticamente.</div><button class="btn btn-outline" style="font-size:11px;padding:8px 16px">Importar documento</button></div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════
+       TELAS DE REFERÊNCIA — Showcase screens
+       ════════════════════════════════════════════════════ -->
+
+  <!-- 20 — TELA: LOGIN -->
+  <section class="section" id="tela-login">
+    <div class="section-head rv"><span class="section-num">20</span><div><h2 class="section-title">Tela: Login</h2><p class="section-sub">Plataforma de Operações — primeira impressão da marca</p></div></div>
+    <div class="screen-frame rv rv-d1">
+      <div class="screen-bar"><div class="screen-dot"></div><div class="screen-dot"></div><div class="screen-dot"></div><span style="font-family:var(--mono);font-size:9px;color:var(--text-3);margin-left:auto">app.anova.com.br/login</span></div>
+      <div class="screen-body">
+        <div class="login-bg" style="min-height:520px">
+          <canvas id="loginCanvas"></canvas>
+          <div class="login-card" style="width:400px;padding:48px 40px">
+            <!-- Logo -->
+            <div class="login-logo"><div class="logo-sq logo-sq-dark" style="width:64px;height:64px;padding:8px"><span style="font-size:10px;letter-spacing:.12em;margin-right:-.12em">ANOVA</span></div></div>
+            <!-- Title -->
+            <div class="login-title" style="font-size:28px;margin-bottom:4px">Plataforma de<br>Operações</div>
+            <div class="login-sub" style="margin-bottom:32px">Anova Investimentos</div>
+            <!-- Email -->
+            <div class="login-field" style="margin-bottom:20px">
+              <div class="field">
+                <label class="field-label">Email</label>
+                <input class="input" placeholder="nome@anova.com.br" style="padding:12px 16px;border-radius:var(--r-md)"/>
+              </div>
+            </div>
+            <!-- Password -->
+            <div class="login-field" style="margin-bottom:12px">
+              <div class="field">
+                <label class="field-label">Senha</label>
+                <div class="login-pw-wrap">
+                  <input class="input" type="password" placeholder="••••••••" style="padding:12px 16px;border-radius:var(--r-md)"/>
+                  <button class="login-pw-toggle"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                </div>
+              </div>
+            </div>
+            <!-- Forgot -->
+            <div class="login-forgot" style="margin-bottom:24px">Esqueceu sua senha?</div>
+            <!-- Button -->
+            <button class="login-btn" style="border-radius:var(--r-md);font-size:14px;padding:14px;letter-spacing:.06em;text-transform:uppercase">Entrar</button>
+            <!-- Footer -->
+            <div style="margin-top:32px;padding-top:20px;border-top:1px solid var(--border);width:100%;text-align:center">
+              <span style="font-family:var(--mono);font-size:9px;color:var(--text-3);letter-spacing:.1em">CONFIANÇA QUE VIRA EXECUÇÃO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="label rv rv-d2" style="margin-top:var(--s4)">Especificações</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3)" class="rv rv-d3">
+      <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s4)"><div class="field-label" style="font-size:9px;margin-bottom:4px">CARD</div><div style="font-size:13px;color:var(--text-2)">400px · r-xl · border only</div></div>
+      <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s4)"><div class="field-label" style="font-size:9px;margin-bottom:4px">FUNDO</div><div style="font-size:13px;color:var(--text-2)">Blueprint canvas #F8F8F8</div></div>
+      <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s4)"><div class="field-label" style="font-size:9px;margin-bottom:4px">LOGO</div><div style="font-size:13px;color:var(--text-2)">Squircle 64px · 22%</div></div>
+      <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s4)"><div class="field-label" style="font-size:9px;margin-bottom:4px">BOTÃO</div><div style="font-size:13px;color:var(--text-2)">Full-width · r-md · #000</div></div>
+    </div>
+  </section>
+
+  <!-- 21 — TELA: SIDEBAR + TOP BAR -->
+  <section class="section" id="tela-sidebar">
+    <div class="section-head rv"><span class="section-num">21</span><div><h2 class="section-title">Tela: Sidebar &amp; Top Bar</h2><p class="section-sub">Collapsed (64px) · Expanded (220px) · Top bar com ticker e notificações</p></div></div>
+    <div class="screen-frame rv rv-d1">
+      <div class="screen-bar"><div class="screen-dot"></div><div class="screen-dot"></div><div class="screen-dot"></div><span style="font-family:var(--mono);font-size:9px;color:var(--text-3);margin-left:auto">app.anova.com.br/dashboard</span></div>
+      <div class="screen-body">
+        <div class="sidebar-demo" style="grid-template-columns:64px 220px 1fr;grid-template-rows:36px 1fr;height:480px">
+          <!-- Ticker bar spanning full width -->
+          <div style="grid-column:1/-1;background:var(--onyx);display:flex;align-items:center;overflow:hidden;padding:0 16px;gap:24px">
+            <div style="display:flex;align-items:center;gap:6px;flex-shrink:0"><span style="width:5px;height:5px;border-radius:50%;background:#fff;animation:pulse 2s ease infinite"></span><span style="font-family:var(--mono);font-size:9px;color:var(--white);font-weight:500">B3</span><span style="font-family:var(--mono);font-size:9px;color:var(--silver)">AO VIVO</span></div>
+            <div style="display:flex;gap:20px;overflow:hidden;white-space:nowrap">
+              <span style="font-family:var(--mono);font-size:9px"><span style="color:var(--white)">BRAV3</span> <span style="color:var(--silver)">R$ 18,47</span> <span style="color:var(--white)">↑ +0.34%</span></span>
+              <span style="font-family:var(--mono);font-size:9px"><span style="color:var(--white)">ITUB3</span> <span style="color:var(--silver)">R$ 13,63</span> <span style="color:var(--grey)">↓ -0.04%</span></span>
+              <span style="font-family:var(--mono);font-size:9px"><span style="color:var(--white)">PETR4</span> <span style="color:var(--silver)">R$ 28,15</span> <span style="color:var(--white)">↑ +0.42%</span></span>
+              <span style="font-family:var(--mono);font-size:9px"><span style="color:var(--white)">VALE3</span> <span style="color:var(--silver)">R$ 54,30</span> <span style="color:var(--grey)">↓ -0.18%</span></span>
+            </div>
+            <!-- Top right: notifications -->
+            <div style="margin-left:auto;display:flex;gap:12px;flex-shrink:0">
+              <div style="position:relative;cursor:pointer"><svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:var(--silver);fill:none;stroke-width:1.5"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg><div style="position:absolute;top:-2px;right:-2px;width:6px;height:6px;background:var(--white);border-radius:50%;border:1.5px solid var(--onyx)"></div></div>
+              <div style="cursor:pointer"><svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:var(--silver);fill:none;stroke-width:1.5"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></div>
+            </div>
+          </div>
+          <!-- Collapsed sidebar -->
+          <div class="sb-col" style="padding-top:16px">
+            <div class="logo-sq logo-sq-dark" style="width:32px;height:32px;padding:3px;margin-bottom:12px"><span style="font-size:6px;letter-spacing:.1em;margin-right:-.1em">ANOVA</span></div>
+            <div style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;margin-bottom:8px"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--text-3);fill:none;stroke-width:1.5;stroke-linecap:round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg></div>
+            <div style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:var(--bg);border-radius:var(--r-sm);position:relative"><div style="position:absolute;left:0;top:6px;bottom:6px;width:2px;background:var(--onyx);border-radius:0 1px 1px 0"></div><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--text-1);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <div style="width:32px;height:32px;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--text-3);fill:none;stroke-width:1.5;stroke-linecap:round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+            <div style="width:32px;height:32px;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--text-3);fill:none;stroke-width:1.5;stroke-linecap:round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+            <div style="width:32px;height:32px;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--text-3);fill:none;stroke-width:1.5;stroke-linecap:round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+            <div style="width:32px;height:32px;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--text-3);fill:none;stroke-width:1.5;stroke-linecap:round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33"/></svg></div>
+            <div style="width:32px;height:32px;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:var(--text-3);fill:none;stroke-width:1.5;stroke-linecap:round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          </div>
+          <!-- Expanded sidebar -->
+          <div class="sb-exp" style="padding-top:16px">
+            <div class="sb-exp-head">
+              <div class="logo-sq logo-sq-dark" style="width:32px;height:32px;padding:3px"><span style="font-size:6px;letter-spacing:.1em;margin-right:-.1em">ANOVA</span></div>
+              <div class="sb-exp-brand">Anova</div>
+            </div>
+            <div class="sb-exp-group">Navegação</div>
+            <div class="sb-exp-link on"><svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Visão Geral</div>
+            <div class="sb-exp-link"><svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;flex-shrink:0"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/></svg> Clientes</div>
+            <div class="sb-exp-link"><svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;flex-shrink:0"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg> Central de Alocação</div>
+            <div class="sb-exp-link"><svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;flex-shrink:0"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Dashboard Financeiro</div>
+            <div class="sb-exp-group">Sistema</div>
+            <div class="sb-exp-link"><svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;flex-shrink:0"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06"/></svg> Configurações</div>
+            <div class="sb-exp-link"><svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;flex-shrink:0"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Histórico</div>
+            <!-- Bottom: user -->
+            <div style="margin-top:auto;padding:var(--s4) var(--s5);border-top:1px solid var(--border);display:flex;align-items:center;gap:var(--s3)">
+              <div class="avatar avatar-sm avatar-dark" style="width:28px;height:28px;font-size:9px">GA</div>
+              <div><div style="font-size:12px;font-weight:600">Gustavo Anova</div><div style="font-size:10px;color:var(--text-3);font-family:var(--mono)">Administrador</div></div>
+            </div>
+          </div>
+          <!-- Content area -->
+          <div class="sb-content" style="padding:24px 28px;overflow:hidden">
+            <div style="font-family:var(--mono);font-size:var(--text-micro);letter-spacing:.14em;text-transform:uppercase;color:var(--text-3)">#1 — RESUMO</div>
+            <div style="font-size:24px;font-weight:700;letter-spacing:-.03em;margin:4px 0">Visão Geral</div>
+            <div style="font-size:12px;color:var(--text-3);margin-bottom:20px">Central de gestão de carteiras · 05/04/2026</div>
+            <!-- Mini metric cards -->
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px">
+              <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:14px"><div style="font-family:var(--mono);font-size:9px;color:var(--text-3);text-transform:uppercase;letter-spacing:.08em">Patrimônio</div><div style="font-size:20px;font-weight:700;margin-top:4px">20.1<span style="font-size:11px;color:var(--text-2)">Mi</span></div><div style="font-size:10px;font-weight:700;font-family:var(--mono);margin-top:2px;background:linear-gradient(135deg,#1a3a2a,#4a9e72,#3d7a5a);-webkit-background-clip:text;-webkit-text-fill-color:transparent">↑ +0.5%</div></div>
+              <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:14px"><div style="font-family:var(--mono);font-size:9px;color:var(--text-3);text-transform:uppercase;letter-spacing:.08em">Clientes</div><div style="font-size:20px;font-weight:700;margin-top:4px">284</div><div style="font-size:10px;font-weight:700;font-family:var(--mono);margin-top:2px;background:linear-gradient(135deg,#1a3a2a,#4a9e72,#3d7a5a);-webkit-background-clip:text;-webkit-text-fill-color:transparent">↑ +4</div></div>
+              <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:14px"><div style="font-family:var(--mono);font-size:9px;color:var(--text-3);text-transform:uppercase;letter-spacing:.08em">Captação</div><div style="font-size:20px;font-weight:700;margin-top:4px">0.0<span style="font-size:11px;color:var(--text-2)">K</span></div><div style="font-size:10px;font-weight:700;font-family:var(--mono);margin-top:2px;background:linear-gradient(135deg,#8b3a00,#e86800,#9a2a1a);-webkit-background-clip:text;-webkit-text-fill-color:transparent">↓ -9%</div></div>
+            </div>
+            <!-- Chart placeholder -->
+            <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:14px;height:120px;display:flex;flex-direction:column">
+              <div style="font-size:13px;font-weight:700;margin-bottom:8px">Evolução da Carteira</div>
+              <div style="flex:1;display:flex;align-items:flex-end;gap:3px;padding-bottom:4px">
+                <div style="flex:1;height:30%;background:var(--silver);border-radius:2px"></div>
+                <div style="flex:1;height:45%;background:var(--silver);border-radius:2px"></div>
+                <div style="flex:1;height:40%;background:var(--silver);border-radius:2px"></div>
+                <div style="flex:1;height:55%;background:var(--silver);border-radius:2px"></div>
+                <div style="flex:1;height:50%;background:var(--silver);border-radius:2px"></div>
+                <div style="flex:1;height:65%;background:var(--silver);border-radius:2px"></div>
+                <div style="flex:1;height:70%;background:var(--silver);border-radius:2px"></div>
+                <div style="flex:1;height:80%;background:var(--charcoal);border-radius:2px"></div>
+                <div style="flex:1;height:85%;background:var(--onyx);border-radius:2px"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 22 — TELA: CENTRAL DE ALOCAÇÃO -->
+  <section class="section" id="tela-alocacao">
+    <div class="section-head rv"><span class="section-num">22</span><div><h2 class="section-title">Tela: Central de Alocação</h2><p class="section-sub">Abrir Ordem — estado vazio + estado preenchido</p></div></div>
+    <!-- Estado Preenchido (principal) -->
+    <div class="label rv">Estado preenchido — cliente selecionado</div>
+    <div class="screen-frame rv rv-d1">
+      <div class="screen-bar"><div class="screen-dot"></div><div class="screen-dot"></div><div class="screen-dot"></div><span style="font-family:var(--mono);font-size:9px;color:var(--text-3);margin-left:auto">app.anova.com.br/central-alocacao/nova-ordem</span></div>
+      <div class="screen-body">
+        <div class="alloc-demo">
+          <div class="breadcrumb" style="margin-bottom:var(--s3)"><a class="breadcrumb-item" href="#">Homepage</a><span class="breadcrumb-sep">›</span><a class="breadcrumb-item" href="#">Central de Alocação</a><span class="breadcrumb-sep">›</span><span class="breadcrumb-item breadcrumb-current">Nova Ordem</span></div>
+          <div class="alloc-head">
+            <button class="alloc-back"><svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
+            <h2 style="font-size:var(--text-xl);font-weight:700;letter-spacing:-.02em">Abrir Ordem</h2>
+          </div>
+          <div class="alert alert-info" style="margin-bottom:var(--s5)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div class="alert-content"><div class="alert-desc"><strong>Atenção:</strong> As ofertas de ativos do mercado de renda fixa são atualizadas diariamente <strong>a partir das 11h da manhã</strong>.</div></div></div>
+          <div class="alloc-form-card">
+            <!-- Client search - filled -->
+            <div class="alloc-search">
+              <input class="alloc-search-input" value="Vitor Schneider Chaoud" style="font-weight:600"/>
+              <button class="alloc-search-btn"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+            </div>
+            <!-- Client selected -->
+            <div style="display:flex;align-items:center;gap:var(--s3);padding:var(--s3) 0;border-bottom:1px solid var(--border);margin-bottom:var(--s4)">
+              <div class="cell-avatar" style="width:36px;height:36px;font-size:11px">VS</div>
+              <div>
+                <div style="font-size:14px;font-weight:600">Vitor Schneider Chaoud</div>
+                <div style="font-size:12px;color:var(--text-3);font-family:var(--mono)">vitor.chaoud@empresa.com · CPF ***.***.876-42</div>
+              </div>
+              <div style="margin-left:auto"><span class="status status-active" style="font-size:10px;padding:3px 10px"><span class="status-dot" style="width:5px;height:5px"></span>Ativo</span></div>
+            </div>
+            <!-- Filled fields -->
+            <div class="alloc-grid">
+              <div class="field"><label class="field-label">Número da Conta</label><input class="input" value="4584567" disabled style="background:var(--bg-alt);font-weight:600;color:var(--text-1)"/></div>
+              <div class="field"><label class="field-label">Suitability</label><input class="input" value="Moderado" disabled style="background:var(--bg-alt);font-weight:600;color:var(--text-1)"/></div>
+              <div class="field"><label class="field-label">Saldo em Conta</label><input class="input" value="R$ 42.381,50" disabled style="background:var(--bg-alt);font-weight:600;color:var(--text-1)"/></div>
+            </div>
+            <div class="alloc-g2">
+              <div class="field"><label class="field-label">Assunto</label><div class="select-wrap"><select class="select"><option>Renda Fixa</option><option>Renda Variável</option><option>Fundos</option></select><div class="select-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div></div>
+              <div class="field"><label class="field-label">Tipo de Ordem</label><div class="select-wrap"><select class="select"><option>Aplicação</option><option>Resgate</option></select><div class="select-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div></div></div>
+            </div>
+            <div class="field" style="margin-bottom:var(--s4)"><label class="field-label">Descrição da Solicitação</label><textarea class="textarea" style="min-height:80px">Aplicação em CDB IPCA+ 7.2% - Vencimento 2028. Cliente solicitou alocação de R$ 15.000,00 conforme recomendação da carteira.</textarea></div>
+            <div class="alloc-footer">
+              <button class="btn btn-outline btn-sm" style="gap:6px"><svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>ANEXAR</button>
+              <div style="flex:1"></div>
+              <div class="alloc-badge"><span style="width:6px;height:6px;border-radius:50%;background:var(--charcoal);display:inline-block"></span> Mercado aberto</div>
+              <div class="alloc-time">12:31</div>
+              <button class="btn btn-primary">ENVIAR NOVA ORDEM</button>
+            </div>
+          </div>
+          <!-- Asset allocation with data -->
+          <div class="alloc-assets">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--s3)">
+              <div class="alloc-assets-title" style="margin-bottom:0">Alocação de Ativos</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--text-3)">Corretora: <strong style="color:var(--text-1)">Anova Investimentos</strong></div>
+            </div>
+            <div class="tab-bar" style="margin-bottom:var(--s4)"><button class="tab-item active">Seleção Manual</button><button class="tab-item"><svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.5;vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>Anova Life Invest (AI)</button></div>
+            <!-- Asset mini table -->
+            <div class="tbl-wrap">
+              <table class="tbl">
+                <thead><tr><th>ATIVO</th><th>TIPO</th><th>TAXA</th><th>VENCIMENTO</th><th class="align-r">MÍNIMO</th><th style="width:60px"></th></tr></thead>
+                <tbody>
+                  <tr><td style="font-weight:600">CDB IPCA+ 7.2%</td><td class="cell-meta">CDB</td><td style="font-family:var(--mono);font-size:12px">IPCA + 7.20%</td><td class="cell-date">15/03/2028</td><td class="cell-value">R$ 1.000</td><td><button class="btn btn-primary btn-sm" style="padding:5px 10px;font-size:9px">ALOCAR</button></td></tr>
+                  <tr><td style="font-weight:600">LCI Pré 13.8%</td><td class="cell-meta">LCI</td><td style="font-family:var(--mono);font-size:12px">13.80% a.a.</td><td class="cell-date">10/09/2026</td><td class="cell-value">R$ 5.000</td><td><button class="btn btn-outline btn-sm" style="padding:5px 10px;font-size:9px">ALOCAR</button></td></tr>
+                  <tr><td style="font-weight:600">LCA IPCA+ 6.5%</td><td class="cell-meta">LCA</td><td style="font-family:var(--mono);font-size:12px">IPCA + 6.50%</td><td class="cell-date">22/01/2027</td><td class="cell-value">R$ 2.000</td><td><button class="btn btn-outline btn-sm" style="padding:5px 10px;font-size:9px">ALOCAR</button></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Estado Vazio -->
+    <div class="label rv rv-d2" style="margin-top:var(--s5)">Estado vazio — nenhum cliente selecionado</div>
+    <div style="border:1px solid var(--border);border-radius:var(--r-xl);padding:var(--s5)" class="rv rv-d3">
+      <div style="display:flex;align-items:center;gap:var(--s3);padding:var(--s4);border:1px dashed var(--border);border-radius:var(--r-xl)">
+        <svg viewBox="0 0 24 24" style="width:32px;height:32px;stroke:var(--silver);fill:none;stroke-width:1.5;flex-shrink:0"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4-4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <div>
+          <div style="font-size:14px;color:var(--text-3)">Nenhum cliente selecionado</div>
+          <div style="font-size:12px;color:var(--silver);font-family:var(--mono)">Busque por nome, CPF ou número da conta</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 23 — 10 REGRAS -->
+  <section class="section" id="regras">
+    <div class="section-head rv"><span class="section-num">23</span><div><h2 class="section-title">As 10 Regras de Ouro</h2><p class="section-sub">Da marca Anova</p></div></div>
+    <div class="rules-grid rv rv-d1">
+      <div class="rule-item"><div class="rule-num">01</div><div class="rule-text"><strong>Monocromático sempre</strong> — nunca cores fora da paleta.</div></div>
+      <div class="rule-item"><div class="rule-num">06</div><div class="rule-text"><strong>Hierarquia tipográfica</strong> — respeite a escala sempre.</div></div>
+      <div class="rule-item"><div class="rule-num">02</div><div class="rule-text"><strong>Whitespace é sagrado</strong> — o vazio comunica sofisticação.</div></div>
+      <div class="rule-item"><div class="rule-num">07</div><div class="rule-text"><strong>Frases de impacto</strong> — use bold para fechar seções.</div></div>
+      <div class="rule-item"><div class="rule-num">03</div><div class="rule-text"><strong>Line-art, nunca filled</strong> — ícones sempre outline.</div></div>
+      <div class="rule-item"><div class="rule-num">08</div><div class="rule-text"><strong>A logo é intocável</strong> — nunca altere ou distorça.</div></div>
+      <div class="rule-item"><div class="rule-num">04</div><div class="rule-text"><strong>Blueprint é a assinatura</strong> — crosshairs e linhas de guia.</div></div>
+      <div class="rule-item"><div class="rule-num">09</div><div class="rule-text"><strong>Consistência entre contextos</strong> — slides, site, docs iguais.</div></div>
+      <div class="rule-item"><div class="rule-num">05</div><div class="rule-text"><strong>Flat design absoluto</strong> — sem sombras ou gradientes.</div></div>
+      <div class="rule-item"><div class="rule-num">10</div><div class="rule-text"><strong>Conexão visual</strong> — use linhas de rede e hubs.</div></div>
+    </div>
+    <div class="impact-block rv rv-d2">
+      <div class="impact-text">Conectando Redes, Gerando Valor.<br><span style="font-size:15px;color:var(--text-3);font-weight:300">Confiança que vira execução.</span></div>
+    </div>
+  </section>
+
+  <!-- 13 — TOKENS -->
+  <section class="section" id="tokens">
+    <div class="section-head rv"><span class="section-num">24</span><div><h2 class="section-title">Tokens CSS</h2></div></div>
+    <div class="code-block rv rv-d1">
+<span class="cc">/* ANOVA Design System v1.0 */</span>
+<span class="cc">/* Monocromático absoluto. Zero exceções. */</span>
+<span class="cv">:root</span> {
+  <span class="cc">/* Paleta — 6 tons */</span>
+  <span class="cv">--onyx</span>:    <span class="cs">#000000</span>;
+  <span class="cv">--white</span>:   <span class="cs">#FFFFFF</span>;
+  <span class="cv">--charcoal</span>:<span class="cs">#333333</span>;
+  <span class="cv">--grey</span>:    <span class="cs">#888888</span>;
+  <span class="cv">--silver</span>:  <span class="cs">#CCCCCC</span>;
+  <span class="cv">--snow</span>:    <span class="cs">#F8F8F8</span>;
+
+  <span class="cc">/* Tipografia — Apple-aligned scale */</span>
+  <span class="cv">--font</span>:       <span class="cs">'SF Pro Display', -apple-system, sans-serif</span>;
+  <span class="cv">--mono</span>:       <span class="cs">'DM Mono', 'SF Mono', monospace</span>;
+  <span class="cv">--text-hero</span>:  <span class="cs">76px</span>;  <span class="cc">/* Bold 700 */</span>
+  <span class="cv">--text-3xl</span>:   <span class="cs">56px</span>;  <span class="cc">/* Bold 700 */</span>
+  <span class="cv">--text-2xl</span>:   <span class="cs">40px</span>;  <span class="cc">/* Semibold 600 */</span>
+  <span class="cv">--text-xl</span>:    <span class="cs">28px</span>;  <span class="cc">/* Semibold 600 */</span>
+  <span class="cv">--text-lg</span>:    <span class="cs">22px</span>;  <span class="cc">/* Medium 500 */</span>
+  <span class="cv">--text-md</span>:    <span class="cs">18px</span>;  <span class="cc">/* Regular 400 */</span>
+  <span class="cv">--text-base</span>:  <span class="cs">15px</span>;  <span class="cc">/* Regular 400 */</span>
+  <span class="cv">--text-sm</span>:    <span class="cs">13px</span>;  <span class="cc">/* Medium 500 */</span>
+  <span class="cv">--text-xs</span>:    <span class="cs">11px</span>;  <span class="cc">/* DM Mono */</span>
+
+  <span class="cc">/* Radius */</span>
+  <span class="cv">--r-squircle</span>: <span class="cs">22%</span>;
+}
+    </div>
+  </section>
+
+  <!-- 14 — CHANGELOG -->
+  <section class="section" id="changelog">
+    <div class="section-head rv"><span class="section-num">25</span><div><h2 class="section-title">Changelog</h2></div></div>
+    <div class="changelog-item rv rv-d1"><span class="changelog-date">2026 — v1.0</span><span class="changelog-desc"><strong>Definitivo.</strong> Reconstruído do zero com base no Manual de Identidade Visual. Paleta monocromática absoluta (6 tons). Zero sombras, zero gradientes. Line-art. Blueprint patterns no hero. Logo squircle com zona de exclusão. Tipografia com Title Emphasis Rule e Impact Phrase Rule. 10 Regras de Ouro. Motivos gráficos (linhas de rede, mapa, mesh). Dark/Light com semântica monocromática. Anime.js para logo e scroll reveals.</span></div>
+    <div class="changelog-item rv rv-d2"><span class="changelog-date">2025 — v0.6</span><span class="changelog-desc">Azul petróleo. Light mode focus.</span></div>
+    <div class="changelog-item rv rv-d3"><span class="changelog-date">2025 — v0.1–0.5</span><span class="changelog-desc">Iterações iniciais. Gradientes, Liquid Glass, WebGL, Anime.js.</span></div>
+  </section>
+
+</main>
+</div>
+
+<!-- ANIME.JS -->
+<script src="https://cdn.jsdelivr.net/npm/animejs/dist/bundles/anime.umd.min.js"></script>
+<script>
+/* ══ INTERSECTION OBSERVER ══ */
+(function(){
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');
+  e.target.querySelectorAll('.counter:not(.done)').forEach(c=>animCounter(c));
+  if(e.target.classList.contains('counter')&&!e.target.classList.contains('done'))animCounter(e.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  requestAnimationFrame(()=>{document.querySelectorAll('.rv').forEach(el=>obs.observe(el));document.querySelectorAll('.counter').forEach(el=>{if(!el.closest('.rv'))obs.observe(el)})});
+  function animCounter(el){el.classList.add('done');const t=parseFloat(el.dataset.target)||0,pre=el.dataset.pre||'',suf=el.dataset.suf||'',dec=parseInt(el.dataset.dec)||0,dur=1400,st=performance.now();
+  function ease(x){return 1-Math.pow(1-x,4)}function upd(now){const p=Math.min((now-st)/dur,1),v=t*ease(p);el.textContent=pre+(dec>0?v.toFixed(dec):Math.round(v).toLocaleString('pt-BR'))+suf;if(p<1)requestAnimationFrame(upd)}requestAnimationFrame(upd)}
+  // Active nav
+  const secs=document.querySelectorAll('.section[id]'),navs=document.querySelectorAll('.nav-link');
+  const no=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){navs.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id))}})},{threshold:.2,rootMargin:'-80px 0px -55% 0px'});
+  secs.forEach(s=>no.observe(s));
+})();
+
+/* ══ HERO BLUEPRINT CANVAS ══ */
+(function(){
+  const c=document.getElementById('heroCanvas');if(!c)return;
+  const ctx=c.getContext('2d');let W,H;
+  function resize(){const r=c.parentElement.getBoundingClientRect();W=c.width=r.width*devicePixelRatio;H=c.height=r.height*devicePixelRatio;c.style.width=r.width+'px';c.style.height=r.height+'px';ctx.scale(devicePixelRatio,devicePixelRatio);draw()}
+  resize();window.addEventListener('resize',resize);
+  function draw(){
+    const w=W/devicePixelRatio,h=H/devicePixelRatio;ctx.clearRect(0,0,w,h);
+    const col='rgba(0,0,0,';
+    // Crosshair lines (blueprint)
+    ctx.strokeStyle=col+'.04)';ctx.lineWidth=.5;
+    for(let x=0;x<w;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke()}
+    for(let y=0;y<h;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke()}
+    // Radial network lines from center
+    const cx=w*.35,cy=h*.55;
+    for(let i=0;i<24;i++){
+      const a=(i/24)*Math.PI*2,r=Math.max(w,h)*.6;
+      ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(a)*r,cy+Math.sin(a)*r);
+      ctx.strokeStyle=col+'.03)';ctx.lineWidth=.5;ctx.stroke();
+    }
+    // Concentric circles
+    for(let r=40;r<Math.max(w,h)*.6;r+=50){
+      ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);
+      ctx.strokeStyle=col+'.025)';ctx.lineWidth=.5;ctx.stroke();
+    }
+    // Center crosshair
+    ctx.strokeStyle=col+'.08)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(cx-12,cy);ctx.lineTo(cx+12,cy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(cx,cy-12);ctx.lineTo(cx,cy+12);ctx.stroke();
+  }
+})();
+
+/* ══ INTERACTIVE PATTERN CANVASES — mouse physics ══ */
+(function(){
+  const dpr=devicePixelRatio;
+  const col=(a)=>`rgba(0,0,0,${a})`;
+
+  // Mouse tracking per canvas
+  const mice={};
+  function trackMouse(id){
+    const cv=document.getElementById(id);if(!cv)return;
+    const wrap=cv.parentElement;
+    mice[id]={x:-999,y:-999,active:false};
+    wrap.addEventListener('mousemove',e=>{
+      const r=wrap.getBoundingClientRect();
+      mice[id].x=(e.clientX-r.left)*dpr;
+      mice[id].y=(e.clientY-r.top)*dpr;
+      mice[id].active=true;
+    });
+    wrap.addEventListener('mouseleave',()=>{mice[id].active=false});
+  }
+  trackMouse('patternLines');trackMouse('patternMap');trackMouse('patternMesh');
+
+  const S={};
+  function setup(id){
+    const cv=document.getElementById(id);if(!cv)return null;
+    const ctx=cv.getContext('2d');
+    const r=cv.parentElement.getBoundingClientRect();
+    cv.width=r.width*dpr;cv.height=r.height*dpr;
+    cv.style.width=r.width+'px';cv.style.height=r.height+'px';
+    return{cv,ctx,w:r.width,h:r.height};
+  }
+
+  // ═══ 1. LINHAS DE REDE — center follows mouse ═══
+  let lCx,lCy,lTx,lTy;
+  function initLines(){
+    S.lines=setup('patternLines');if(!S.lines)return;
+    lCx=S.lines.w/2;lCy=S.lines.h/2;lTx=lCx;lTy=lCy;
+  }
+  function drawLines(t){
+    const s=S.lines;if(!s)return;
+    const{ctx,w,h}=s;const m=mice.patternLines;
+    ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
+    if(m&&m.active){lTx=m.x/dpr;lTy=m.y/dpr}else{lTx=w/2;lTy=h/2}
+    lCx+=(lTx-lCx)*.04;lCy+=(lTy-lCy)*.04;
+    const maxR=Math.max(w,h)*.65,rot=t*.00006;
+    for(let i=0;i<36;i++){
+      const a=(i/36)*Math.PI*2+rot;
+      ctx.beginPath();ctx.moveTo(lCx,lCy);
+      ctx.lineTo(lCx+Math.cos(a)*maxR,lCy+Math.sin(a)*maxR);
+      ctx.strokeStyle=col(.04+Math.sin(t*.0012+i*.4)*.02);ctx.lineWidth=.5;ctx.stroke();
+    }
+    for(let r=15;r<maxR;r+=20){
+      const br=r+Math.sin(t*.0012+r*.015)*4;
+      ctx.beginPath();ctx.arc(lCx,lCy,br,0,Math.PI*2);
+      ctx.strokeStyle=col(.02+Math.sin(t*.001+r*.008)*.012);ctx.lineWidth=.5;ctx.stroke();
+    }
+    const cp=3.5+Math.sin(t*.003)*2;
+    ctx.beginPath();ctx.arc(lCx,lCy,cp,0,Math.PI*2);ctx.fillStyle=col(.18);ctx.fill();
+    const hr=10+Math.sin(t*.002)*5;
+    ctx.beginPath();ctx.arc(lCx,lCy,hr,0,Math.PI*2);ctx.strokeStyle=col(.06);ctx.lineWidth=.5;ctx.stroke();
+  }
+
+  // ═══ 2. PADRÃO DE MAPA — nodes attracted to mouse ═══
+  const mapN=[];
+  function initMap(){
+    S.map=setup('patternMap');if(!S.map)return;
+    const{w,h}=S.map;mapN.length=0;
+    const seed=[.1,.3,.55,.75,.2,.65,.42,.85,.12,.58,.38,.72,.88,.18,.48,.8,.28,.62,.15,.7];
+    for(let i=0;i<14;i++){
+      const bx=seed[i%seed.length]*w,by=seed[(i+5)%seed.length]*h;
+      mapN.push({x:bx,y:by,bx,by,vx:0,vy:0,phase:i*1.1});
+    }
+  }
+  function drawMap(t){
+    const s=S.map;if(!s)return;
+    const{ctx,w,h}=s;const m=mice.patternMap;
+    ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
+    ctx.strokeStyle=col(.03);ctx.lineWidth=.5;
+    for(let x=0;x<w;x+=18){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke()}
+    for(let y=0;y<h;y+=18){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke()}
+    const mA=m&&m.active,mmx=mA?m.x/dpr:-999,mmy=mA?m.y/dpr:-999;
+    mapN.forEach(n=>{
+      const sx=(n.bx-n.x)*.02,sy=(n.by-n.y)*.02;
+      let gx=0,gy=0;
+      if(mA){const dx=mmx-n.x,dy=mmy-n.y,d=Math.sqrt(dx*dx+dy*dy);if(d<120&&d>1){const f=.8*(1-d/120);gx=dx/d*f;gy=dy/d*f}}
+      n.vx=(n.vx+sx+gx+Math.sin(t*.0005+n.phase)*.08)*.92;
+      n.vy=(n.vy+sy+gy+Math.cos(t*.0004+n.phase*1.3)*.06)*.92;
+      n.x+=n.vx;n.y+=n.vy;
+    });
+    for(let i=0;i<mapN.length;i++){for(let j=i+1;j<mapN.length;j++){
+      const dx=mapN[i].x-mapN[j].x,dy=mapN[i].y-mapN[j].y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<w*.4){ctx.beginPath();ctx.moveTo(mapN[i].x,mapN[i].y);ctx.lineTo(mapN[j].x,mapN[j].y);ctx.strokeStyle=col(.06*(1-d/(w*.4)));ctx.lineWidth=.5;ctx.stroke()}
+    }}
+    mapN.forEach(n=>{
+      const pulse=.5+Math.sin(t*.002+n.phase)*.5,sz=4+pulse*2;
+      ctx.beginPath();ctx.moveTo(n.x-sz,n.y);ctx.lineTo(n.x+sz,n.y);ctx.moveTo(n.x,n.y-sz);ctx.lineTo(n.x,n.y+sz);
+      ctx.strokeStyle=col(.07+pulse*.05);ctx.lineWidth=.5;ctx.stroke();
+      ctx.beginPath();ctx.arc(n.x,n.y,1.8,0,Math.PI*2);ctx.fillStyle=col(.14+pulse*.08);ctx.fill();
+    });
+  }
+
+  // ═══ 3. MESH GEOMÉTRICO — nodes repelled by mouse ═══
+  const meshN=[];
+  function initMesh(){
+    S.mesh=setup('patternMesh');if(!S.mesh)return;
+    const{w,h}=S.mesh;meshN.length=0;
+    const seed=[.08,.2,.35,.5,.65,.8,.92,.14,.44,.7,.26,.58,.82,.38,.72,.1,.55,.88,.3,.62];
+    for(let i=0;i<seed.length;i+=2){
+      const bx=seed[i]*w,by=seed[(i+1)%seed.length]*h;
+      meshN.push({x:bx,y:by,bx,by,vx:0,vy:0,r:2+Math.random()*2,phase:i*.7});
+    }
+  }
+  function drawMesh(t){
+    const s=S.mesh;if(!s)return;
+    const{ctx,w,h}=s;const m=mice.patternMesh;
+    ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
+    const mA=m&&m.active,mmx=mA?m.x/dpr:-999,mmy=mA?m.y/dpr:-999;
+    meshN.forEach(n=>{
+      const sx=(n.bx-n.x)*.015,sy=(n.by-n.y)*.015;
+      let rx=0,ry=0;
+      if(mA){const dx=n.x-mmx,dy=n.y-mmy,d=Math.sqrt(dx*dx+dy*dy);if(d<100&&d>1){const f=2.5*(1-d/100);rx=dx/d*f;ry=dy/d*f}}
+      n.vx=(n.vx+sx+rx+Math.sin(t*.0003+n.phase)*.06)*.94;
+      n.vy=(n.vy+sy+ry+Math.cos(t*.00035+n.phase*1.5)*.05)*.94;
+      n.x+=n.vx;n.y+=n.vy;
+    });
+    const maxD=w*.42;
+    for(let i=0;i<meshN.length;i++){for(let j=i+1;j<meshN.length;j++){
+      const dx=meshN[i].x-meshN[j].x,dy=meshN[i].y-meshN[j].y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<maxD){ctx.beginPath();ctx.moveTo(meshN[i].x,meshN[i].y);ctx.lineTo(meshN[j].x,meshN[j].y);ctx.strokeStyle=col(.07*(1-d/maxD));ctx.lineWidth=.5;ctx.stroke()}
+    }}
+    if(mA){meshN.forEach(n=>{const d=Math.hypot(n.x-mmx,n.y-mmy);if(d<130){ctx.beginPath();ctx.moveTo(mmx,mmy);ctx.lineTo(n.x,n.y);ctx.strokeStyle=col(.04*(1-d/130));ctx.lineWidth=.5;ctx.stroke()}})}
+    meshN.forEach(n=>{
+      const pulse=.5+Math.sin(t*.0018+n.phase)*.5;
+      ctx.beginPath();ctx.arc(n.x,n.y,n.r*2+pulse*5,0,Math.PI*2);ctx.strokeStyle=col(.03+pulse*.025);ctx.lineWidth=.5;ctx.stroke();
+      ctx.beginPath();ctx.arc(n.x,n.y,n.r*.7+pulse*1.2,0,Math.PI*2);ctx.fillStyle=col(.1+pulse*.1);ctx.fill();
+    });
+  }
+
+  // ── INIT + LOOP ──
+  function setupAll(){initLines();initMap();initMesh()}
+  setupAll();
+  let running=false;
+  function loop(t){if(!running)return;drawLines(t);drawMap(t);drawMesh(t);requestAnimationFrame(loop)}
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting&&!running){running=true;requestAnimationFrame(loop)}
+      if(!e.isIntersecting){running=false}
+    });
+  },{threshold:0.02});
+  const sec=document.getElementById('motivos');
+  if(sec)obs.observe(sec);
+  window.addEventListener('resize',()=>{setupAll();if(!running){running=true;requestAnimationFrame(t=>{drawLines(t);drawMap(t);drawMesh(t);running=false})}});
+})();
+
+/* ══ CHART RENDERING ══ */
+(function(){
+  const dpr=devicePixelRatio;const mono='"DM Mono"';
+  function col(a){return`rgba(0,0,0,${a})`}
+  function initCanvas(id,h){
+    const c=document.getElementById(id);if(!c)return null;
+    const ctx=c.getContext('2d');const r=c.parentElement.getBoundingClientRect();
+    c.width=r.width*dpr;c.height=(h||c.height)*dpr;
+    c.style.width=r.width+'px';c.style.height=(h||c.height)+'px';
+    ctx.scale(dpr,dpr);return{ctx,w:r.width,h:h||c.height};
+  }
+
+  // Line chart
+  const lc=initCanvas('chLine',180);
+  if(lc){const{ctx,w,h}=lc;const pad={t:12,b:24,l:36,r:8},cw=w-pad.l-pad.r,ch=h-pad.t-pad.b;
+    const d1=[20,35,50,65,80,110,130,145,160,175,195,220],d2=[15,20,30,40,55,60,50,55,70,80,85,95];
+    const max=Math.max(...d1)*1.15;
+    ctx.strokeStyle='#eee';ctx.lineWidth=.5;
+    for(let i=0;i<=4;i++){const y=pad.t+(ch/4)*i;ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(w-pad.r,y);ctx.stroke();ctx.fillStyle='#888';ctx.font=`10px ${mono}`;ctx.textAlign='right';ctx.fillText(Math.round(max-(max/4)*i),pad.l-6,y+3)}
+    ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'].forEach((l,i)=>{ctx.fillStyle='#888';ctx.font=`10px ${mono}`;ctx.textAlign='center';ctx.fillText(l,pad.l+(i/11)*cw,h-4)});
+    // Area + line 1
+    const pts1=d1.map((v,i)=>({x:pad.l+(i/(d1.length-1))*cw,y:pad.t+ch-(v/max)*ch}));
+    ctx.beginPath();ctx.moveTo(pts1[0].x,pad.t+ch);pts1.forEach(p=>ctx.lineTo(p.x,p.y));ctx.lineTo(pts1[pts1.length-1].x,pad.t+ch);ctx.closePath();ctx.fillStyle='#F8F8F8';ctx.fill();
+    ctx.beginPath();pts1.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.strokeStyle='#000';ctx.lineWidth=2;ctx.lineJoin='round';ctx.stroke();
+    pts1.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,2.5,0,Math.PI*2);ctx.fillStyle='#000';ctx.fill()});
+    // Line 2 dashed
+    const pts2=d2.map((v,i)=>({x:pad.l+(i/(d2.length-1))*cw,y:pad.t+ch-(v/max)*ch}));
+    ctx.beginPath();pts2.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.strokeStyle='#CCC';ctx.lineWidth=1.5;ctx.setLineDash([4,4]);ctx.stroke();ctx.setLineDash([]);
+  }
+
+  // Bar chart
+  const bc=initCanvas('chBar',180);
+  if(bc){const{ctx,w,h}=bc;const pad={t:12,b:24,l:36,r:8},cw=w-pad.l-pad.r,ch=h-pad.t-pad.b;
+    const data=[45,62,38,85,72,90,55,78,95,42,68,88];const max=Math.max(...data)*1.15;
+    ctx.strokeStyle='#eee';ctx.lineWidth=.5;
+    for(let i=0;i<=4;i++){const y=pad.t+(ch/4)*i;ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(w-pad.r,y);ctx.stroke();ctx.fillStyle='#888';ctx.font=`10px ${mono}`;ctx.textAlign='right';ctx.fillText(Math.round(max-(max/4)*i),pad.l-6,y+3)}
+    const bw=cw/data.length*.6,gap=cw/data.length*.4;
+    data.forEach((v,i)=>{
+      const x=pad.l+(i/data.length)*cw+gap/2;
+      const bh=(v/max)*ch;const y=pad.t+ch-bh;
+      ctx.fillStyle=i===5?'#000':'#333';
+      const r=3;ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+bw-r,y);ctx.quadraticCurveTo(x+bw,y,x+bw,y+r);ctx.lineTo(x+bw,pad.t+ch);ctx.lineTo(x,pad.t+ch);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.fill();
+    });
+    ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'].forEach((l,i)=>{ctx.fillStyle='#888';ctx.font=`10px ${mono}`;ctx.textAlign='center';ctx.fillText(l,pad.l+(i/12)*cw+cw/24,h-4)});
+  }
+
+  // Donut chart
+  const dc=initCanvas('chDonut',200);
+  if(dc){const{ctx,w,h}=dc;
+    const cx=w/2,cy=h/2,r=Math.min(w,h)/2-20,lw=28;
+    const segs=[{v:42,c:'#000'},{v:28,c:'#333'},{v:18,c:'#888'},{v:12,c:'#CCC'}];
+    const total=segs.reduce((s,x)=>s+x.v,0);let start=-Math.PI/2;
+    segs.forEach(s=>{const a=(s.v/total)*Math.PI*2;ctx.beginPath();ctx.arc(cx,cy,r,start,start+a);ctx.strokeStyle=s.c;ctx.lineWidth=lw;ctx.lineCap='butt';ctx.stroke();start+=a});
+    ctx.fillStyle='#000';ctx.font=`700 28px "SF Pro Display"`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('42%',cx,cy-8);
+    ctx.fillStyle='#888';ctx.font=`10px ${mono}`;ctx.fillText('CDB (maior)',cx,cy+14);
+  }
+
+  // Sparklines
+  function spark(id,data,color){
+    const s=initCanvas(id,36);if(!s)return;const{ctx,w,h}=s;const pad=2;
+    const min=Math.min(...data),max=Math.max(...data),range=max-min||1;
+    const pts=data.map((v,i)=>({x:pad+(i/(data.length-1))*(w-pad*2),y:pad+(1-(v-min)/range)*(h-pad*2)}));
+    ctx.beginPath();ctx.moveTo(pts[0].x,h);pts.forEach(p=>ctx.lineTo(p.x,p.y));ctx.lineTo(pts[pts.length-1].x,h);ctx.closePath();ctx.fillStyle='#F8F8F8';ctx.fill();
+    ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.strokeStyle=color||'#000';ctx.lineWidth=1.5;ctx.lineJoin='round';ctx.stroke();
+    const last=pts[pts.length-1];ctx.beginPath();ctx.arc(last.x,last.y,3,0,Math.PI*2);ctx.fillStyle=color||'#000';ctx.fill();
+  }
+  spark('chSpark1',[85,92,98,105,112,118,128],'#000');
+  spark('chSpark2',[245,252,260,268,272,278,282],'#000');
+  spark('chSpark3',[1.05,1.08,1.12,1.10,1.15,1.18,1.18],'#000');
+  spark('chSpark4',[78,82,85,87,88,90,91],'#000');
+
+  // Tab clicks
+  document.querySelectorAll('.tab-bar').forEach(g=>{g.querySelectorAll('.tab-item').forEach(t=>t.addEventListener('click',()=>{g.querySelectorAll('.tab-item').forEach(b=>b.classList.remove('active'));t.classList.add('active')}))});
+
+  // Login blueprint canvas
+  const lc2=document.getElementById('loginCanvas');
+  if(lc2){
+    const ctx=lc2.getContext('2d');const r=lc2.parentElement.getBoundingClientRect();
+    lc2.width=r.width*dpr;lc2.height=r.height*dpr;
+    lc2.style.width=r.width+'px';lc2.style.height=r.height+'px';
+    ctx.scale(dpr,dpr);const w=r.width,h=r.height;
+    const col2=(a)=>`rgba(0,0,0,${a})`;
+    // Grid
+    for(let x=0;x<w;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.strokeStyle=col2(.03);ctx.lineWidth=.5;ctx.stroke()}
+    for(let y=0;y<h;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.strokeStyle=col2(.03);ctx.lineWidth=.5;ctx.stroke()}
+    // Radial
+    const cx2=w*.5,cy2=h*.5;
+    for(let i=0;i<20;i++){const a=(i/20)*Math.PI*2,rl=Math.max(w,h)*.5;ctx.beginPath();ctx.moveTo(cx2,cy2);ctx.lineTo(cx2+Math.cos(a)*rl,cy2+Math.sin(a)*rl);ctx.strokeStyle=col2(.02);ctx.lineWidth=.5;ctx.stroke()}
+    for(let rl=30;rl<Math.max(w,h)*.5;rl+=50){ctx.beginPath();ctx.arc(cx2,cy2,rl,0,Math.PI*2);ctx.strokeStyle=col2(.015);ctx.lineWidth=.5;ctx.stroke()}
+  }
+})();
+
+/* ══ ANOVA LOGO ANIMATION (Anime.js) ══ */
+(function initLogo(){
+  if(!window.anime){setTimeout(initLogo,100);return}
+  const {animate}=anime;
+  // Squircle entrance
+  animate('.sidebar-logo .logo-squircle',{scale:[0,1],opacity:[0,1],duration:600,ease:'outElastic(1,.6)',delay:200});
+  animate('.sidebar-brand',{opacity:[0,1],translateX:[-8,0],duration:400,ease:'outExpo',delay:500});
+  // Hover
+  document.getElementById('anovaLogo')?.addEventListener('mouseenter',()=>{
+    animate('.sidebar-logo .logo-squircle',{rotate:[0,-6,0],duration:400,ease:'outElastic(1,.5)'});
+  });
+})();
+</script>
+</body>
+</html>

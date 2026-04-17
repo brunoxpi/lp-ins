@@ -1,0 +1,10 @@
+{
+  "name": "anova-site",
+  "version": "1.1.0",
+  "description": "Site institucional Anova — HTML estatico multi-pagina com design system monocromatico.",
+  "private": true,
+  "scripts": {
+    "start": "npx --yes serve@14 -l 8000 -n .",
+    "dev": "npx --yes serve@14 -l 8000 -n ."
+  }
+}
